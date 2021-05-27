@@ -1,0 +1,19 @@
+@mixin selector-list($selector, $end, $start: 0, $prefix: '') {
+  @for $i from $start to $end {
+    #{$selector + $prefix + $i} {
+      @content;
+    }
+  }
+}
+
+@function normalize($val) {
+  @if $val == 0 {
+    @return strip-units($val);
+  } @else {
+    @return $val;
+  }
+}
+
+@function strip-units($val) {
+  @return $val / ($val * 0 + 1);
+}

@@ -1,0 +1,56 @@
+<ul class="schedule-holder">
+  <li *ngFor="let item of list$ | async" class="schedule-holder__item">
+    <button class="schedule-holder__btn" type="button">
+      <ng-container *ngIf="item.applySvgIconTextDirective; else elseTemplate">
+        <svg-icon
+          [appSvgIconText]="currDay"
+          [appTooltip]="item.tooltipText"
+          [name]="item.iconName"
+          [svgClass]="item.iconClass"
+        ></svg-icon>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <svg-icon [appTooltip]="item.tooltipText" [name]="item.iconName" [svgClass]="item.iconClass"></svg-icon>
+      </ng-template>
+    </button>
+  </li>
+  <!-- <li *ngIf="showTodayBtn$ | async" class="schedule-holder__item">
+    <button class="schedule-holder__btn" type="button">
+      <svg-icon
+        [appSvgIconText]="currDay"
+        appTooltip="Сегодня"
+        name="calendar-today"
+        svgClass="icon_size_l icon_color_green"
+      ></svg-icon>
+    </button>
+  </li>
+  <li class="schedule-holder__item">
+    <button class="schedule-holder__btn" type="button">
+      <svg-icon appTooltip="Завтра" name="sun" svgClass="icon_size_l icon_color_tenne"></svg-icon>
+    </button>
+  </li>
+  <li class="schedule-holder__item">
+    <button class="schedule-holder__btn" type="button">
+      <svg-icon appTooltip="На выходных" name="couch" svgClass="icon_size_l icon_color_royal-blue"></svg-icon>
+    </button>
+  </li>
+  <li class="schedule-holder__item">
+    <button class="schedule-holder__btn" type="button">
+      <svg-icon
+        appTooltip="Следующая неделя"
+        name="arrow-right-calendar"
+        svgClass="icon_size_l icon_color_purple-heart"
+      ></svg-icon>
+    </button>
+  </li>
+  <li class="schedule-holder__item">
+    <button class="schedule-holder__btn" type="button">
+      <svg-icon appTooltip="Без срока" name="endless-schedule" svgClass="icon_size_l"></svg-icon>
+    </button>
+  </li>
+  <li class="schedule-holder__item">
+    <button class="schedule-holder__btn" type="button">
+      <svg-icon appTooltip="Еще" name="ellipsis-h-alt" svgClass="icon_size_l"></svg-icon>
+    </button>
+  </li> -->
+</ul>

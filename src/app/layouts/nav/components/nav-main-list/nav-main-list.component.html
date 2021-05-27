@@ -1,0 +1,20 @@
+<ul class="nav-main-list">
+  <li class="nav-main-list__item">
+    <a [routerLink]="routes.inbox" [routerLinkActive]="'active'"
+      ><svg-icon name="inbox" svgClass="icon_color_royal-blue icon_size_m"></svg-icon
+      ><span class="nav-main-list__content">Входящие</span><small class="nav-main-list__todo-count">1</small
+    ></a>
+  </li>
+  <li class="nav-main-list__item">
+    <a [routerLink]="routes.todays" [routerLinkActive]="'active'"
+      ><svg-icon [appSvgIconText]="today" name="small-calendar-today" svgClass="icon_color_green icon_size_m"></svg-icon
+      ><span class="nav-main-list__content">Сегодня</span><small class="nav-main-list__todo-count overdue">4</small
+    ></a>
+  </li>
+  <li class="nav-main-list__item">
+    <a [routerLink]="routes.upcoming" [routerLinkActive]="'active'"
+      ><svg-icon name="calendar" svgClass="icon_color_purple-heart icon_size_m"></svg-icon
+      ><span class="nav-main-list__content">Предстоящее</span><small class="nav-main-list__todo-count"></small
+    ></a>
+  </li>
+</ul>

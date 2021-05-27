@@ -1,0 +1,17 @@
+<app-expansion-panel tag="projects">
+  <app-expansion-panel-header>Проекты</app-expansion-panel-header>
+  <app-expansion-panel-body>
+    <ul class="nav-list" cdkDropList>
+      <li *ngFor="let project of list$ | async; trackBy: projectTrackyBy" cdkDrag>
+        <a href="" [routerLink]="'./projects/' + project.id">
+          <app-nav-list-item [todoCount]="3" [color]="project.color" [hasMenu]="true">
+            <span>{{ project.title }}</span>
+            <button class="nav-list-item__replace-tool" cdkDragHandle>
+              <svg-icon name="drag" svgClass="icon_size_m"></svg-icon>
+            </button>
+          </app-nav-list-item>
+        </a>
+      </li>
+    </ul>
+  </app-expansion-panel-body>
+</app-expansion-panel>

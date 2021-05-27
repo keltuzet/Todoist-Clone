@@ -1,0 +1,10 @@
+<button #btn (click)="btnClick$.next()" class="expansion-panel-header">
+  <span class="expansion-panel-header__icon-wrap"
+    ><svg-icon
+      [ngClass]="{ expand: !(expand$ | async) }"
+      class="expansion-panel-header__icon"
+      name="chevron-down"
+      svgClass="icon_size_s"
+    ></svg-icon></span
+  ><ng-content></ng-content>
+</button>

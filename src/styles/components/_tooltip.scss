@@ -1,0 +1,22 @@
+.tooltip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 3px;
+  padding: 7px 8px 9px 8px;
+  line-height: 1;
+  background-color: #383838;
+  color: #fff;
+  font-size: 12px;
+
+  &.sm-space {
+    padding: 6px 8px 7px 8px;
+  }
+
+  .key {
+    padding: 1px 4px 2px;
+    display: inline-block;
+    border-radius: 2px;
+    background-color: #6d6d6d;
+    line-height: 1.1;
+  }
+}

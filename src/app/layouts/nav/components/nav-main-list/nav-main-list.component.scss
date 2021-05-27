@@ -1,0 +1,36 @@
+.nav-main-list {
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.25;
+  color: #333;
+
+  &__item {
+    a {
+      padding: 5px 18px 5px 5px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+
+      &.active,
+      &:hover {
+        background-color: #ececec;
+      }
+    }
+  }
+
+  &__content {
+    margin-left: 5px;
+  }
+
+  &__todo-count {
+    color: #aaa;
+    margin-left: auto;
+    padding-left: 5px;
+    font-size: 12px;
+    line-height: 22px;
+
+    &.overdue {
+      color: #dd4b39;
+    }
+  }
+}

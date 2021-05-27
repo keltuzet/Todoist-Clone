@@ -1,0 +1,7 @@
+$displays: 'block', 'inline-block', 'none';
+
+@each $value in $displays {
+  .d-#{$value} {
+    display: #{$value};
+  }
+}

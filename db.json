@@ -1,0 +1,204 @@
+{
+  "todoPriorities": [
+    {
+      "id": 0,
+      "title": "Критичный",
+      "colors": {
+        "primary": "#d1453b",
+        "secondary": "rgba(209,69,59,.1)"
+      }
+    },
+    {
+      "id": 1,
+      "title": "Высокий",
+      "colors": {
+        "primary": "#eb8909",
+        "secondary": "rgba(235,137,9,.1)"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Средний",
+      "colors": {
+        "primary": "#246fe0",
+        "secondary": "rgba(36,111,224,.1)"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Низкий",
+      "colors": {
+        "primary": "#808080",
+        "secondary": "rgb(130,130,130,0.2)"
+      },
+      "iconFlagTransparent": true
+    }
+  ],
+  "todos": [
+    {
+      "id": 0,
+      "title": "Create SSR Application in Angular!",
+      "priorityId": 3,
+      "createdDate": "2021-04-24T10:30",
+      "endDate": "2021-04-30T18:00",
+      "hasEndTime": true,
+      "comments": [
+        {
+          "postedDate": "2021-04-09T12:30",
+          "text": "How to make dark theme",
+          "authorId": 2,
+          "id": 0
+        },
+        {
+          "postedDate": "2021-04-09T13:00",
+          "text": "How to make dark theme",
+          "authorId": 1,
+          "id": 1
+        }
+      ],
+      "subTodoIds": [3],
+      "tags": [
+        {
+          "projectId": 0,
+          "statusId": 0
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Create pre rendered todos list with http",
+      "priorityId": 0,
+      "createdDate": "2021-04-09T11:44",
+      "endDate": "2021-04-12T00:00",
+      "hasEndTime": false,
+      "comments": [],
+      "subTodoIds": [],
+      "tags": [
+        {
+          "projectId": 0,
+          "statusId": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Change fonts",
+      "priorityId": 2,
+      "createdDate": "2021-04-09T09:00",
+      "endDate": "2021-04-30T00:00",
+      "hasEndTime": false,
+      "comments": [],
+      "subTodoIds": [],
+      "tags": [
+        {
+          "projectId": 0,
+          "statusId": 2
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Make http service for current date todos",
+      "priorityId": 1,
+      "createdDate": "2021-03-05T19:31",
+      "endDate": "2021-04-30T15:00",
+      "hasEndTime": true,
+      "comments": [
+        {
+          "postedDate": "2021-04-08",
+          "text": "Schema of todo",
+          "authorId": null,
+          "id": 2
+        }
+      ],
+      "subTodoIds": [],
+      "tags": [
+        {
+          "projectId": 1,
+          "statusId": 0
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Make draggable todos",
+      "priorityId": 3,
+      "createdDate": "2021-04-20T19:31",
+      "endDate": "2021-04-25T15:00",
+      "hasEndTime": true,
+      "comments": [],
+      "subTodoIds": [],
+      "tags": [
+        {
+          "projectId": 0,
+          "statusId": 2
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Make menu for todos date edit",
+      "priorityId": 2,
+      "createdDate": "2021-04-15T19:31",
+      "endDate": "2021-04-26T00:00",
+      "hasEndTime": false,
+      "comments": [],
+      "subTodoIds": [],
+      "tags": [
+        {
+          "projectId": 0,
+          "statusId": 1
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": 0,
+      "title": "Dev custom todo list",
+      "todoStatuses": [
+        {
+          "id": 0,
+          "title": "Ready for development"
+        },
+        {
+          "id": 1,
+          "title": "In developing"
+        },
+        {
+          "id": 2,
+          "title": "In testing"
+        }
+      ],
+      "color": "#14aaf5"
+    },
+    {
+      "id": 1,
+      "title": "Dev date",
+      "todoStatuses": [
+        {
+          "id": 0,
+          "title": "Requires a problem statement"
+        }
+      ],
+      "color": "#f5147c"
+    }
+  ],
+  "authors": [
+    {
+      "id": 0,
+      "name": "Rylee Bostock",
+      "email": "Bostock@gmail.com"
+    },
+    {
+      "id": 1,
+      "name": "Elin Hawes",
+      "email": "Elin@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Baran Mcloughlin",
+      "email": "Mcloughlin@gmail.com"
+    }
+  ]
+}

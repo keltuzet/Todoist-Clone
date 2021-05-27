@@ -1,0 +1,44 @@
+<ul *ngIf="(data$ | async) as todo" class="menu-list">
+  <li appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="pen"></svg-icon>
+    <div class="icon-menu-item__content">Изменить задачу</div>
+  </li>
+  <li class="menu-item">
+    <a class="icon-menu-item d-block" href="">
+      <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="list"></svg-icon>
+      <div class="icon-menu-item__content">Изменить задачу</div>
+    </a>
+  </li>
+  <li class="menu-divider"></li>
+  <li class="section-menu-item">
+    <div class="section-menu-item__label">Срок</div>
+    <app-todo-schedule-holder [date]="todo.endDate"></app-todo-schedule-holder>
+  </li>
+  <li class="section-menu-item">
+    <div class="section-menu-item__label">Приоритет</div>
+    <app-todo-priority-list [selectedPriority]="todo.priorityId"></app-todo-priority-list>
+  </li>
+  <li class="menu-divider"></li>
+  <li class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="alarm-clock"></svg-icon>
+    <div class="icon-menu-item__content">Напоминания</div>
+  </li>
+  <li class="menu-divider"></li>
+  <li class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="arrow-circle-right"></svg-icon>
+    <div class="icon-menu-item__content">Перенести в проект</div>
+  </li>
+  <li class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="rect-plus"></svg-icon>
+    <div class="icon-menu-item__content">Дублировать</div>
+  </li>
+  <li class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="link"></svg-icon>
+    <div class="icon-menu-item__content">Скопировать ссылку на задачу</div>
+  </li>
+  <li class="menu-divider"></li>
+  <li class="menu-item icon-menu-item danger-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="trash-alt"></svg-icon>
+    <div class="icon-menu-item__content">Удалить задачу</div>
+  </li>
+</ul>

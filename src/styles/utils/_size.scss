@@ -1,0 +1,22 @@
+/*
+* @example
+* $propertyPath: 'w'
+* $property: width
+* @creates .w-0{ width: 0 }, .w-25{ width: 25% } ... .w-100{ width: 100% }
+*/
+@mixin init-percent-sizes-breakpoints($propertyPath, $property, $count: 5, $step: 25) {
+  $currentWidth: 0;
+  @for $i from 0 to 5 {
+    .#{$propertyPath}-#{$i*$step} {
+      #{$property}: normalize($i * ($step));
+    }
+  }
+}
+
+@include init-percent-sizes-breakpoints('w', width);
+@include init-percent-sizes-breakpoints('min-w', min-width);
+@include init-percent-sizes-breakpoints('max-w', max-width);
+
+@include init-percent-sizes-breakpoints('h', height);
+@include init-percent-sizes-breakpoints('min-h', min-height);
+@include init-percent-sizes-breakpoints('max-h', max-height);

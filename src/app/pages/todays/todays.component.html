@@ -1,0 +1,19 @@
+<div class="page-todays">
+  <div class="page-todays-header">
+    <h1>
+      <span>Сегодня</span
+      ><small class="ml-2 page-todays-header__date">{{ today | date: 'EE d LLL' | capitalize }}</small>
+    </h1>
+    <div class="ml-auto">
+      <button [appMenuTrigger]="sortMenu" class="btn btn-stroke">
+        <svg-icon name="sort-alt" [svgStyle]="{ 'width.px': '24', 'height.px': 24 }"></svg-icon
+        ><span class="btn-label">Сортировать</span>
+      </button>
+    </div>
+  </div>
+  <div class="page-todays-content">
+    <app-overdue-todo-list [todos]="overdue$ | async"></app-overdue-todo-list>
+
+    <!-- <app-todays-todo-list [todos]="todays$ | async"></app-todays-todo-list> -->
+  </div>
+</div>

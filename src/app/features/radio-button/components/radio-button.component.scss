@@ -1,0 +1,35 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+
+  &.checked,
+  &:hover {
+    .checkbox-circle svg-icon {
+      opacity: 1;
+    }
+  }
+}
+
+.checkbox-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  border: 1px solid grey;
+  color: grey;
+  background-color: transparent;
+
+  svg-icon {
+    opacity: 0;
+    border: 1px solid transparent;
+    transition: opacity 0.15s cubic-bezier(0.4, 0, 1, 1);
+    pointer-events: none;
+  }
+}

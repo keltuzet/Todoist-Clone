@@ -1,0 +1,37 @@
+@mixin space($prefix, $props, $end: 6, $start: 0, $ratio: 0.25rem) {
+  @for $i from $start to $end + 1 {
+    .#{$prefix}-#{$i} {
+      @each $prop in $props {
+        #{$prop}: normalize($i * $ratio);
+      }
+    }
+  }
+}
+
+$sides: (
+  'm': margin,
+  'ml': margin-left,
+  'mr': margin-right,
+  'mt': margin-top,
+  'mb': margin-bottom,
+  'mx': (
+    margin-left,
+    margin-right,
+  ),
+  'my': (
+    margin-left,
+    margin-right,
+  ),
+);
+
+@each $selector, $props in $sides {
+  .#{$selector}-auto {
+    @each $prop in $props {
+      #{$prop}: auto;
+    }
+  }
+}
+
+@each $selector, $props in $sides {
+  @include space($selector, $props);
+}

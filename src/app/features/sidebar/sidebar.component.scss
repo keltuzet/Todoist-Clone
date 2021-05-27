@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #fff;
+  padding-right: 5px;
+}
+
+.resize-handle {
+  width: 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  cursor: col-resize;
+  height: 100%;
+
+  &:hover {
+    background-color: #eee;
+  }
+}

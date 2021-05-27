@@ -1,0 +1,20 @@
+.schedule-holder {
+  padding: 5px 0;
+  display: flex;
+  color: #808080;
+
+  &__item {
+    &:nth-child(n + 2) {
+      margin-left: 12px;
+    }
+  }
+
+  &__btn {
+    border-radius: 3px;
+    line-height: 0;
+
+    &:hover {
+      background-color: #f3f3f3;
+    }
+  }
+}

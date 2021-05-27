@@ -1,0 +1,17 @@
+<article *ngIf="todos?.length" class="todo-list">
+  <header class="todo-list-header">
+    <h2 class="todo-list-title">
+      <a href="">Сегодня - {{ now | date: 'EE d LLL' | capitalize }}</a>
+    </h2>
+  </header>
+  <ul class="todo-list-content" cdkDropList (cdkDropListDropped)="drop($event)">
+    <li>
+      <app-todo
+        cdkDrag
+        *ngFor="let todo of todos; trackBy: todoTrackBy"
+        [todo]="todo"
+        [todoCount]="todos.length"
+      ></app-todo>
+    </li>
+  </ul>
+</article>

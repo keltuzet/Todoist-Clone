@@ -1,0 +1,31 @@
+svg-icon {
+  line-height: 0;
+  font-size: 0;
+}
+
+$icon-sizes: (
+  'xs': 12,
+  's': 16,
+  'm': 24,
+  'l': 28,
+);
+
+@each $key, $size in $icon-sizes {
+  .icon_size_#{$key} {
+    width: #{$size}px;
+    height: #{$size}px;
+  }
+}
+
+$icon-colors: (
+  'green': #058527,
+  'tenne': #ad6200,
+  'royal-blue': #246fe0,
+  'purple-heart': #692fc2,
+);
+
+@each $key, $color in $icon-colors {
+  .icon_color_#{$key} {
+    color: $color;
+  }
+}
