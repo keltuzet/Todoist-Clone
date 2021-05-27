@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { TodoView } from '@http/models';
 import { AppDateRef } from '@shared/services';
 import { TodosQuery } from '@stores/todos';
@@ -8,6 +8,7 @@ import { TodosQuery } from '@stores/todos';
   selector: 'app-overdue-todo-list',
   templateUrl: './overdue-todo-list.component.html',
   styleUrls: ['./overdue-todo-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverdueTodoListComponent implements OnInit {
   @Input() todos: TodoView[];
@@ -15,7 +16,7 @@ export class OverdueTodoListComponent implements OnInit {
 
   constructor(private todosQuery: TodosQuery, private appDateRef: AppDateRef) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 
   drop(event: CdkDragDrop<TodoView[]>) {
     moveItemInArray(this.todos, event.previousIndex, event.currentIndex);

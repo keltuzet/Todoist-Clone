@@ -30,7 +30,6 @@ export class SpinnerService {
     return stream.pipe(
       tap(
         () => this.hideSpinner(spinnerName),
-        () => this.hideSpinner(spinnerName),
       ),
     );
   }

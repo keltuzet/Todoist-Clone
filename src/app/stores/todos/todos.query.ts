@@ -1,14 +1,13 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { combineQueries, QueryEntity } from '@datorama/akita';
 import { Todo, TodoView } from '@http/models';
 import { AppDateRef } from '@shared/services';
 
 import { entityToObj, isToday } from '@shared/utils';
 import { AuthorsQuery } from '@stores/authors/authors.query';
-import { AuthorsStore } from '@stores/authors/authors.store';
 import { ProjectsQuery } from '@stores/projects/projects.query';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { TodosStore, TodosState } from './todos.store';
 
 @Injectable({ providedIn: 'root' })
@@ -30,7 +29,6 @@ export class TodosQuery extends QueryEntity<TodosState> {
     this.overdue$ = this.toTodoView(
       this.selectAll({
         filterBy: ({ endDate, hasEndTime }) => {
-          // console.log(endDate.getTime() < this.appDateRef.now.getTime());
           return hasEndTime
             ? endDate.getTime() < this.appDateRef.now.getTime()
             : endDate.getTime() < new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()).getTime();
@@ -42,7 +40,10 @@ export class TodosQuery extends QueryEntity<TodosState> {
   selectOverdue() {
     return this.toTodoView(
       this.selectAll({
-        filterBy: ({ endDate }) => endDate.getTime() < this.appDateRef.now.getTime(),
+        filterBy: ({ endDate, hasEndTime }) =>
+          hasEndTime
+            ? endDate.getTime() < this.appDateRef.now.getTime()
+            : endDate.getTime() < new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()).getTime(),
       }),
     );
   }
@@ -50,7 +51,10 @@ export class TodosQuery extends QueryEntity<TodosState> {
   selectTodays(currentDate = new Date()) {
     return this.toTodoView(
       this.selectAll({
-        filterBy: ({ endDate }) => isToday(endDate, currentDate),
+        filterBy: ({ endDate, hasEndTime }) => {
+          let res = isToday(endDate, currentDate, hasEndTime);
+          return res;
+        },
       }),
     );
   }

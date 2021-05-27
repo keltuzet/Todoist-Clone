@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+
 import { TOOLTIP_CONTENT } from '../const';
 
 @Component({

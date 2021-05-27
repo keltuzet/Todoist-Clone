@@ -4,12 +4,8 @@ import { CommonModule } from '@angular/common';
 import { UpcomingRoutingModule } from './upcoming-routing.module';
 import { UpcomingComponent } from './upcoming.component';
 
-
 @NgModule({
   declarations: [UpcomingComponent],
-  imports: [
-    CommonModule,
-    UpcomingRoutingModule
-  ]
+  imports: [CommonModule, UpcomingRoutingModule],
 })
-export class UpcomingModule { }
+export class UpcomingModule {}

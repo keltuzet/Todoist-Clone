@@ -15,7 +15,5 @@ export class NavListItemComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.menu);
-  }
+  ngOnInit(): void {}
 }

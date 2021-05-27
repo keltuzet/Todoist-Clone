@@ -5,11 +5,10 @@ describe('ProjectsQuery', () => {
   let query: ProjectsQuery;
 
   beforeEach(() => {
-    query = new ProjectsQuery(new ProjectsStore);
+    query = new ProjectsQuery(new ProjectsStore());
   });
 
   it('should create an instance', () => {
     expect(query).toBeTruthy();
   });
-
 });

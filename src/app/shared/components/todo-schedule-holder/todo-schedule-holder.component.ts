@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { setNextWeek, setToday, setTomorrow, setWeekend } from '@shared/utils';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { ScheduleHolderItem, ScheduleHolderItemType } from './schedule-holder-item.model';
 import { SCHEDULE_HOLDER_LIST } from './schedule-holder-list.const';
 

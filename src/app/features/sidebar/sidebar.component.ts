@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+
 import { SidebarState } from './models';
 import { SidebarService } from './sidebar.service';
 
@@ -56,9 +57,5 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   collapse() {
     this.sidebarService.collapse(this.tag);
-  }
-
-  tpl() {
-    console.log('Template update');
   }
 }
