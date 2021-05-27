@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TodoPriorityListComponent } from './todo-priority-list.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+
 import { TooltipModule } from '@features/tooltip';
+import { TodoPriorityListComponent } from './todo-priority-list.component';
 
 @NgModule({
   declarations: [TodoPriorityListComponent],

@@ -1,3 +1,7 @@
 <ng-content></ng-content>
-<div appSidebarResizer [sidebar]="host" (expandedWidthChange)="handleExpandWidthChange($event)" class="resize-handle"></div>
-{{ tpl() }}
+<div
+  appSidebarResizer
+  [sidebar]="host"
+  (expandedWidthChange)="handleExpandWidthChange($event)"
+  class="resize-handle"
+></div>

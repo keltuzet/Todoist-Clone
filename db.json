@@ -39,8 +39,8 @@
       "id": 0,
       "title": "Create SSR Application in Angular!",
       "priorityId": 3,
-      "createdDate": "2021-04-24T10:30",
-      "endDate": "2021-04-30T18:00",
+      "createdDate": "2021-05-24T10:30",
+      "endDate": "2021-05-27T22:00",
       "hasEndTime": true,
       "comments": [
         {
@@ -85,7 +85,7 @@
       "title": "Change fonts",
       "priorityId": 2,
       "createdDate": "2021-04-09T09:00",
-      "endDate": "2021-04-30T00:00",
+      "endDate": "2021-05-28T00:00",
       "hasEndTime": false,
       "comments": [],
       "subTodoIds": [],

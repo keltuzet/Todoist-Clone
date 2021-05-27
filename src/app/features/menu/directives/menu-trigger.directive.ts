@@ -11,9 +11,7 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { isNil } from '@datorama/akita';
 import { BehaviorSubject, merge, Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
 
 import { MenuComponent } from '../components';
 import { MENU_DATA, MENU_POSITIONS } from '../const';

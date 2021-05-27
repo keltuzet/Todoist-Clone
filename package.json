@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"json-server db.json --middlewares ./middleware.js --routes routes.json\" \"ng s -o --port=4500\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -25,6 +25,7 @@
     "@datorama/akita-ng-entity-service": "^6.0.0",
     "@datorama/akita-ng-router-store": "^6.0.0",
     "angular-svg-icon": "^11.2.0",
+    "concurrently": "^6.2.0",
     "material-icons": "^0.6.1",
     "moment": "^2.29.1",
     "ngx-spinner": "^11.0.1",

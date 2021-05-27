@@ -10,7 +10,7 @@ export interface TodoResponse {
   priorityId: number;
   createdDate: string;
   endDate: string;
-  hasEndTime: string;
+  hasEndTime: boolean;
   subTodoIds: number[];
   comments: TodoComment[];
   tags: TodoTag[];
@@ -22,7 +22,7 @@ export interface Todo extends Omit<TodoResponse, 'createdDate' | 'endDate'> {
   priorityId: number;
   createdDate: Date;
   endDate: Date;
-  hasEndTime: string;
+  hasEndTime: boolean;
   subTodoIds: number[];
   comments: TodoComment[];
   tags: TodoTag[];
@@ -34,7 +34,7 @@ export interface TodoView extends Todo {
   priorityId: number;
   createdDate: Date;
   endDate: Date;
-  hasEndTime: string;
+  hasEndTime: boolean;
   subTodoIds: number[];
   comments: (TodoComment & { author: Author })[];
   priority: TodoPriority;

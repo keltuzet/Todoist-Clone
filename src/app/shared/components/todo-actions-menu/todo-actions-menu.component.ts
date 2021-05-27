@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { MENU_DATA } from '@features/menu/const';
-import { TodoPriority, TodoView } from '@http/models';
-import { TodosQuery } from '@stores/todos';
-import { now } from 'moment';
 import { BehaviorSubject } from 'rxjs';
+
+import { MENU_DATA } from '@features/menu/const';
+import { TodoView } from '@http/models';
+import { TodosQuery } from '@stores/todos';
 
 @Component({
   selector: 'app-todo-actions-menu',
@@ -18,7 +18,7 @@ export class TodoActionsMenuComponent implements OnInit {
 
   constructor(@Inject(MENU_DATA) public data$: BehaviorSubject<TodoView>, private todosQuery: TodosQuery) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.data$.subscribe((v) => console.log(v));
   }
 }
