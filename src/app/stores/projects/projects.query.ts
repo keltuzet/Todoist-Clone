@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HashMap, QueryEntity, SelectAllOptionsC } from '@datorama/akita';
-import { Author, ProjectQueryModel, TodoStatus } from '@http/models';
+import { HashMap, QueryEntity } from '@datorama/akita';
+import { ProjectQueryModel } from '@shared/models';
 import { entityToObj, selectArrProps } from '@shared/utils';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { ProjectsStore, ProjectsState } from './projects.store';
 @Injectable({ providedIn: 'root' })
 export class ProjectsQuery extends QueryEntity<ProjectsState> {
   all$ = this.selectAll();
-  allAsObj$ = this.selectAll({ asObject: true });
+  hashMap$ = this.selectAll({ asObject: true });
 
   allTodoStatusesAsObj$ = this.selectAll().pipe(map(selectArrProps('todoStatuses')), map(entityToObj));
   allTodoStatuses$ = this.selectAll().pipe(map(selectArrProps('todoStatuses')));
@@ -23,7 +23,7 @@ export class ProjectsQuery extends QueryEntity<ProjectsState> {
   }
 
   selectProjectsAsQuery(): Observable<HashMap<ProjectQueryModel>> {
-    return this.allAsObj$.pipe(
+    return this.hashMap$.pipe(
       map((projects) =>
         Object.entries(projects).reduce((hashMap, [key, val]) => {
           hashMap[key] = {

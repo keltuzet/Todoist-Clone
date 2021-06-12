@@ -37,69 +37,70 @@
   "todos": [
     {
       "id": 0,
+      "projectId": 0,
+      "priorityId": 1,
+      "statusId": 0,
+      "subTodoIds": [
+        3
+      ],
+      "tagIds": [
+        0,
+        1
+      ],
       "title": "Create SSR Application in Angular!",
-      "priorityId": 3,
-      "createdDate": "2021-05-24T10:30",
-      "endDate": "2021-05-27T22:00",
-      "hasEndTime": true,
+      "createdDate": "2021-05-21T16:30:00.000Z",
+      "endDate": "2021-06-12T16:30:00.000Z",
       "comments": [
         {
-          "postedDate": "2021-04-09T12:30",
-          "text": "How to make dark theme",
+          "id": 7,
           "authorId": 2,
-          "id": 0
+          "postedDate": "2021-04-06T18:30:00.000Z",
+          "text": "How to make dark theme"
         },
         {
-          "postedDate": "2021-04-09T13:00",
-          "text": "How to make dark theme",
+          "id": 8,
           "authorId": 1,
-          "id": 1
+          "postedDate": "2021-04-06T19:00:00.000Z",
+          "text": "How to make dark theme"
         }
       ],
-      "subTodoIds": [3],
-      "tags": [
-        {
-          "projectId": 0,
-          "statusId": 0
-        }
-      ]
+      "hasEndTime": true
     },
     {
       "id": 1,
-      "title": "Create pre rendered todos list with http",
-      "priorityId": 0,
-      "createdDate": "2021-04-09T11:44",
-      "endDate": "2021-04-12T00:00",
-      "hasEndTime": false,
-      "comments": [],
+      "projectId": 0,
+      "priorityId": 2,
+      "statusId": 1,
       "subTodoIds": [],
-      "tags": [
-        {
-          "projectId": 0,
-          "statusId": 1
-        }
-      ]
+      "tagIds": [
+        4,
+        6
+      ],
+      "title": "Create pre rendered todos list with http",
+      "createdDate": "2021-04-08T23:44:00.000Z",
+      "endDate": "2021-06-12T23:44:00.000Z",
+      "comments": []
     },
     {
       "id": 2,
-      "title": "Change fonts",
-      "priorityId": 2,
-      "createdDate": "2021-04-09T09:00",
-      "endDate": "2021-05-28T00:00",
-      "hasEndTime": false,
-      "comments": [],
+      "projectId": 0,
+      "priorityId": 3,
+      "statusId": 2,
       "subTodoIds": [],
-      "tags": [
-        {
-          "projectId": 0,
-          "statusId": 2
-        }
-      ]
+      "tagIds": [],
+      "title": "Change fonts",
+      "createdDate": "2021-04-09T03:00:00.000Z",
+      "endDate": "2021-06-11T03:00:00.000Z",
+      "comments": []
     },
     {
       "id": 3,
-      "title": "Make http service for current date todos",
+      "projectId": 1,
       "priorityId": 1,
+      "statusId": 0,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "Make http service for current date todos",
       "createdDate": "2021-03-05T19:31",
       "endDate": "2021-04-30T15:00",
       "hasEndTime": true,
@@ -110,52 +111,28 @@
           "authorId": null,
           "id": 2
         }
-      ],
-      "subTodoIds": [],
-      "tags": [
-        {
-          "projectId": 1,
-          "statusId": 0
-        }
       ]
     },
     {
       "id": 4,
-      "title": "Make draggable todos",
+      "projectId": 0,
       "priorityId": 3,
+      "statusId": 2,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "Make draggable todos",
       "createdDate": "2021-04-20T19:31",
       "endDate": "2021-04-25T15:00",
       "hasEndTime": true,
-      "comments": [],
-      "subTodoIds": [],
-      "tags": [
-        {
-          "projectId": 0,
-          "statusId": 2
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "title": "Make menu for todos date edit",
-      "priorityId": 2,
-      "createdDate": "2021-04-15T19:31",
-      "endDate": "2021-04-26T00:00",
-      "hasEndTime": false,
-      "comments": [],
-      "subTodoIds": [],
-      "tags": [
-        {
-          "projectId": 0,
-          "statusId": 1
-        }
-      ]
+      "comments": []
     }
   ],
   "projects": [
     {
       "id": 0,
       "title": "Dev custom todo list",
+      "isFavorite": true,
+      "isShared": true,
       "todoStatuses": [
         {
           "id": 0,
@@ -199,6 +176,48 @@
       "id": 2,
       "name": "Baran Mcloughlin",
       "email": "Mcloughlin@gmail.com"
+    }
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "title": "Learn soon",
+      "color": "#96c3eb",
+      "isFavorite": true
+    },
+    {
+      "id": 1,
+      "title": "Interesting",
+      "color": "#884dff"
+    },
+    {
+      "id": 2,
+      "title": "Language practice",
+      "color": "#b8255f",
+      "isFavorite": true
+    },
+    {
+      "id": 3,
+      "title": "Self learning",
+      "color": "#299438"
+    },
+    {
+      "id": 4,
+      "title": "Google",
+      "color": "#eb96eb",
+      "isFavorite": true
+    },
+    {
+      "id": 5,
+      "title": "SSR",
+      "color": "#afb83b",
+      "isShared": true
+    },
+    {
+      "id": 6,
+      "title": "PWA",
+      "color": "#808080",
+      "isShared": true
     }
   ]
 }

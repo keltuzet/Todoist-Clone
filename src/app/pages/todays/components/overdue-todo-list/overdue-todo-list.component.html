@@ -8,6 +8,9 @@
       *ngFor="let todo of todos; trackBy: todoTrackBy"
       [todo]="todo"
       [todoCount]="todos.length"
+      [showTerm]="true"
+      [termFormatFn]="termFormatFn"
+      [isOverdue]="true"
     ></app-todo>
   </div>
 </article>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig, MultiActiveState } from '@datorama/akita';
-import { Project } from '@http/models';
+import { Project } from '@shared/models';
 
 export interface ProjectsState extends EntityState<Project, number>, MultiActiveState<number> {}
 

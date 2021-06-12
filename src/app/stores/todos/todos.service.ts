@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { transaction } from '@datorama/akita';
-import { NgEntityService, NgEntityServiceConfig } from '@datorama/akita-ng-entity-service';
-import { TodoPriority } from '@http/models';
-import { of } from 'rxjs';
+import { HttpUpdateConfig, NgEntityService, NgEntityServiceConfig } from '@datorama/akita-ng-entity-service';
+import { Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
+
+import { parseTodoResp, Todo, TodoPriority, TodoResponse, todoToHttpBody, TodoView } from '@shared/models';
 import { TodosState, TodosStore } from './todos.store';
 
 @NgEntityServiceConfig({
@@ -22,7 +23,7 @@ export class TodosService extends NgEntityService<TodosState> {
     return this.getPriorities().pipe(switchMap(() => this.get()));
   }
 
-  getPriorities() {
+  getPriorities(): Observable<TodoPriority[]> {
     return this.getHttp()
       .get<TodoPriority[]>(`${this.api}/priorities`)
       .pipe(
@@ -32,5 +33,12 @@ export class TodosService extends NgEntityService<TodosState> {
           });
         }),
       );
+  }
+
+  updateTodo(id: number, entity: TodoView, config?: HttpUpdateConfig<Todo>): Observable<Todo> {
+    return super.update<Todo>(id, todoToHttpBody(entity), {
+      ...config,
+      mapResponseFn: parseTodoResp,
+    });
   }
 }

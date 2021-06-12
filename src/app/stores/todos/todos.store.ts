@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { Todo, TodoPriority, TodoResponse } from '@http/models';
+import { parseTodoResp, Todo, TodoPriority, TodoResponse } from '@shared/models';
 
 export interface TodosState extends EntityState<Todo, number> {
   priorities: TodoPriority[];
@@ -17,13 +17,7 @@ export class TodosStore extends EntityStore<TodosState> {
   }
 
   akitaPreAddEntity(todo: TodoResponse) {
-    return this.parseTodoResponse(todo);
-  }
-
-  parseTodoResponse(todo: TodoResponse): Todo {
-    this.propsToDate(todo, ['createdDate', 'endDate']);
-    todo.comments.forEach((comment) => this.propsToDate(comment, 'postedDate'));
-    return (todo as unknown) as Todo;
+    return parseTodoResp(todo);
   }
 
   propsToDate<T extends object>(obj: T, key: Extract<keyof T, string> | Extract<keyof T, string>[]) {

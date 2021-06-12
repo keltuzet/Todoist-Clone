@@ -36,9 +36,12 @@ export const SVG_ICONS: string[] = [
   'chevron-down',
   'font',
   'user',
+  'small-user',
   'cog',
   'calendar-solid',
   'tag',
   'user-solid',
   'tint',
+  'circle',
+  'small-circle',
 ];

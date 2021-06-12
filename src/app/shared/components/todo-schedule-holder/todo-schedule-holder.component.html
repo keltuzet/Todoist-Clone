@@ -1,6 +1,6 @@
 <ul class="schedule-holder">
   <li *ngFor="let item of list$ | async" class="schedule-holder__item">
-    <button class="schedule-holder__btn" type="button">
+    <button (click)="setSchedule(item.type)" class="schedule-holder__btn" type="button">
       <ng-container *ngIf="item.applySvgIconTextDirective; else elseTemplate">
         <svg-icon
           [appSvgIconText]="currDay"

@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"json-server db.json --middlewares ./middleware.js --routes routes.json\" \"ng s -o --port=4500\"",
+    "dev": "ng s -o --port=4500",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

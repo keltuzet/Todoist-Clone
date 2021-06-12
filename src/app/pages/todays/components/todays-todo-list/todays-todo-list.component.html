@@ -11,6 +11,8 @@
         *ngFor="let todo of todos; trackBy: todoTrackBy"
         [todo]="todo"
         [todoCount]="todos.length"
+        [showTerm]="todo.hasEndTime"
+        [termFormatFn]="termFormatFn"
       ></app-todo>
     </li>
   </ul>

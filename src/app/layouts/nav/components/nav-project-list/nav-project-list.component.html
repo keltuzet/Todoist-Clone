@@ -4,7 +4,7 @@
     <ul class="nav-list" cdkDropList>
       <li *ngFor="let project of list$ | async; trackBy: projectTrackyBy" cdkDrag>
         <a href="" [routerLink]="'./projects/' + project.id">
-          <app-nav-list-item [todoCount]="3" [color]="project.color" [hasMenu]="true">
+          <app-nav-list-item [todoCount]="3" [color]="project.color" [hasMenu]="true" [icon]="project | projectIcon">
             <span>{{ project.title }}</span>
             <button class="nav-list-item__replace-tool" cdkDragHandle>
               <svg-icon name="drag" svgClass="icon_size_m"></svg-icon>

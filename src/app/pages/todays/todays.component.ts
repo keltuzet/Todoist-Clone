@@ -3,6 +3,7 @@ import { applyTransaction } from '@datorama/akita';
 
 import { AuthorsService } from '@stores/authors';
 import { ProjectsService } from '@stores/projects';
+import { TagsService } from '@stores/tags';
 import { TodosQuery, TodosService } from '@stores/todos';
 import { SortMenuComponent } from './components/sort-menu/sort-menu.component';
 
@@ -23,6 +24,7 @@ export class TodaysComponent implements OnInit {
     private todosService: TodosService,
     private todosQuery: TodosQuery,
     private authorsService: AuthorsService,
+    private tagsService: TagsService
   ) {}
 
   ngOnInit() {
@@ -30,6 +32,7 @@ export class TodaysComponent implements OnInit {
       this.projectsService.get().subscribe();
       this.todosService.getTodos().subscribe();
       this.authorsService.get().subscribe();
+      this.tagsService.get().subscribe();
     });
   }
 }

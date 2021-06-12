@@ -88,6 +88,10 @@
       svg-icon {
         margin-right: 1px;
       }
+
+      &.overdue {
+        color: #d1453b;
+      }
     }
 
     .comments {
@@ -104,6 +108,10 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+
+      &__icon {
+        margin-left: 2px;
+      }
     }
   }
 

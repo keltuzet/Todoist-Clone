@@ -21,16 +21,18 @@
         <svg-icon name="branch" [svgStyle]="{ 'width.px': 16, 'height.px': 16 }"></svg-icon
         ><span class="todo-info__text">{{ todo.subTodoIds.length }}</span>
       </a>
-      <button appTooltip [tlpTemplate]="endDateTooltip" *ngIf="todo.hasEndTime" class="todo-info__item term">
+      <button appTooltip [tlpTemplate]="endDateTooltip" *ngIf="showTerm" class="todo-info__item term" [ngClass]="{ overdue: isOverdue }">
         <svg-icon name="small-calendar-solid" [svgStyle]="{ 'width.px': 12, 'height.px': 12 }"></svg-icon
-        ><span class="todo-info__text">{{ todo.endDate | date: 'HH:mm' }}</span>
+        ><span class="todo-info__text">{{ todo.endDate | date: termFormat }}</span>
       </button>
       <button *ngIf="todo.comments.length" class="todo-info__item comments">
         <svg-icon name="comment-solid" [svgStyle]="{ 'width.px': 12, 'height.px': 12 }"></svg-icon
         ><span class="todo-info__text">{{ todo.comments.length }}</span>
       </button>
-      <div *ngIf="todo.tags.length" class="todo-info__item projects-info">
-        {{ todo.statuses[0].title }}
+      <a *ngFor="let tag of todo.tags" [ngStyle]="{ color: tag.color }" class="todo-info__item">{{ tag.title }}</a>
+      <div class="todo-info__item projects-info">
+        <span>{{ todo.project.title }}<ng-container *ngIf="todo.status"> / {{ todo.status.title }}</ng-container></span>
+        <svg-icon name="circle" svgClass="icon_size_xs" class="projects-info__icon" [svgStyle]="{ color: todo.project.color }"></svg-icon>
       </div>
     </div>
   </div>

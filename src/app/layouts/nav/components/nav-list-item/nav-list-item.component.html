@@ -2,12 +2,7 @@
   <ng-content select="[cdkDragHandle]"></ng-content>
   <div class="nav-list-item__content">
     <div class="nav-list-item__icon" [ngStyle]="{ color: color }">
-      <ng-container *ngIf="icon; else elseTemplate">
-        <svg-icon [name]="icon" svgClass="icon_size_m"></svg-icon>
-      </ng-container>
-      <ng-template #elseTemplate>
-        <div class="circle-icon"></div>
-      </ng-template>
+      <svg-icon [name]="icon" svgClass="icon_size_m"></svg-icon>
     </div>
     <div>
       <ng-content></ng-content>

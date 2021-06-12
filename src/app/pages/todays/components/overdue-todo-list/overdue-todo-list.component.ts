@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { TodoView } from '@http/models';
+
+import { TodoView } from '@shared/models';
 import { AppDateRef } from '@shared/services';
 import { TodosQuery } from '@stores/todos';
 
@@ -25,4 +26,6 @@ export class OverdueTodoListComponent implements OnInit {
   todoTrackBy(index: number, item: TodoView): number {
     return item.id;
   }
+
+  termFormatFn = (todo: TodoView) => `d MMMM${todo.hasEndTime ? ' HH:mm' : ''}`;
 }

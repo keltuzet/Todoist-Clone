@@ -21,6 +21,7 @@ import { NavTagListComponent } from './nav/components/nav-tag-list/nav-tag-list.
 import { NavFilterListComponent } from './nav/components/nav-filter-list/nav-filter-list.component';
 import { NavTagMenuComponent } from './nav/components/nav-tag-menu/nav-tag-menu.component';
 import { MenuModule } from '@features/menu';
+import { ProjectIconModule } from '@shared/pipes/project-icon/project-icon.module';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MenuModule } from '@features/menu';
     ExpansionPanelModule,
     DragDropModule,
     MenuModule,
+    ProjectIconModule,
   ],
 })
 export class PageLayoutModule {}

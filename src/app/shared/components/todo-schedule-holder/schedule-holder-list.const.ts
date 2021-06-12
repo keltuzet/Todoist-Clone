@@ -1,3 +1,4 @@
+import { isToday } from '@shared/utils';
 import { ScheduleHolderItem } from './schedule-holder-item.model';
 
 export const SCHEDULE_HOLDER_LIST: ScheduleHolderItem[] = [
@@ -39,3 +40,7 @@ export const SCHEDULE_HOLDER_LIST: ScheduleHolderItem[] = [
     type: 'more',
   },
 ];
+
+export function getScheduleHolderList(date: Date, now = new Date()) {
+  return SCHEDULE_HOLDER_LIST.slice(isToday(date, now) ? 1 : 0);
+}

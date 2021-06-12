@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
+
+import { TodoTag } from '@shared/models';
+import { TagsQuery } from '@stores/tags';
 import { NavTagMenuComponent } from '../nav-tag-menu/nav-tag-menu.component';
 
 @Component({
@@ -9,23 +11,14 @@ import { NavTagMenuComponent } from '../nav-tag-menu/nav-tag-menu.component';
 })
 export class NavTagListComponent implements OnInit {
   menu = NavTagMenuComponent;
-  tags$ = of([
-    {
-      title: 'Learn',
-      color: '#ff8d85',
-      count: 13,
-    },
-    {
-      title: 'Meta_tag',
-      color: '#96c3eb',
-    },
-  ]);
+  unsharedTags$ = this.tagsQuery.unshared$;
+  sharedTags$ = this.tagsQuery.shared$;
 
-  constructor() {}
+  constructor(private tagsQuery: TagsQuery) {}
 
   ngOnInit(): void {}
 
-  tagTrackyBy(index: number, item: any) {
-    return index;
+  tagTrackyBy(_: number, item: TodoTag) {
+    return item.id;
   }
 }

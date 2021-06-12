@@ -5,7 +5,7 @@
     [ngClass]="{ 'priority-item_selected': priority.id === selectedPriority }"
     class="priority-item"
   >
-    <button class="priority-item__btn" type="button">
+    <button class="priority-item__btn" type="button" (click)="onselect.emit(priority)">
       <svg-icon
         [ngStyle]="{ color: priority.colors.primary }"
         [name]="priority.iconFlagTransparent ? 'transparent-flag' : 'flag'"
