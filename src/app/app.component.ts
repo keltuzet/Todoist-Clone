@@ -8,6 +8,7 @@ import { IconRegistrarService } from '@shared/services';
 })
 export class AppComponent {
   title = 'todos';
+  changes = 'ta-ta';
 
   constructor(private iconRegistrarService: IconRegistrarService) {
     iconRegistrarService.init();
