@@ -12,5 +12,6 @@ export class AppComponent {
 
   constructor(private iconRegistrarService: IconRegistrarService) {
     iconRegistrarService.init();
+    console.log('inited');
   }
 }
