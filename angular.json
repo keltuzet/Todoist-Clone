@@ -10,12 +10,13 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
+          "changeDetection": "OnPush",
           "style": "scss"
         }
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "t",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

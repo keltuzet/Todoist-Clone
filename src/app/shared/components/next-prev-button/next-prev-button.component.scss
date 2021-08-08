@@ -1,0 +1,33 @@
+:host {
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  line-height: 26px;
+  height: 26px;
+  overflow: hidden;
+
+  .control {
+    display: flex;
+    align-items: center;
+    color: grey;
+    transition: background-color .3s cubic-bezier(.4,0,.2,1);
+    padding: 0 2px;
+
+    &_prev {
+      transform: rotate(180deg);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+    }
+
+    &:not(:disabled):hover {
+      background-color: #eee;
+      color: #202020;
+    }
+  }
+
+  .divider {
+    border-left: 1px solid #eee;
+  }
+}
