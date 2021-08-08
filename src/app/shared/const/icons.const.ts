@@ -44,4 +44,6 @@ export const SVG_ICONS: string[] = [
   'tint',
   'circle',
   'small-circle',
+  'cross',
+  'arrow-right',
 ];

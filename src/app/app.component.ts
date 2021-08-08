@@ -7,11 +7,7 @@ import { IconRegistrarService } from '@shared/services';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'todos';
-  manualChangeFeat = 'opa-opa';
-
-  constructor(private iconRegistrarService: IconRegistrarService) {
+  constructor(iconRegistrarService: IconRegistrarService) {
     iconRegistrarService.init();
-    console.log('inited');
   }
 }
