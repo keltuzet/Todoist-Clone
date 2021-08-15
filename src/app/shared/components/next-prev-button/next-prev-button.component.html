@@ -1,0 +1,7 @@
+<button (click)="handleBtnClick('prev')" [disabled]="disable === 'prev' || disable === 'all'" class="control control_prev">
+  <svg-icon name="arrow-right" svgClass="icon_size_m"></svg-icon>
+</button>
+<div class="divider"></div>
+<button (click)="handleBtnClick('next')" [disabled]="disable === 'next' || disable === 'all'" class="control control_next">
+  <svg-icon name="arrow-right" svgClass="icon_size_m"></svg-icon>
+</button>

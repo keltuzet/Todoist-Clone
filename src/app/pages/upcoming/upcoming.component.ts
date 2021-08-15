@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ProjectTestService } from '@pages/project/project-test.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-upcoming',
+  selector: 't-upcoming',
   templateUrl: './upcoming.component.html',
   styleUrls: ['./upcoming.component.scss'],
 })
-export class UpcomingComponent implements OnInit {
-  constructor(private PT: ProjectTestService) {}
+export class UpcomingComponent implements OnInit, OnDestroy {
 
-  ngOnInit() {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+
+  ngOnInit(): void {}
+
+  ngOnDestroy(): void {}
 }

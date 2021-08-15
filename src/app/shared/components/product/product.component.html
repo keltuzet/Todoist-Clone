@@ -1,0 +1,23 @@
+<!-- <div class="desktop-container" *ngIf="!isMobileResolution; else mobileContainer">
+  <app-product-desktop></app-product-desktop>
+</div>
+
+<ng-template #mobileContainer>
+  <app-product-mobile></app-product-mobile>
+</ng-template> -->
+
+<h1 *appLayoutFor="'mobile'">
+  For mobile
+</h1>
+
+<h1 *appLayoutFor="'desktop'">
+  For desktop
+</h1>
+
+<ng-container *appLayoutFor="'mobile'">
+  <p>Container for mobile</p>
+</ng-container>
+
+<ng-container *appLayoutFor="'desktop'">
+  <p>Container for desktop</p>
+</ng-container>

@@ -22,6 +22,8 @@ import { NavFilterListComponent } from './nav/components/nav-filter-list/nav-fil
 import { NavTagMenuComponent } from './nav/components/nav-tag-menu/nav-tag-menu.component';
 import { MenuModule } from '@features/menu';
 import { ProjectIconModule } from '@shared/pipes/project-icon/project-icon.module';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { ProjectIconModule } from '@shared/pipes/project-icon/project-icon.modul
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     AngularSvgIconModule,
     TooltipModule,
     SidebarModule,
@@ -51,6 +55,7 @@ import { ProjectIconModule } from '@shared/pipes/project-icon/project-icon.modul
     DragDropModule,
     MenuModule,
     ProjectIconModule,
+    OverlayModule,
   ],
 })
 export class PageLayoutModule {}

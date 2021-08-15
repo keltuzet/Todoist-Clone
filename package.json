@@ -28,6 +28,7 @@
     "angular-svg-icon": "^11.2.0",
     "concurrently": "^6.2.0",
     "material-icons": "^0.6.1",
+    "mobile-detect": "^1.4.5",
     "moment": "^2.29.1",
     "ngx-spinner": "^11.0.1",
     "rxjs": "~6.6.0",

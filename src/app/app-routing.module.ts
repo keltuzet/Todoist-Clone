@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_ROUTES } from '@shared/const';
+import { ProjectsResolver, TagsResolver, TodosResolver, AuthorsResolver } from '@shared/resolvers';
 import { PageLayoutComponent } from './layouts';
 
 const routes: Routes = [
   {
     path: APP_ROUTES.root,
     component: PageLayoutComponent,
+    resolve: {
+      tags: TagsResolver,
+      projects: ProjectsResolver,
+      todos: TodosResolver,
+      authors: AuthorsResolver,
+    },
     children: [
       {
         path: APP_ROUTES.todays,

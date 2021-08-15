@@ -1,5 +1,53 @@
-<div class="search-bar">
-  <svg-icon name="search" svgClass="icon_size_m"></svg-icon>
-  <input class="search-bar__inp" type="text" placeholder="Поиск">
+<div
+  #searchBarWrap
+  #overlayOrigin="cdkOverlayOrigin"
+  class="search-bar"
+  cdkOverlayOrigin
+  [ngClass]="{ 'search-bar_active': displayPanel$ | async }"
+>
+  <svg-icon class="search-bar__search-icon" name="search" svgClass="icon_size_m"></svg-icon>
+  <input
+    (focus)="handleInputFocus()"
+    [formControl]="searchControl"
+    #searchBarInp
+    class="search-bar__inp"
+    type="text"
+    placeholder="Поиск"
+  />
   <button class="search-bar__shortcut-hint" type="button">f</button>
+  <a class="search-bar__help" href=""><svg-icon name="question-circle" svgClass="icon_size_m"></svg-icon></a>
+  <button (click)="reset()" class="search-bar__clear"><svg-icon name="cross" svgClass="icon_size_m"></svg-icon></button>
 </div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayFlexibleDimensions]="overlayOptions.flexibleDimensions"
+  [cdkConnectedOverlayPositions]="overlayOptions.positions"
+  [cdkConnectedOverlayScrollStrategy]="overlayOptions.scrollStrategy"
+  [cdkConnectedOverlayWidth]="overlayOrigin.elementRef.nativeElement.getBoundingClientRect().width"
+  [cdkConnectedOverlayMinHeight]="overlayOptions.minHeight"
+  [cdkConnectedOverlayHasBackdrop]="overlayOptions.hasBackdrop"
+  [cdkConnectedOverlayOpen]="displayPanel$ | async"
+  cdkConnectedOverlayBackdropClass="transparent-backdrop"
+  (backdropClick)="compact()"
+>
+  <div class="search-bar-panel">
+    <ng-container *ngIf="isSearchInpEmpty$ | async; else searchResults">
+      <div class="search-bar-panel__group">
+        <div class="search-bar-panel__label">Недавние запросы</div>
+        <div *ngFor="let result of searchResults$ | async" class="search-bar-panel__item">{{ result }}</div>
+      </div>
+      <div class="search-bar-panel__group">
+        <div class="search-bar-panel__label">Недавно открытые</div>
+        <div class="search-bar-panel__item"></div>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #searchResults>
+  <div class="search-bar-panel__group">
+    <div *ngFor="let result of searchResults$ | async" class="search-bar-panel__item">{{ result }}</div>
+  </div>
+</ng-template>
