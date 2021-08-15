@@ -100,14 +100,23 @@
       }
     }
 
+    .tag {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
     .projects-info {
       line-height: 16px;
       margin-right: -30px;
       margin-left: auto;
-      max-width: 200px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+
+      &__content {
+        max-width: 200px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
 
       &__icon {
         margin-left: 2px;

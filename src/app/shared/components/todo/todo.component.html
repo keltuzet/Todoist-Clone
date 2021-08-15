@@ -1,56 +1,86 @@
-<div class="todo">
-  <div class="reorder-tool">
-    <div class="reorder-container">
-      <span class="reorder-handler">
-        <svg-icon name="drag" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
-      </span>
-    </div>
-  </div>
-  <app-radio-button
-    class="mark-tool"
-    [checked]="false"
-    [primary]="todo.priority.colors.primary"
-    [secondary]="todo.priority.colors.secondary"
-  ></app-radio-button>
-  <div class="todo-content">
-    <div class="todo-content-wrap">
-      <span class="todo-title">{{ todo.title }}</span>
-    </div>
-    <div class="todo-info">
-      <a *ngIf="todo.subTodoIds.length" class="todo-info__item linked-branches" href="">
-        <svg-icon name="branch" [svgStyle]="{ 'width.px': 16, 'height.px': 16 }"></svg-icon
-        ><span class="todo-info__text">{{ todo.subTodoIds.length }}</span>
-      </a>
-      <button appTooltip [tlpTemplate]="endDateTooltip" *ngIf="showTerm" class="todo-info__item term" [ngClass]="{ overdue: isOverdue }">
-        <svg-icon name="small-calendar-solid" [svgStyle]="{ 'width.px': 12, 'height.px': 12 }"></svg-icon
-        ><span class="todo-info__text">{{ todo.endDate | date: termFormat }}</span>
-      </button>
-      <button *ngIf="todo.comments.length" class="todo-info__item comments">
-        <svg-icon name="comment-solid" [svgStyle]="{ 'width.px': 12, 'height.px': 12 }"></svg-icon
-        ><span class="todo-info__text">{{ todo.comments.length }}</span>
-      </button>
-      <a *ngFor="let tag of todo.tags" [ngStyle]="{ color: tag.color }" class="todo-info__item">{{ tag.title }}</a>
-      <div class="todo-info__item projects-info">
-        <span>{{ todo.project.title }}<ng-container *ngIf="todo.status"> / {{ todo.status.title }}</ng-container></span>
-        <svg-icon name="circle" svgClass="icon_size_xs" class="projects-info__icon" [svgStyle]="{ color: todo.project.color }"></svg-icon>
+<ng-container *ngIf="isFormModel; then todoForm; else todoView"></ng-container>
+
+<ng-template #todoView>
+  <div class="todo">
+    <div class="reorder-tool">
+      <div class="reorder-container">
+        <span class="reorder-handler">
+          <svg-icon name="drag" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
+        </span>
       </div>
     </div>
+    <app-radio-button
+      class="mark-tool"
+      [checked]="false"
+      [primary]="todo.priority.colors.primary"
+      [secondary]="todo.priority.colors.secondary"
+    ></app-radio-button>
+    <div class="todo-content">
+      <div class="todo-content-wrap">
+        <span class="todo-title">{{ todo.title }}</span>
+      </div>
+      <div class="todo-info">
+        <a *ngIf="todo.subTodoIds.length" class="todo-info__item linked-branches" href="">
+          <svg-icon name="branch" [svgStyle]="{ 'width.px': 16, 'height.px': 16 }"></svg-icon
+          ><span class="todo-info__text">{{ todo.subTodoIds.length }}</span>
+        </a>
+        <button
+          appTooltip
+          [tlpTemplate]="endDateTooltip"
+          *ngIf="showTerm"
+          class="todo-info__item term"
+          [ngClass]="{ overdue: isOverdue }"
+        >
+          <svg-icon name="small-calendar-solid" [svgStyle]="{ 'width.px': 12, 'height.px': 12 }"></svg-icon
+          ><span class="todo-info__text">{{ todo.endDate | date: termFormat }}</span>
+        </button>
+        <button *ngIf="todo.comments.length" class="todo-info__item comments">
+          <svg-icon name="comment-solid" [svgStyle]="{ 'width.px': 12, 'height.px': 12 }"></svg-icon
+          ><span class="todo-info__text">{{ todo.comments.length }}</span>
+        </button>
+        <a *ngFor="let tag of todo.tags" [ngStyle]="{ color: tag.color }" class="todo-info__item tag">{{
+          tag.title
+        }}</a>
+        <div class="todo-info__item projects-info">
+          <span class="projects-info__content"
+            >{{ todo.project.title }}<ng-container *ngIf="todo.status"> / {{ todo.status.title }}</ng-container></span
+          >
+          <svg-icon
+            name="circle"
+            svgClass="icon_size_xs"
+            class="projects-info__icon"
+            [svgStyle]="{ color: todo.project.color }"
+          ></svg-icon>
+        </div>
+      </div>
+    </div>
+    <div class="todo-toolbar">
+      <button (click)="edit()" appTooltip [tlpTemplate]="editTooltip" class="todo-toolbar__item">
+        <svg-icon name="pen" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
+      </button>
+      <button [appMenuTrigger]="schedulerMenu" appTooltip="Срок" class="todo-toolbar__item">
+        <svg-icon name="small-calendar" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
+      </button>
+      <button appTooltip="Комментировать" class="todo-toolbar__item">
+        <svg-icon name="comment" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
+      </button>
+      <button
+        [appMenuTrigger]="menu"
+        [menuData]="todo"
+        appTooltip="Другие действия в задаче"
+        class="todo-toolbar__item"
+      >
+        <svg-icon name="x-menu" [svgStyle]="{ 'width.px': 15, 'height.px': 3 }"></svg-icon>
+      </button>
+    </div>
   </div>
-  <div class="todo-toolbar">
-    <button appTooltip [tlpTemplate]="editTooltip" class="todo-toolbar__item">
-      <svg-icon name="pen" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
-    </button>
-    <button appTooltip="Срок" class="todo-toolbar__item">
-      <svg-icon name="small-calendar" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
-    </button>
-    <button appTooltip="Комментировать" class="todo-toolbar__item">
-      <svg-icon name="comment" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
-    </button>
-    <button [appMenuTrigger]="menu" [menuData]="todo" appTooltip="Другие действия в задаче" class="todo-toolbar__item">
-      <svg-icon name="x-menu" [svgStyle]="{ 'width.px': 15, 'height.px': 3 }"></svg-icon>
-    </button>
-  </div>
-</div>
+</ng-template>
+
+<ng-template #todoForm>
+  <form action="">
+    <button (click)="cancelEditing()">close</button>
+  </form>
+</ng-template>
 
 <ng-template #editTooltip>
   <div class="tooltip sm-space">
@@ -62,8 +92,8 @@
 <ng-template #endDateTooltip>
   <div class="tooltip end-date-tooltip">
     <div>
-      <div>
-        <time class="end-date">{{ todo.endDate | date: 'EEEEEE d MMM HH:mm' | capitalize }}</time>
+      <div class="end-date">
+        <time>{{ todo.endDate | date: (todo.hasEndTime ? 'EEEEEE d MMM HH:mm' : 'EEEEEE d MMM') | capitalize }}</time>
       </div>
       <p *ngIf="todo.endDate | timePassed as timePassedText">{{ timePassedText }}</p>
     </div>

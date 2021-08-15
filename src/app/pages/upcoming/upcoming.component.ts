@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectTestService } from '@pages/project/project-test.service';
 
 @Component({
   selector: 'app-upcoming',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upcoming.component.scss'],
 })
 export class UpcomingComponent implements OnInit {
-  constructor() {}
+  constructor(private PT: ProjectTestService) {}
 
   ngOnInit() {}
 }

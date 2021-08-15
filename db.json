@@ -84,7 +84,7 @@
     {
       "id": 2,
       "projectId": 0,
-      "priorityId": 3,
+      "priorityId": 0,
       "statusId": 2,
       "subTodoIds": [],
       "tagIds": [],
@@ -96,22 +96,22 @@
     {
       "id": 3,
       "projectId": 1,
-      "priorityId": 1,
+      "priorityId": 2,
       "statusId": 0,
       "subTodoIds": [],
       "tagIds": [],
       "title": "Make http service for current date todos",
-      "createdDate": "2021-03-05T19:31",
-      "endDate": "2021-04-30T15:00",
-      "hasEndTime": true,
+      "createdDate": "2021-03-05T13:31:00.000Z",
+      "endDate": "2021-04-30T09:00:00.000Z",
       "comments": [
         {
-          "postedDate": "2021-04-08",
-          "text": "Schema of todo",
+          "id": 2,
           "authorId": null,
-          "id": 2
+          "postedDate": "2021-04-08T00:00:00.000Z",
+          "text": "Schema of todo"
         }
-      ]
+      ],
+      "hasEndTime": true
     },
     {
       "id": 4,

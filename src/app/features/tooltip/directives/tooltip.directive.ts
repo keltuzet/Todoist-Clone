@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Injector, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, Injector, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, DomPortal, TemplatePortal } from '@angular/cdk/portal';
 import { BehaviorSubject } from 'rxjs';
@@ -14,7 +14,7 @@ import { TooltipPosition } from '../models';
     '(mouseleave)': 'hide()',
   },
 })
-export class TooltipDirective implements OnInit {
+export class TooltipDirective implements OnInit, OnDestroy {
   private overlayRef: OverlayRef;
   private tooltipInjector: Injector;
   private isHidden = true;
@@ -42,6 +42,10 @@ export class TooltipDirective implements OnInit {
     this.init();
 
     this.tpl$.subscribe(this.setPortal);
+  }
+
+  ngOnDestroy() {
+    this.hide();
   }
 
   private setPortal = (tpl: TemplateRef<any> | ComponentType<any> | HTMLElement) => {
@@ -81,7 +85,7 @@ export class TooltipDirective implements OnInit {
   }
 
   hide() {
-    this.overlayRef.dispose();
+    this.overlayRef?.dispose();
   }
 
   toggle() {

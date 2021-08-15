@@ -1,14 +1,16 @@
-export function setToday(date: Date, now = new Date()) {
+import { ONE_DAY } from '@shared/const';
+
+export function setToday(date: Date, now = new Date()): Date {
   date.setFullYear(now.getFullYear(), now.getMonth(), now.getDate());
   return date;
 }
 
-export function setTomorrow(date: Date, now = new Date()) {
+export function setTomorrow(date: Date, now = new Date()): Date {
   date.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() + 1);
   return date;
 }
 
-export function setWeekend(date: Date, now = new Date(), weekends: number[] = [6, 7]) {
+export function setWeekend(date: Date, now = new Date(), weekends: number[] = [6, 7]): Date {
   weekends = Array.from(new Set(weekends))
     .filter((weekend) => weekend >= 1 && weekend <= 7)
     .sort();
@@ -34,9 +36,13 @@ export function setWeekend(date: Date, now = new Date(), weekends: number[] = [6
   return date;
 }
 
-export function setNextWeek(date: Date, now = new Date()) {
+export function setNextWeek(date: Date, now = new Date()): Date {
   const curDay = now.getDay() || 7;
   date.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() + (8 - curDay));
 
   return date;
+}
+
+export function calcDaysDiff(a: Date, b = new Date()): number {
+  return (b.getTime() - a.getTime()) / ONE_DAY;
 }

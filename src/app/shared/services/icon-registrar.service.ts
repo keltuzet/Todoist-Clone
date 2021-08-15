@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SVG_ICONS } from '@shared/const/icons.const';
 import { SvgIconRegistryService } from 'angular-svg-icon';
-import { forkJoin, merge, zip } from 'rxjs';
+import { forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

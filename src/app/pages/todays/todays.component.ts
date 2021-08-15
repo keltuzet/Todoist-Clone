@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { applyTransaction } from '@datorama/akita';
+import { ProjectTestService } from '@pages/project/project-test.service';
 
 import { AuthorsService } from '@stores/authors';
 import { ProjectsService } from '@stores/projects';
@@ -28,6 +29,7 @@ export class TodaysComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(ProjectTestService);
     applyTransaction(() => {
       this.projectsService.get().subscribe();
       this.todosService.getTodos().subscribe();
