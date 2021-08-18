@@ -1,11 +1,14 @@
-<div
+<form
   #searchBarWrap
   #overlayOrigin="cdkOverlayOrigin"
   class="search-bar"
   cdkOverlayOrigin
   [ngClass]="{ 'search-bar_active': displayPanel$ | async }"
+  (submit)="search()"
 >
-  <svg-icon class="search-bar__search-icon" name="search" svgClass="icon_size_m"></svg-icon>
+  <button class="search-bar__search-icon">
+    <svg-icon name="search" svgClass="icon_size_m"></svg-icon>
+  </button>
   <input
     (focus)="handleInputFocus()"
     [formControl]="searchControl"
@@ -14,10 +17,12 @@
     type="text"
     placeholder="Поиск"
   />
-  <button class="search-bar__shortcut-hint" type="button">f</button>
-  <a class="search-bar__help" href=""><svg-icon name="question-circle" svgClass="icon_size_m"></svg-icon></a>
-  <button (click)="reset()" class="search-bar__clear"><svg-icon name="cross" svgClass="icon_size_m"></svg-icon></button>
-</div>
+  <button (click)="handleInputFocus()" class="search-bar__shortcut-hint" type="button">f</button>
+  <a appTooltip="Как пользоваться поиском" class="search-bar__help" href=""><svg-icon name="question-circle" svgClass="icon_size_m"></svg-icon></a>
+  <button (click)="reset()" class="search-bar__clear">
+    <svg-icon name="cross" [svgStyle]="{ 'width.px': 18, 'height.px': 18 }"></svg-icon>
+  </button>
+</form>
 
 <ng-template
   cdkConnectedOverlay
@@ -34,20 +39,14 @@
 >
   <div class="search-bar-panel">
     <ng-container *ngIf="isSearchInpEmpty$ | async; else searchResults">
-      <div class="search-bar-panel__group">
-        <div class="search-bar-panel__label">Недавние запросы</div>
-        <div *ngFor="let result of searchResults$ | async" class="search-bar-panel__item">{{ result }}</div>
-      </div>
-      <div class="search-bar-panel__group">
-        <div class="search-bar-panel__label">Недавно открытые</div>
-        <div class="search-bar-panel__item"></div>
-      </div>
+      <t-recent-search-list (searchSelect)="searchControl.setValue($event)"></t-recent-search-list>
+      <t-recent-search-result-list></t-recent-search-result-list>
     </ng-container>
   </div>
 </ng-template>
 
 <ng-template #searchResults>
   <div class="search-bar-panel__group">
-    <div *ngFor="let result of searchResults$ | async" class="search-bar-panel__item">{{ result }}</div>
+    <t-search-result-list [list]="searchResults$ | async"></t-search-result-list>
   </div>
 </ng-template>

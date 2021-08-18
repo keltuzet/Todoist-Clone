@@ -18,13 +18,13 @@ export interface TodoResponse {
   hasEndTime?: true;
 }
 
-export interface Todo extends Omit<TodoResponse, 'createdDate' | 'endDate' | 'comments'> {
+export interface ExtractedTodo extends Omit<TodoResponse, 'createdDate' | 'endDate' | 'comments'> {
   createdDate: Date;
   endDate: Date;
   comments: TodoComment[];
 }
 
-export interface TodoView extends Todo {
+export interface Todo extends ExtractedTodo {
   project: Project;
   priority: TodoPriority;
   status: TodoStatus;
@@ -32,7 +32,7 @@ export interface TodoView extends Todo {
   comments: TodoCommentDetailed[];
 }
 
-export function todoToHttpBody(todo: TodoView): any {
+export function todoToHttpBody(todo: Todo): any {
   return {
     id: todo.id,
     projectId: todo.projectId,
@@ -57,11 +57,9 @@ export function todoCommentToHttpBody(comment: TodoCommentDetailed): any {
   };
 }
 
-export function parseTodoResp(todoResp: TodoResponse): Todo {
-  return {
-    ...todoResp,
-    createdDate: new Date(todoResp.createdDate),
-    endDate: new Date(todoResp.endDate),
-    comments: todoResp.comments.map((comment) => ({ ...comment, postedDate: new Date(comment.postedDate) })),
-  };
-}
+export const parseTodoResp = (todoResp: TodoResponse): ExtractedTodo => ({
+  ...todoResp,
+  createdDate: new Date(todoResp.createdDate),
+  endDate: new Date(todoResp.endDate),
+  comments: todoResp.comments.map((comment) => ({ ...comment, postedDate: new Date(comment.postedDate) })),
+});

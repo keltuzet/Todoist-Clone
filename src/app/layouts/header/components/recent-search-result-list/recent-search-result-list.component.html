@@ -1,0 +1,14 @@
+<div class="search-bar-panel__group">
+  <div class="search-bar-panel__label">Недавно открытые</div>
+  <ng-container *ngIf="recentViewedSearchResults$ | async | take: 4 as list">
+    <ul *ngIf="list.length; else empty">
+      <li *ngFor="let searchResult of list">
+        <t-search-result [result]="searchResult" [indicateMatch]="false"></t-search-result>
+      </li>
+    </ul>
+  </ng-container>
+</div>
+
+<ng-template #empty>
+  <div class="search-bar-panel__empty">Нет недавно открытых поисковых запросов</div>
+</ng-template>

@@ -13,6 +13,11 @@
       opacity: 1;
     }
   }
+
+  &.medium .checkbox-circle {
+    height: 13px;
+    width: 13px;
+  }
 }
 
 .checkbox-circle {

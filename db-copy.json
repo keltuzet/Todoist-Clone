@@ -1,0 +1,223 @@
+{
+  "todoPriorities": [
+    {
+      "id": 0,
+      "title": "Критичный",
+      "colors": {
+        "primary": "#d1453b",
+        "secondary": "rgba(209,69,59,.1)"
+      }
+    },
+    {
+      "id": 1,
+      "title": "Высокий",
+      "colors": {
+        "primary": "#eb8909",
+        "secondary": "rgba(235,137,9,.1)"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Средний",
+      "colors": {
+        "primary": "#246fe0",
+        "secondary": "rgba(36,111,224,.1)"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Низкий",
+      "colors": {
+        "primary": "#808080",
+        "secondary": "rgb(130,130,130,0.2)"
+      },
+      "iconFlagTransparent": true
+    }
+  ],
+  "todos": [
+    {
+      "id": 0,
+      "projectId": 0,
+      "priorityId": 2,
+      "statusId": 0,
+      "subTodoIds": [
+        3
+      ],
+      "tagIds": [
+        0,
+        1
+      ],
+      "title": "Create SSR Application in Angular!",
+      "createdDate": "2021-05-21T16:30:00.000Z",
+      "endDate": "2021-06-12T16:30:00.000Z",
+      "comments": [
+        {
+          "id": 7,
+          "authorId": 2,
+          "postedDate": "2021-04-06T18:30:00.000Z",
+          "text": "How to make dark theme"
+        },
+        {
+          "id": 8,
+          "authorId": 1,
+          "postedDate": "2021-04-06T19:00:00.000Z",
+          "text": "How to make dark theme"
+        }
+      ],
+      "hasEndTime": true
+    },
+    {
+      "id": 1,
+      "projectId": 0,
+      "priorityId": 2,
+      "statusId": 1,
+      "subTodoIds": [],
+      "tagIds": [
+        4,
+        6
+      ],
+      "title": "Create pre rendered todos list with http",
+      "createdDate": "2021-04-08T23:44:00.000Z",
+      "endDate": "2021-06-12T23:44:00.000Z",
+      "comments": []
+    },
+    {
+      "id": 2,
+      "projectId": 0,
+      "priorityId": 3,
+      "statusId": 2,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "Change fonts",
+      "createdDate": "2021-04-09T03:00:00.000Z",
+      "endDate": "2021-06-11T03:00:00.000Z",
+      "comments": []
+    },
+    {
+      "id": 3,
+      "projectId": 1,
+      "priorityId": 2,
+      "statusId": 0,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "Make http service for current date todos",
+      "createdDate": "2021-03-05T13:31:00.000Z",
+      "endDate": "2021-04-30T09:00:00.000Z",
+      "comments": [
+        {
+          "id": 2,
+          "authorId": null,
+          "postedDate": "2021-04-08T00:00:00.000Z",
+          "text": "Schema of todo"
+        }
+      ],
+      "hasEndTime": true
+    },
+    {
+      "id": 4,
+      "projectId": 0,
+      "priorityId": 3,
+      "statusId": 2,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "Make draggable todos",
+      "createdDate": "2021-04-20T19:31",
+      "endDate": "2021-04-25T15:00",
+      "hasEndTime": true,
+      "comments": []
+    }
+  ],
+  "projects": [
+    {
+      "id": 0,
+      "title": "Dev custom todo list",
+      "isFavorite": true,
+      "isShared": true,
+      "todoStatuses": [
+        {
+          "id": 0,
+          "title": "Ready for development"
+        },
+        {
+          "id": 1,
+          "title": "In developing"
+        },
+        {
+          "id": 2,
+          "title": "In testing"
+        }
+      ],
+      "color": "#14aaf5"
+    },
+    {
+      "id": 1,
+      "title": "Dev date",
+      "todoStatuses": [
+        {
+          "id": 0,
+          "title": "Requires a problem statement"
+        }
+      ],
+      "color": "#f5147c"
+    }
+  ],
+  "authors": [
+    {
+      "id": 0,
+      "name": "Rylee Bostock",
+      "email": "Bostock@gmail.com"
+    },
+    {
+      "id": 1,
+      "name": "Elin Hawes",
+      "email": "Elin@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Baran Mcloughlin",
+      "email": "Mcloughlin@gmail.com"
+    }
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "title": "Learn soon",
+      "color": "#96c3eb",
+      "isFavorite": true
+    },
+    {
+      "id": 1,
+      "title": "Interesting",
+      "color": "#884dff"
+    },
+    {
+      "id": 2,
+      "title": "Language practice",
+      "color": "#b8255f",
+      "isFavorite": true
+    },
+    {
+      "id": 3,
+      "title": "Self learning",
+      "color": "#299438"
+    },
+    {
+      "id": 4,
+      "title": "Google",
+      "color": "#eb96eb",
+      "isFavorite": true
+    },
+    {
+      "id": 5,
+      "title": "SSR",
+      "color": "#afb83b",
+      "isShared": true
+    },
+    {
+      "id": 6,
+      "title": "PWA",
+      "color": "#808080",
+      "isShared": true
+    }
+  ]
+}

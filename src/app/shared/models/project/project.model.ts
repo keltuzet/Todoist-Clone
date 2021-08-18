@@ -5,6 +5,10 @@ export interface TodoStatus {
   title: string;
 }
 
+export interface TodoStatusDetailed extends TodoStatus {
+  project: Project;
+}
+
 export interface Project {
   id: number;
   title: string;

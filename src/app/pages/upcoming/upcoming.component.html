@@ -1,1 +1,5 @@
 <t-upcoming-calendar></t-upcoming-calendar>
+<div class="task-container">
+  <t-overdue-todo-list></t-overdue-todo-list>
+  <t-date-tasks-section *ngFor="let date of dates" [date]="date"></t-date-tasks-section>
+</div>

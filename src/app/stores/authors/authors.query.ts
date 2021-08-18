@@ -6,6 +6,7 @@ import { AuthorsStore, AuthorsState } from './authors.store';
 export class AuthorsQuery extends QueryEntity<AuthorsState> {
   all$ = this.selectAll();
   allAsObj$ = this.selectAll({ asObject: true });
+  hashMap$ = this.selectAll({ asObject: true });
 
   constructor(protected store: AuthorsStore) {
     super(store);

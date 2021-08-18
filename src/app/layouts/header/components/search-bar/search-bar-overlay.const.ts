@@ -1,4 +1,4 @@
-import { CdkConnectedOverlay, ConnectionPositionPair, Overlay } from "@angular/cdk/overlay";
+import { CdkConnectedOverlay, ConnectionPositionPair, Overlay } from '@angular/cdk/overlay';
 
 export function getSearchBarOverlayOptions(overlay: Overlay): Partial<CdkConnectedOverlay> {
   return {
@@ -12,7 +12,7 @@ export function getSearchBarOverlayOptions(overlay: Overlay): Partial<CdkConnect
     scrollStrategy: overlay.scrollStrategies.reposition(),
     hasBackdrop: true,
     backdropClass: 'transparent-backdrop',
-    minHeight: 400,
+    minHeight: 32,
     flexibleDimensions: true,
-  }
+  };
 }

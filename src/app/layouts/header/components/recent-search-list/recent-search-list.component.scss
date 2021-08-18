@@ -1,0 +1,9 @@
+.reset {
+  margin-left: auto;
+  font-size: 0.975em;
+  color: grey;
+
+  &:hover {
+    color: initial;
+  }
+}

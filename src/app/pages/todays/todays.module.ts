@@ -5,14 +5,14 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { TooltipModule } from '@features/tooltip';
 import { MenuModule } from '@features/menu';
-import { TodoModule } from '@shared/components';
+import { OverdueTodoListModule, TodoModule } from '@shared/components';
 import { CapitalizeModule } from '@shared/pipes';
 import { TodaysRoutingModule } from './todays-routing.module';
 import { TodaysComponent } from './todays.component';
-import { TodaysTodoListComponent, OverdueTodoListComponent, SortMenuComponent } from './components';
+import { TodaysTodoListComponent, SortMenuComponent } from './components';
 
 @NgModule({
-  declarations: [TodaysComponent, TodaysTodoListComponent, OverdueTodoListComponent, SortMenuComponent],
+  declarations: [TodaysComponent, TodaysTodoListComponent, SortMenuComponent],
   imports: [
     CommonModule,
     TodaysRoutingModule,
@@ -22,6 +22,7 @@ import { TodaysTodoListComponent, OverdueTodoListComponent, SortMenuComponent } 
     CapitalizeModule,
     DragDropModule,
     MenuModule,
+    OverdueTodoListModule,
   ],
 })
 export class TodaysModule {}

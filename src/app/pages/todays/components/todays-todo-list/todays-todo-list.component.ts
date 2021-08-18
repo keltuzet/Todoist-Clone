@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
-import { TodoView } from '@shared/models';
+import { Todo } from '@shared/models';
 import { AppDateRef } from '@shared/services';
 
 @Component({
@@ -11,20 +11,20 @@ import { AppDateRef } from '@shared/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodaysTodoListComponent implements OnInit {
-  @Input() todos: TodoView[];
+  @Input() todos: Todo[];
   now = this.appDateRef.now;
 
   constructor(private appDateRef: AppDateRef) {}
 
   ngOnInit() {}
 
-  drop(event: CdkDragDrop<TodoView[]>) {
+  drop(event: CdkDragDrop<Todo[]>) {
     moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
   }
 
-  todoTrackBy(index: number, item: TodoView): number {
+  todoTrackBy(index: number, item: Todo): number {
     return item.id;
   }
 
-  termFormatFn = (todo: TodoView) => 'HH:mm';
+  termFormatFn = (todo: Todo) => 'HH:mm';
 }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TodoView } from '@shared/models';
+import { Todo } from '@shared/models';
 import { setNextWeek, setToday, setTomorrow, setWeekend } from '@shared/utils';
 import { TodosService } from '@stores/todos';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -25,7 +25,7 @@ export class TodoScheduleHolderComponent implements OnInit {
   @Input('date') set date(val: Date) {
     this.date$.next(val);
   }
-  @Input() todo: TodoView;
+  @Input() todo: Todo;
 
   constructor(private todosService: TodosService) {}
 

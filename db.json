@@ -38,7 +38,7 @@
     {
       "id": 0,
       "projectId": 0,
-      "priorityId": 1,
+      "priorityId": 2,
       "statusId": 0,
       "subTodoIds": [
         3
@@ -96,22 +96,22 @@
     {
       "id": 3,
       "projectId": 1,
-      "priorityId": 1,
+      "priorityId": 2,
       "statusId": 0,
       "subTodoIds": [],
       "tagIds": [],
       "title": "Make http service for current date todos",
-      "createdDate": "2021-03-05T19:31",
-      "endDate": "2021-04-30T15:00",
-      "hasEndTime": true,
+      "createdDate": "2021-03-05T13:31:00.000Z",
+      "endDate": "2021-04-30T09:00:00.000Z",
       "comments": [
         {
-          "postedDate": "2021-04-08",
-          "text": "Schema of todo",
+          "id": 2,
           "authorId": null,
-          "id": 2
+          "postedDate": "2021-04-08T00:00:00.000Z",
+          "text": "Schema of todo"
         }
-      ]
+      ],
+      "hasEndTime": true
     },
     {
       "id": 4,
@@ -123,6 +123,31 @@
       "title": "Make draggable todos",
       "createdDate": "2021-04-20T19:31",
       "endDate": "2021-04-25T15:00",
+      "hasEndTime": true,
+      "comments": []
+    },
+    {
+      "id": 5,
+      "projectId": 0,
+      "priorityId": 2,
+      "statusId": 1,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "Add e2e tests",
+      "createdDate": "2021-07-20T19:31",
+      "endDate": "2021-07-25T15:00",
+      "comments": []
+    },
+    {
+      "id": 6,
+      "projectId": 0,
+      "priorityId": 1,
+      "statusId": 2,
+      "subTodoIds": [],
+      "tagIds": [0, 1],
+      "title": "Add unit tests",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-16T01:00",
       "hasEndTime": true,
       "comments": []
     }
@@ -159,6 +184,25 @@
         }
       ],
       "color": "#f5147c"
+    },
+    {
+      "id": 2,
+      "title": "Mobile app",
+      "todoStatuses": [
+        {
+          "id": 0,
+          "title": "Backlog"
+        },
+        {
+          "id": 1,
+          "title": "In review"
+        },
+        {
+          "id": 2,
+          "title": "Team acceptance"
+        }
+      ],
+      "color": "#6accbc"
     }
   ],
   "authors": [

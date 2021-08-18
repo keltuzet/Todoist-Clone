@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@
 import { BehaviorSubject, Subscription } from 'rxjs';
 
 import { MENU_DATA } from '@features/menu/const';
-import { TodoPriority, todoToHttpBody, TodoView } from '@shared/models';
+import { TodoPriority, todoToHttpBody, Todo } from '@shared/models';
 import { TodosQuery, TodosService, TodosStore } from '@stores/todos';
 import { MenuRef } from '@features/menu/models';
 
@@ -19,7 +19,7 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
   $sub = new Subscription();
 
   constructor(
-    @Inject(MENU_DATA) public data$: BehaviorSubject<TodoView>,
+    @Inject(MENU_DATA) public data$: BehaviorSubject<Todo>,
     private menuRef: MenuRef,
     private todosQuery: TodosQuery,
     private todosStore: TodosStore,

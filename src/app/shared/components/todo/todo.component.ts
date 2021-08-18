@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
-import { TodoView } from '@shared/models';
+import { Todo } from '@shared/models';
 import { interval, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TodoActionsMenuComponent } from '../todo-actions-menu';
@@ -12,11 +12,11 @@ import { TodoActionsMenuComponent } from '../todo-actions-menu';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoComponent implements OnInit, AfterViewInit {
-  @Input() todo: TodoView;
+  @Input() todo: Todo;
   @Input() todoCount: number;
   @Input() overdueFn: (Date) => boolean = (d) => true;
   @Input() showTerm: boolean;
-  @Input() termFormatFn: (TodoView) => string;
+  @Input() termFormatFn: (Todo) => string;
   @Input() isOverdue: boolean;
   termFormat: string;
 

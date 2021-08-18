@@ -1,0 +1,18 @@
+<div class="search-bar-panel__group">
+  <div class="search-bar-panel__label">Недавние запросы <button (click)="reset()" class="reset">Сбросить</button></div>
+  <ng-container *ngIf="list$ | async | take: 4 as list">
+    <ng-container *ngIf="list.length; else empty">
+      <div (click)="searchSelect.emit(search)" *ngFor="let search of list" class="search-bar-panel__item">
+        <svg-icon class="indicator" name="time-back" svgClass="icon_size_m"></svg-icon>
+        <span>{{ search }}</span>
+        <button (click)="remove(search)" class="remove-btn">
+          <svg-icon name="cross" svgClass="icon_size_xs"></svg-icon>
+        </button>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #empty>
+  <div class="search-bar-panel__empty">Нет недавних поисковых запросов</div>
+</ng-template>

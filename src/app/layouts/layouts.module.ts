@@ -24,6 +24,13 @@ import { MenuModule } from '@features/menu';
 import { ProjectIconModule } from '@shared/pipes/project-icon/project-icon.module';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RadioButtonModule } from '@features/radio-button';
+import { SearchResultComponent } from './header/components/search-result/search-result.component';
+import { SearchResultListComponent } from './header/components/search-result-list/search-result-list.component';
+import { RecentSearchListComponent } from './header/components/recent-search-list/recent-search-list.component';
+import { RecentSearchResultListComponent } from './header/components/recent-search-result-list/recent-search-result-list.component';
+import { TakeModule } from '@shared/pipes/take/take.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -40,6 +47,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavTagListComponent,
     NavFilterListComponent,
     NavTagMenuComponent,
+    SearchResultComponent,
+    SearchResultListComponent,
+    RecentSearchListComponent,
+    RecentSearchResultListComponent,
   ],
   imports: [
     CommonModule,
@@ -56,6 +67,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MenuModule,
     ProjectIconModule,
     OverlayModule,
+    RadioButtonModule,
+    TakeModule,
+    NgxSpinnerModule,
   ],
 })
 export class PageLayoutModule {}

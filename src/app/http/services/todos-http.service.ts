@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BaseHttp } from '@shared/models';
-import { Todo, TodoResponse } from '@http/models';
+import { ExtractedTodo, TodoResponse } from '@http/models';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class TodosHttpService extends BaseHttp {
     super(injector);
   }
 
-  getTodays(): Observable<Todo[]> {
+  getTodays(): Observable<ExtractedTodo[]> {
     console.log('object');
     return this.get<TodoResponse[]>(`todays`).pipe(
       tap((v) => console.log(v)),
@@ -21,7 +21,7 @@ export class TodosHttpService extends BaseHttp {
     );
   }
 
-  getAll(): Observable<Todo[]> {
+  getAll(): Observable<ExtractedTodo[]> {
     return this.get<TodoResponse[]>(`todos`).pipe(
       map((todos) => todos.map((todo) => ({ ...todo, createdDate: new Date(todo.createdDate), endDate: new Date(todo.endDate) }))),
     );
