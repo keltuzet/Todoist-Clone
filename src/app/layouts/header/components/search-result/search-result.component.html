@@ -1,0 +1,33 @@
+<ng-container *ngIf="result">
+  <div [ngSwitch]="result.type" [ngClass]="result.type" class="search-bar-panel__item">
+    <ng-container *ngSwitchCase="'project'">
+      <svg-icon
+        class="indicator"
+        [name]="result.src | projectIcon"
+        [style.color]="result.src.color"
+        svgClass="icon_size_m"
+      ></svg-icon>
+      <ng-container *ngTemplateOutlet="resultText; context: result"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'tag'">
+      <svg-icon class="indicator" name="tag" [style.color]="result.src.color" svgClass="icon_size_m"></svg-icon>
+      <ng-container *ngTemplateOutlet="resultText; context: result"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'status'">
+      <svg-icon class="indicator" name="vert-sections" svgClass="icon_size_m"></svg-icon>
+      <div class="status-content">
+        <ng-container *ngTemplateOutlet="resultText; context: result"></ng-container>
+        <span class="status-content__project-name">{{ result.src.project.title }}</span>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'todo'">
+      <app-radio-button class="indicator medium" [checked]="false"></app-radio-button>
+      <ng-container *ngTemplateOutlet="resultText; context: result"></ng-container>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-template #resultText let-html="html" let-text="text"><span [innerHTML]="indicateMatch ? html: text"></span></ng-template>

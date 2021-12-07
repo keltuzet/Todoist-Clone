@@ -1,0 +1,26 @@
+<div class="calendar-header">
+  <span class="calendar-header__date">{{ date | date: 'MMMM yyyy' | capitalize }}</span>
+  <div class="calendar-header__actions">
+    <button class="btn prev-btn">
+      <svg-icon name="arrow-right" svgClass="icon_size_m"></svg-icon>
+    </button>
+    <button class="btn curr-btn">
+      <div class="outline-circle"></div>
+    </button>
+    <button class="btn next-btn">
+      <svg-icon name="arrow-right" svgClass="icon_size_m"></svg-icon>
+    </button>
+  </div>
+</div>
+<div class="calendar-list-week-days">
+  <div class="week-days-labels"><div *ngFor="let label of weekDayLabels">{{ label }}</div></div>
+</div>
+<div class="calendar-month-list">
+  <div *ngFor="let month of months" class="calendar-month">
+    <div *ngIf="!month.isCurrent" class="calendar-month-header">{{ month.monthName }}</div>
+    <div class="calendar-month-days">
+      <div class="calendar-month-day" *ngFor="let day of month.days">{{ day }}</div>
+    </div>
+  </div>
+</div>
+<div class="month-days"></div>

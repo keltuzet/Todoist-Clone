@@ -1,0 +1,25 @@
+<!-- <div class="container"> -->
+  <div class="upcoming-calendar__tools">
+    <button class="upcoming-calendar__date-picker-btn">
+      <span>{{ date | date : 'MMMM yyyy' | capitalize }}</span>
+      <svg-icon name="arrow-right" svgClass="icon_size_m"></svg-icon>
+    </button>
+    <div class="upcoming-calendar__nav">
+      <t-next-prev-button (btnClick)="changeWeek($event)" [disable]="today.getDate() === date.getDate() ? 'prev' : null"></t-next-prev-button>
+    </div>
+    <button (click)="moveToToday()" class="upcoming-calendar__today-selector">Сегодня</button>
+  </div>
+  <div class="calendar-week">
+    <button
+      *ngFor="let curDate of week; let i = index"
+      (click)="selectDate(curDate)"
+      [disabled]="curDate.getTime() < today.getTime()"
+      [class.current]="curDate.getDate() === monthDay"
+      [class.selected]="selected && selected.getTime() === curDate.getTime()"
+      class="calendar-day"
+    >
+      <span class="calendar-day__weekday">{{ weekList[i] }}</span>
+      <span class="calendar-day__date">{{ curDate.getDate() }}</span>
+    </button>
+  </div>
+<!-- </div> -->

@@ -1,32 +1,46 @@
 import { Injectable } from '@angular/core';
-import { combineQueries, QueryEntity } from '@datorama/akita';
-import { Todo, TodoView } from '@http/models';
-import { AppDateRef } from '@shared/services';
-
-import { entityToObj, isToday } from '@shared/utils';
-import { AuthorsQuery } from '@stores/authors/authors.query';
-import { ProjectsQuery } from '@stores/projects/projects.query';
+import { combineQueries, HashMap, QueryEntity } from '@datorama/akita';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import {
+  Author,
+  ExtractedTodo,
+  Project,
+  Todo,
+  TodoComment,
+  TodoCommentDetailed,
+  TodoPriority,
+  TodoStatus,
+  TodoTag,
+} from '@shared/models';
+import { AppDateRef } from '@shared/services';
+import { entityToObj, isToday } from '@shared/utils';
+import { isOverdue } from '@shared/utils/is-overdue';
+import { AuthorsQuery } from '@stores/authors/authors.query';
+import { ProjectsQuery } from '@stores/projects/projects.query';
+import { TagsQuery } from '@stores/tags/tags.query';
 import { TodosStore, TodosState } from './todos.store';
 
 @Injectable({ providedIn: 'root' })
 export class TodosQuery extends QueryEntity<TodosState> {
-  todays$: Observable<Todo[]>;
+  all$ = this.selectAll();
+  todays$: Observable<ExtractedTodo[]>;
   priorities$ = this.select('priorities');
-  prioritiesAsObj$ = this.select('priorities').pipe(map(entityToObj));
+  prioritiesHashMap$ = this.select('priorities').pipe(map(entityToObj));
 
-  overdue$: Observable<Todo[]>;
+  overdue$: Observable<ExtractedTodo[]>;
 
   constructor(
     protected todosStore: TodosStore,
     private authorsQuery: AuthorsQuery,
     private projectsQuery: ProjectsQuery,
+    private tagsQuery: TagsQuery,
     private appDateRef: AppDateRef,
   ) {
     super(todosStore);
 
-    this.overdue$ = this.toTodoView(
+    this.overdue$ = this.toTodo(
       this.selectAll({
         filterBy: ({ endDate, hasEndTime }) => {
           return hasEndTime
@@ -37,60 +51,74 @@ export class TodosQuery extends QueryEntity<TodosState> {
     );
   }
 
-  selectOverdue() {
-    return this.toTodoView(
+  selectOverdue(): Observable<Todo[]> {
+    return this.toTodo(
       this.selectAll({
-        filterBy: ({ endDate, hasEndTime }) =>
-          hasEndTime
-            ? endDate.getTime() < this.appDateRef.now.getTime()
-            : endDate.getTime() < new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()).getTime(),
+        filterBy: ({ endDate }) => isOverdue(endDate, this.appDateRef.now),
       }),
     );
   }
 
-  selectTodays(currentDate = new Date()) {
-    return this.toTodoView(
+  selectTodays(currentDate = new Date()): Observable<Todo[]> {
+    return this.toTodo(
       this.selectAll({
-        filterBy: ({ endDate, hasEndTime }) => {
-          let res = isToday(endDate, currentDate, hasEndTime);
+        filterBy: ({ endDate }) => {
+          const res = isToday(endDate, currentDate);
           return res;
         },
       }),
     );
   }
 
-  selectTodos(options) {
+  selectTodos(options): Observable<void> {
     return combineQueries([
       this.selectAll(options),
       this.authorsQuery.all$,
-      this.projectsQuery.allTodoStatusesAsObj$,
+      this.projectsQuery.todoStatusesHashMap$,
     ]).pipe(map(([todos, authors, projects]) => {}));
   }
 
-  selectPriorities() {
+  selectPriorities(): Observable<TodoPriority[]> {
     return this.select('priorities');
   }
 
-  toTodoView(todos$: Observable<Todo[]>): Observable<TodoView[]> {
+  toTodo(todos$: Observable<ExtractedTodo[]>): Observable<Todo[]> {
     return combineQueries([
       todos$,
-      this.authorsQuery.all$,
-      this.projectsQuery.selectProjectsAsQuery(),
-      this.prioritiesAsObj$,
+      this.authorsQuery.hashMap$,
+      this.projectsQuery.hashMap$,
+      this.prioritiesHashMap$,
+      this.tagsQuery.hashMap$,
     ]).pipe(
-      map(([todos, authors, projects, priorities]) => {
+      map(([todos, authorsHashMap, projectsHashMap, priorities, tagsHashMap]) => {
         return todos.map((todo) => {
+          const project: Project | undefined = projectsHashMap[todo.projectId];
+
           return {
             ...todo,
-            comments: todo.comments.map((comment) => ({
-              ...comment,
-              author: authors[comment.authorId],
-            })),
-            statuses: todo.tags.map(({ projectId, statusId }) => projects[projectId].todoStatuses[statusId]),
+            project,
             priority: priorities[todo.priorityId],
+            status: this.getTodoStatus(todo, project),
+            tags: this.getTodoTags(todo, tagsHashMap),
+            comments: this.toTodoComment(todo, authorsHashMap),
           };
         });
       }),
     );
+  }
+
+  private toTodoComment(todo: ExtractedTodo, authorsHashMap: HashMap<Author>): TodoCommentDetailed[] {
+    return todo.comments.map((comment) => ({
+      ...comment,
+      author: authorsHashMap[comment.authorId],
+    }));
+  }
+
+  private getTodoTags(todo: ExtractedTodo, tagsHashMap: HashMap<TodoTag>): TodoTag[] {
+    return todo.tagIds.filter((id) => tagsHashMap[id]).map((id) => tagsHashMap[id]);
+  }
+
+  private getTodoStatus(todo: ExtractedTodo, project?: Project): TodoStatus {
+    return project?.todoStatuses.find((statuses) => statuses.id === todo.statusId);
   }
 }

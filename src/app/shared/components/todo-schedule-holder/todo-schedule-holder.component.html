@@ -1,16 +1,16 @@
-<ul class="schedule-holder">
+<ul class="schedule-holder" [class.schedule-holder_view-col]="isColView" [class.schedule-holder_view-row]="!isColView">
   <li *ngFor="let item of list$ | async" class="schedule-holder__item">
-    <button class="schedule-holder__btn" type="button">
+    <button (click)="setSchedule(item.type)" class="schedule-holder__btn" type="button">
       <ng-container *ngIf="item.applySvgIconTextDirective; else elseTemplate">
         <svg-icon
           [appSvgIconText]="currDay"
-          [appTooltip]="item.tooltipText"
+          [tTooltip]="item.tooltipText"
           [name]="item.iconName"
           [svgClass]="item.iconClass"
         ></svg-icon>
       </ng-container>
       <ng-template #elseTemplate>
-        <svg-icon [appTooltip]="item.tooltipText" [name]="item.iconName" [svgClass]="item.iconClass"></svg-icon>
+        <svg-icon [tTooltip]="item.tooltipText" [name]="item.iconName" [svgClass]="item.iconClass"></svg-icon>
       </ng-template>
     </button>
   </li>
@@ -18,7 +18,7 @@
     <button class="schedule-holder__btn" type="button">
       <svg-icon
         [appSvgIconText]="currDay"
-        appTooltip="Сегодня"
+        tTooltip="Сегодня"
         name="calendar-today"
         svgClass="icon_size_l icon_color_green"
       ></svg-icon>
@@ -26,18 +26,18 @@
   </li>
   <li class="schedule-holder__item">
     <button class="schedule-holder__btn" type="button">
-      <svg-icon appTooltip="Завтра" name="sun" svgClass="icon_size_l icon_color_tenne"></svg-icon>
+      <svg-icon tTooltip="Завтра" name="sun" svgClass="icon_size_l icon_color_tenne"></svg-icon>
     </button>
   </li>
   <li class="schedule-holder__item">
     <button class="schedule-holder__btn" type="button">
-      <svg-icon appTooltip="На выходных" name="couch" svgClass="icon_size_l icon_color_royal-blue"></svg-icon>
+      <svg-icon tTooltip="На выходных" name="couch" svgClass="icon_size_l icon_color_royal-blue"></svg-icon>
     </button>
   </li>
   <li class="schedule-holder__item">
     <button class="schedule-holder__btn" type="button">
       <svg-icon
-        appTooltip="Следующая неделя"
+        tTooltip="Следующая неделя"
         name="arrow-right-calendar"
         svgClass="icon_size_l icon_color_purple-heart"
       ></svg-icon>
@@ -45,12 +45,12 @@
   </li>
   <li class="schedule-holder__item">
     <button class="schedule-holder__btn" type="button">
-      <svg-icon appTooltip="Без срока" name="endless-schedule" svgClass="icon_size_l"></svg-icon>
+      <svg-icon tTooltip="Без срока" name="endless-schedule" svgClass="icon_size_l"></svg-icon>
     </button>
   </li>
   <li class="schedule-holder__item">
     <button class="schedule-holder__btn" type="button">
-      <svg-icon appTooltip="Еще" name="ellipsis-h-alt" svgClass="icon_size_l"></svg-icon>
+      <svg-icon tTooltip="Еще" name="ellipsis-h-alt" svgClass="icon_size_l"></svg-icon>
     </button>
   </li> -->
 </ul>

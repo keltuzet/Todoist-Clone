@@ -2,7 +2,7 @@
   <app-expansion-panel-header>Метки</app-expansion-panel-header>
   <app-expansion-panel-body>
     <ul class="nav-list" cdkDropList>
-      <li *ngFor="let tag of tags$ | async; trackBy: tagTrackyBy" cdkDrag>
+      <li *ngFor="let tag of unsharedTags$ | async; trackBy: tagTrackyBy" cdkDrag>
         <a [routerLink]="'./label/' + tag.title">
           <app-nav-list-item [todoCount]="tag.count" [color]="tag.color" [hasMenu]="true" [menu]="menu" icon="tag">
             <span>{{ tag.title }}</span>
@@ -13,5 +13,23 @@
         </a>
       </li>
     </ul>
+
+    <app-expansion-panel tag="commonTags">
+      <app-expansion-panel-header><span class="unshared-title">Общие</span></app-expansion-panel-header>
+      <app-expansion-panel-body>
+        <ul class="nav-list" cdkDropList>
+          <li *ngFor="let tag of sharedTags$ | async; trackBy: tagTrackyBy" cdkDrag>
+            <a [routerLink]="'./label/' + tag.title">
+              <app-nav-list-item [todoCount]="tag.count" [color]="tag.color" [hasMenu]="true" [menu]="menu" icon="tag">
+                <span>{{ tag.title }}</span>
+                <button class="nav-list-item__replace-tool" cdkDragHandle>
+                  <svg-icon name="drag" svgClass="icon_size_m"></svg-icon>
+                </button>
+              </app-nav-list-item>
+            </a>
+          </li>
+        </ul>
+      </app-expansion-panel-body>
+    </app-expansion-panel>
   </app-expansion-panel-body>
 </app-expansion-panel>

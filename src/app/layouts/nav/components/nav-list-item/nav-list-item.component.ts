@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./nav-list-item.component.scss'],
 })
 export class NavListItemComponent implements OnInit {
-  @Input() icon: string;
+  @Input() icon = 'small-circle';
   @Input() color: string;
   @Input() todoCount: number;
   @Input() hasMenu: boolean;

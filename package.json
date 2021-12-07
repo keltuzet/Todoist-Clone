@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"json-server db.json --middlewares ./middleware.js --routes routes.json\" \"ng s -o --port=4500\"",
+    "dev": "ng s -o --port=4500",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -26,9 +27,12 @@
     "@datorama/akita-ng-router-store": "^6.0.0",
     "angular-svg-icon": "^11.2.0",
     "concurrently": "^6.2.0",
+    "escape-string-regexp": "^5.0.0",
     "material-icons": "^0.6.1",
+    "mobile-detect": "^1.4.5",
     "moment": "^2.29.1",
-    "ngx-spinner": "^11.0.1",
+    "ngx-spinner": "^11.0.2",
+    "ngx-textarea-autosize": "^2.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

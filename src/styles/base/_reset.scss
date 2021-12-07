@@ -9,6 +9,7 @@ html {
 body {
   height: 100%;
   margin: 0;
+  color: #202020;
 }
 
 a {
@@ -58,4 +59,21 @@ input {
   font: inherit;
   padding: 0;
   border: none;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &::placeholder {
+    font-weight: 300;
+    color: rgba(128, 128, 128, 0.75);
+  }
+}
+
+textarea {
+  min-height: 20px;
+  padding: 6px 6px 0;
+  outline: 0;
+  font-family: inherit;
+  resize: none;
 }

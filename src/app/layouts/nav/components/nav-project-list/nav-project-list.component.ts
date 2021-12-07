@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Project } from '@http/models';
+
+import { Project } from '@shared/models';
 import { ProjectsQuery } from '@stores/projects/projects.query';
 
 @Component({

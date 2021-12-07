@@ -1,0 +1,13 @@
+.status {
+  &-content {
+    display: flex;
+    flex-direction: column;
+
+    &__project-name {
+      margin-left: 0.8rem;
+      font-size: 0.975em;
+      font-style: italic;
+      color: grey;
+    }
+  }
+}

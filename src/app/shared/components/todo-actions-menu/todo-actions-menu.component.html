@@ -12,11 +12,11 @@
   <li class="menu-divider"></li>
   <li class="section-menu-item">
     <div class="section-menu-item__label">Срок</div>
-    <app-todo-schedule-holder [date]="todo.endDate"></app-todo-schedule-holder>
+    <app-todo-schedule-holder (scheduleChange)="updateTodoSchedule($event)" [date]="todo.endDate"></app-todo-schedule-holder>
   </li>
   <li class="section-menu-item">
     <div class="section-menu-item__label">Приоритет</div>
-    <app-todo-priority-list [selectedPriority]="todo.priorityId"></app-todo-priority-list>
+    <app-todo-priority-list [selectedPriority]="todo.priorityId" (onselect)="updateTodoPriority($event)"></app-todo-priority-list>
   </li>
   <li class="menu-divider"></li>
   <li class="menu-item icon-menu-item">
@@ -37,7 +37,7 @@
     <div class="icon-menu-item__content">Скопировать ссылку на задачу</div>
   </li>
   <li class="menu-divider"></li>
-  <li class="menu-item icon-menu-item danger-menu-item">
+  <li (click)="removeTodo()" class="menu-item icon-menu-item danger-menu-item">
     <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="trash-alt"></svg-icon>
     <div class="icon-menu-item__content">Удалить задачу</div>
   </li>

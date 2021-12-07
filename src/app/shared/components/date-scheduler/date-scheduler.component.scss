@@ -1,0 +1,14 @@
+:host {
+  width: 250px;
+  max-height: 600px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 8px 0 rgb(0 0 0 / 8%), 0 0 1px 0 rgb(0 0 0 / 30%);
+  overflow: hidden;
+  z-index: 1;
+}
+
+

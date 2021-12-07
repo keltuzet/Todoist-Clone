@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Injector, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, HostListener, Injector, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, DomPortal, TemplatePortal } from '@angular/cdk/portal';
 import { BehaviorSubject } from 'rxjs';
@@ -8,13 +8,9 @@ import { TOOLTIP_CONTENT, TOOLTIP_POSITIONS } from '../const';
 import { TooltipPosition } from '../models';
 
 @Directive({
-  selector: '[appTooltip]',
-  host: {
-    '(mouseenter)': 'display()',
-    '(mouseleave)': 'hide()',
-  },
+  selector: '[tTooltip]',
 })
-export class TooltipDirective implements OnInit {
+export class TooltipDirective implements OnInit, OnDestroy {
   private overlayRef: OverlayRef;
   private tooltipInjector: Injector;
   private isHidden = true;
@@ -25,7 +21,7 @@ export class TooltipDirective implements OnInit {
   @Input() set tlpTemplate(tpl: TemplateRef<any> | ComponentType<any> | HTMLElement) {
     this.tpl$.next(tpl);
   }
-  @Input('appTooltip') set tooltipData(data: any) {
+  @Input('tTooltip') set tooltipData(data: any) {
     this.data$.next(data);
   }
   @Input('tlpTemplateContext') tplContext: any;
@@ -38,10 +34,14 @@ export class TooltipDirective implements OnInit {
     private viewContainerRef: ViewContainerRef,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.init();
 
     this.tpl$.subscribe(this.setPortal);
+  }
+
+  ngOnDestroy(): void {
+    this.hide();
   }
 
   private setPortal = (tpl: TemplateRef<any> | ComponentType<any> | HTMLElement) => {
@@ -55,9 +55,9 @@ export class TooltipDirective implements OnInit {
       default:
         this.currPortal = new ComponentPortal(tpl as ComponentType<any>);
     }
-  };
+  }
 
-  private init() {
+  private init(): void {
     this.tooltipInjector = Injector.create({
       providers: [
         {
@@ -69,7 +69,8 @@ export class TooltipDirective implements OnInit {
     });
   }
 
-  display() {
+  @HostListener('mouseenter')
+  display(): void {
     this.overlayRef = this.overlay.create({
       positionStrategy: this.overlay
         .position()
@@ -80,11 +81,12 @@ export class TooltipDirective implements OnInit {
     this.overlayRef.attach(this.currPortal);
   }
 
-  hide() {
-    this.overlayRef.dispose();
+  @HostListener('mouseleave')
+  hide(): void {
+    this.overlayRef?.dispose();
   }
 
-  toggle() {
+  toggle(): void {
     this.isHidden ? this.display() : this.hide();
   }
 }

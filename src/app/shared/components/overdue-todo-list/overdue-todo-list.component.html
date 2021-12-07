@@ -1,0 +1,16 @@
+<article *ngIf="todos?.length" class="todo-list">
+  <header class="todo-list-header">
+    <h2 class="todo-list-title">Просрочено</h2>
+  </header>
+  <div cdkDropList (cdkDropListDropped)="drop($event)">
+    <app-todo
+      cdkDrag
+      *ngFor="let todo of todos; trackBy: todoTrackBy"
+      [todo]="todo"
+      [todoCount]="todos.length"
+      [showTerm]="true"
+      [termFormatFn]="termFormatFn"
+      [isOverdue]="true"
+    ></app-todo>
+  </div>
+</article>

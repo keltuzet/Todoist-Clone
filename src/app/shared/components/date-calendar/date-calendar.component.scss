@@ -1,0 +1,86 @@
+.calendar-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 10px 4px 16px;
+  color: #202020;
+
+  &__date {
+    font-weight: 700;
+  }
+
+  &__actions {
+    display: flex;
+    width: 42.85714%;
+    justify-content: space-around;
+
+    .btn {
+      width: 24px;
+      height: 24px;
+
+      &:disabled {
+        opacity: .2;
+      }
+    }
+
+    .prev-btn {
+      svg-icon {
+        transform: rotate(180deg);
+      }
+    }
+
+    .outline-circle {
+      width: 6px;
+      height: 6px;
+      border-radius: 4px;
+      border: 1px solid grey;
+      margin: 8px auto;
+    }
+  }
+}
+
+.calendar-list-week-days {
+  .week-days-labels {
+    display: flex;
+    padding: 0 10px;
+    color: grey;
+    font-size: 10px;
+    line-height: 24px;
+    text-transform: uppercase;
+    text-align: center;
+
+    div {
+      flex: 1;
+    }
+  }
+}
+
+.calendar-month-list {
+  height: 180px;
+  overflow: auto;
+}
+
+.calendar-month {
+  display: flex;
+  flex-direction: column;
+
+  &-header {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    margin: 0 16px 4px;
+  }
+
+  &-days {
+    padding: 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  &-day {
+    flex: 0 1 14.28571%;
+  }
+}

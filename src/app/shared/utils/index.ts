@@ -5,3 +5,4 @@ export * from './is-function';
 export * from './is-nil';
 export * from './is-today';
 export * from './select-arr-props';
+export * from './date-to-non-tmz-json';

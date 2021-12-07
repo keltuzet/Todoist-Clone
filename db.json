@@ -37,125 +37,204 @@
   "todos": [
     {
       "id": 0,
+      "projectId": 0,
+      "priorityId": 1,
+      "statusId": 0,
+      "subTodoIds": [
+        3
+      ],
+      "tagIds": [
+        0,
+        1
+      ],
       "title": "Create SSR Application in Angular!",
-      "priorityId": 3,
-      "createdDate": "2021-05-24T10:30",
-      "endDate": "2021-05-27T22:00",
-      "hasEndTime": true,
+      "createdDate": "2021-05-21T16:30:00.000Z",
+      "endDate": "2021-06-12T16:30:00.000Z",
       "comments": [
         {
-          "postedDate": "2021-04-09T12:30",
-          "text": "How to make dark theme",
+          "id": 7,
           "authorId": 2,
-          "id": 0
+          "postedDate": "2021-04-06T18:30:00.000Z",
+          "text": "How to make dark theme"
         },
         {
-          "postedDate": "2021-04-09T13:00",
-          "text": "How to make dark theme",
+          "id": 8,
           "authorId": 1,
-          "id": 1
+          "postedDate": "2021-04-06T19:00:00.000Z",
+          "text": "How to make dark theme"
         }
       ],
-      "subTodoIds": [3],
-      "tags": [
-        {
-          "projectId": 0,
-          "statusId": 0
-        }
-      ]
+      "hasEndTime": true
     },
     {
       "id": 1,
-      "title": "Create pre rendered todos list with http",
-      "priorityId": 0,
-      "createdDate": "2021-04-09T11:44",
-      "endDate": "2021-04-12T00:00",
-      "hasEndTime": false,
-      "comments": [],
+      "projectId": 0,
+      "priorityId": 3,
+      "statusId": 1,
       "subTodoIds": [],
-      "tags": [
-        {
-          "projectId": 0,
-          "statusId": 1
-        }
-      ]
+      "tagIds": [
+        4,
+        6
+      ],
+      "title": "Create pre rendered todos list with http",
+      "createdDate": "2021-04-08T23:44:00.000Z",
+      "endDate": "2021-06-12T23:44:00.000Z",
+      "comments": []
     },
     {
       "id": 2,
-      "title": "Change fonts",
-      "priorityId": 2,
-      "createdDate": "2021-04-09T09:00",
-      "endDate": "2021-05-28T00:00",
-      "hasEndTime": false,
-      "comments": [],
+      "projectId": 0,
+      "priorityId": 3,
+      "statusId": 2,
       "subTodoIds": [],
-      "tags": [
-        {
-          "projectId": 0,
-          "statusId": 2
-        }
-      ]
+      "tagIds": [],
+      "title": "Change fonts",
+      "createdDate": "2021-04-09T03:00:00.000Z",
+      "endDate": "2021-06-11T03:00:00.000Z",
+      "comments": []
     },
     {
       "id": 3,
+      "projectId": 1,
+      "priorityId": 2,
+      "statusId": 0,
+      "subTodoIds": [],
+      "tagIds": [],
       "title": "Make http service for current date todos",
-      "priorityId": 1,
-      "createdDate": "2021-03-05T19:31",
-      "endDate": "2021-04-30T15:00",
-      "hasEndTime": true,
+      "createdDate": "2021-03-05T13:31:00.000Z",
+      "endDate": "2021-04-30T09:00:00.000Z",
       "comments": [
         {
-          "postedDate": "2021-04-08",
-          "text": "Schema of todo",
+          "id": 2,
           "authorId": null,
-          "id": 2
+          "postedDate": "2021-04-08T00:00:00.000Z",
+          "text": "Schema of todo"
         }
       ],
-      "subTodoIds": [],
-      "tags": [
-        {
-          "projectId": 1,
-          "statusId": 0
-        }
-      ]
+      "hasEndTime": true
     },
     {
       "id": 4,
-      "title": "Make draggable todos",
+      "projectId": 0,
       "priorityId": 3,
+      "statusId": 2,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "Make draggable todos",
       "createdDate": "2021-04-20T19:31",
       "endDate": "2021-04-25T15:00",
       "hasEndTime": true,
-      "comments": [],
-      "subTodoIds": [],
-      "tags": [
-        {
-          "projectId": 0,
-          "statusId": 2
-        }
-      ]
+      "comments": []
     },
     {
       "id": 5,
-      "title": "Make menu for todos date edit",
+      "projectId": 0,
       "priorityId": 2,
-      "createdDate": "2021-04-15T19:31",
-      "endDate": "2021-04-26T00:00",
-      "hasEndTime": false,
-      "comments": [],
+      "statusId": 1,
       "subTodoIds": [],
-      "tags": [
-        {
-          "projectId": 0,
-          "statusId": 1
-        }
-      ]
+      "tagIds": [],
+      "title": "Add e2e tests",
+      "createdDate": "2021-07-20T19:31",
+      "endDate": "2021-07-25T15:00",
+      "comments": []
+    },
+    {
+      "id": 6,
+      "projectId": 0,
+      "priorityId": 1,
+      "statusId": 2,
+      "subTodoIds": [],
+      "tagIds": [
+        0,
+        1
+      ],
+      "title": "Add unit tests",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-16T01:00",
+      "hasEndTime": true,
+      "comments": []
+    },
+    {
+      "id": 7,
+      "projectId": 0,
+      "priorityId": 2,
+      "statusId": 1,
+      "subTodoIds": [],
+      "tagIds": [
+        0,
+        1
+      ],
+      "title": "Roles are not positions, any person having a job title can be in one or multiple roles depending on the context or project. For example, Sr Engineering Lead is in an Engineer role as part of the Vertical team and could be a Domain Expert in some business-related project. Roles help teams and groups to organize their work. The rotating nature of some Roles engages people to learn and grow. It forces a person to focus on specific responsibilities, avoiding problems related to shared responsibilities (mean no responsibilities). At the same time, rotating helps to not get bored or overwhelmed.",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-16T01:00",
+      "hasEndTime": true,
+      "comments": []
+    },
+    {
+      "id": 8,
+      "projectId": 0,
+      "priorityId": 1,
+      "statusId": 2,
+      "subTodoIds": [],
+      "tagIds": [
+        0,
+        1
+      ],
+      "title": "We want to be explicit on how to work in our company. The exact and transparent definition of responsibilities, boundaries, and expectations allows people to feel comfortable, focused, and accountable. Transparency leads to a culture of trust and psychological safety.",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-16T01:00",
+      "hasEndTime": true,
+      "comments": []
+    },
+    {
+      "id": 9,
+      "projectId": 0,
+      "priorityId": 1,
+      "statusId": 2,
+      "subTodoIds": [],
+      "tagIds": [
+        0,
+        1
+      ],
+      "title": "Everyone in Engineering will be invited.  The tracking will start for anything planned after August 2nd.  All of the time off before that should go through already established channels, via the lead.",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-16T01:00",
+      "hasEndTime": true,
+      "comments": []
+    },
+    {
+      "id": 10,
+      "projectId": 1,
+      "priorityId": 0,
+      "statusId": 0,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "This document is a definition of the team lead role in Engineering that describes a set of expectations from the lead and the ways to grow. Also, this document can be used for new tech leads onboarding. In contrast to the traditional management role, Mynd Leads serve and guide teams, providing autonomy and empowering teammates to make decisions. Micromanagement and bureaucracy ruin trust as the foundation of a healthy, collaborative, and constantly improving team. Lead isn't obliged to be an example of perfection but rather should not be afraid to fail, own up mistakes, and commit to learning among teammates. Nobody is able to oversee the complexity and fragility of collaboration, so improving retrospectively is the best way to go.",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-16T01:00",
+      "hasEndTime": true,
+      "comments": []
+    },
+    {
+      "id": 11,
+      "projectId": 1,
+      "priorityId": 0,
+      "statusId": 0,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "This document is dedicated to being an essential part of the onboarding and company familiarization processes, inspirational and instructional source, and be a potential problem indicator for retrospective reviews. The purpose of this document is to provide a more practical definition of how to apply high-level culture principles in engineering. Culture Code is intended to minimize abstraction to make it easy to digest and implement, it isn't meant to be overly instructional making it hard to remember and maintain. This document is not meant to contain definitions of particular processes or role-based specifics.  It is generic enough to be applicable to all aspects of day-to-day work.",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-20T03:00",
+      "hasEndTime": true,
+      "comments": []
     }
   ],
   "projects": [
     {
       "id": 0,
       "title": "Dev custom todo list",
+      "isFavorite": true,
+      "isShared": true,
       "todoStatuses": [
         {
           "id": 0,
@@ -182,6 +261,25 @@
         }
       ],
       "color": "#f5147c"
+    },
+    {
+      "id": 2,
+      "title": "Mobile app",
+      "todoStatuses": [
+        {
+          "id": 0,
+          "title": "Backlog"
+        },
+        {
+          "id": 1,
+          "title": "In review"
+        },
+        {
+          "id": 2,
+          "title": "Team acceptance"
+        }
+      ],
+      "color": "#6accbc"
     }
   ],
   "authors": [
@@ -199,6 +297,48 @@
       "id": 2,
       "name": "Baran Mcloughlin",
       "email": "Mcloughlin@gmail.com"
+    }
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "title": "Learn soon",
+      "color": "#96c3eb",
+      "isFavorite": true
+    },
+    {
+      "id": 1,
+      "title": "Interesting",
+      "color": "#884dff"
+    },
+    {
+      "id": 2,
+      "title": "Language practice",
+      "color": "#b8255f",
+      "isFavorite": true
+    },
+    {
+      "id": 3,
+      "title": "Self learning",
+      "color": "#299438"
+    },
+    {
+      "id": 4,
+      "title": "Google",
+      "color": "#eb96eb",
+      "isFavorite": true
+    },
+    {
+      "id": 5,
+      "title": "SSR",
+      "color": "#afb83b",
+      "isShared": true
+    },
+    {
+      "id": 6,
+      "title": "PWA",
+      "color": "#808080",
+      "isShared": true
     }
   ]
 }

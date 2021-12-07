@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { Author } from '@http/models/author';
+import { Author } from '@shared/models';
 
 export interface AuthorsState extends EntityState<Author> {}
 

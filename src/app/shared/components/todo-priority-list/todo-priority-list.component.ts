@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { TodoPriority } from '@http/models';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { TodoPriority } from '@shared/models';
 import { TodosQuery } from '@stores/todos';
 
 @Component({
@@ -9,7 +10,8 @@ import { TodosQuery } from '@stores/todos';
 })
 export class TodoPriorityListComponent implements OnInit {
   priorities$ = this.todosQuery.priorities$;
-  @Input() selectedPriority: TodoPriority["id"];
+  @Input() selectedPriority: TodoPriority['id'];
+  @Output() onselect = new EventEmitter<TodoPriority>();
 
   constructor(private todosQuery: TodosQuery) {}
 

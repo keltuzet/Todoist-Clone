@@ -1,11 +1,8 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
-import { TodoView } from '@http/models';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+
+import { Todo } from '@shared/models';
+import { interval, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { TodoActionsMenuComponent } from '../todo-actions-menu';
 
 @Component({
@@ -15,15 +12,24 @@ import { TodoActionsMenuComponent } from '../todo-actions-menu';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoComponent implements OnInit, AfterViewInit {
-  @Input() todo: TodoView;
+  @Input() todo: Todo;
   @Input() todoCount: number;
-  now = new Date();
+  @Input() overdueFn: (Date) => boolean = (d) => true;
+  @Input() showTerm: boolean;
+  @Input() termFormatFn: (Todo) => string;
+  @Input() isOverdue: boolean;
+  termFormat: string;
 
+  now = new Date();
   menu = TodoActionsMenuComponent;
+  overdue$: Observable<boolean>;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.termFormat = this.termFormatFn(this.todo);
+    this.overdue$ = interval(60000).pipe(map(() => this.overdueFn(new Date())));
+  }
 
   ngAfterViewInit() {}
 }

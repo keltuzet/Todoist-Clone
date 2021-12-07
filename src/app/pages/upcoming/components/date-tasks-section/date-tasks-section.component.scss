@@ -1,0 +1,29 @@
+:host {
+  padding-top: 28px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: var(--view-header-height);
+  background-color: #fff;
+  border: #ddd;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0;
+  z-index: 2;
+  top: 125px;
+}
+
+h2 {
+  text-align: left;
+  padding: 6px 30px 5px 0;
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  flex: 1;
+  margin: 0;
+  word-wrap: break-word;
+  word-break: break-word;
+}

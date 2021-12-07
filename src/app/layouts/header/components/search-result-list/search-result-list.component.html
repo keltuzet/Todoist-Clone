@@ -1,0 +1,19 @@
+<ng-container *ngIf="isSearching$ | async; else list">
+  <div class="search-bar-panel__searching">Поиск...</div>
+</ng-container>
+
+<ng-template #list>
+  <ng-container *ngIf="searchResults$ | async as list">
+    <ul *ngIf="list?.length; else empty">
+      <li (click)="addToRecent(searchResult)" *ngFor="let searchResult of list">
+        <t-search-result [result]="searchResult"></t-search-result>
+      </li>
+    </ul>
+  </ng-container>
+</ng-template>
+
+<ng-template #empty>
+  <div class="search-bar-panel__empty">Ничего не найдено</div>
+</ng-template>
+
+<!-- <ngx-spinner name="search-result-spinner" type="square-jelly-box" size="default" color="#db4c3fcc" bdColor="#fff"></ngx-spinner> -->

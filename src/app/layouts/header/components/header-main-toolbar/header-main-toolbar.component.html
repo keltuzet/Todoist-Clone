@@ -2,8 +2,12 @@
   <button (click)="toggleAppNavbar()" class="header-main-toolbar__menu-btn" type="button">
     <svg-icon name="bars" svgClass="icon_size_m"></svg-icon>
   </button>
-  <button class="header-main-toolbar__home-btn" type="button">
+  <button tTooltip [tlpTemplate]="backToHomeTooltip" class="header-main-toolbar__home-btn" type="button">
     <svg-icon name="home" svgClass="icon_size_m"></svg-icon>
   </button>
-  <app-search-bar></app-search-bar>
+  <t-search-bar></t-search-bar>
 </div>
+
+<ng-template #backToHomeTooltip>
+  <div class="tooltip sm-space"><span class="mr-2">На главный экран</span><span class="key mr-1">h</span></div>
+</ng-template>

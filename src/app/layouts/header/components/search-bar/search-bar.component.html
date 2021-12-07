@@ -1,5 +1,52 @@
-<div class="search-bar">
-  <svg-icon name="search" svgClass="icon_size_m"></svg-icon>
-  <input class="search-bar__inp" type="text" placeholder="Поиск">
-  <button class="search-bar__shortcut-hint" type="button">f</button>
-</div>
+<form
+  #searchBarWrap
+  #overlayOrigin="cdkOverlayOrigin"
+  class="search-bar"
+  cdkOverlayOrigin
+  [ngClass]="{ 'search-bar_active': displayPanel$ | async }"
+  (submit)="search()"
+>
+  <button class="search-bar__search-icon">
+    <svg-icon name="search" svgClass="icon_size_m"></svg-icon>
+  </button>
+  <input
+    (focus)="handleInputFocus()"
+    [formControl]="searchControl"
+    #searchBarInp
+    class="search-bar__inp"
+    type="text"
+    placeholder="Поиск"
+  />
+  <button (click)="handleInputFocus()" class="search-bar__shortcut-hint" type="button">f</button>
+  <a tTooltip="Как пользоваться поиском" class="search-bar__help" href=""><svg-icon name="question-circle" svgClass="icon_size_m"></svg-icon></a>
+  <button (click)="reset()" class="search-bar__clear">
+    <svg-icon name="cross" svgClass="icon_size_s-2"></svg-icon>
+  </button>
+</form>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayFlexibleDimensions]="overlayOptions.flexibleDimensions"
+  [cdkConnectedOverlayPositions]="overlayOptions.positions"
+  [cdkConnectedOverlayScrollStrategy]="overlayOptions.scrollStrategy"
+  [cdkConnectedOverlayWidth]="overlayOrigin.elementRef.nativeElement.getBoundingClientRect().width"
+  [cdkConnectedOverlayMinHeight]="overlayOptions.minHeight"
+  [cdkConnectedOverlayHasBackdrop]="overlayOptions.hasBackdrop"
+  [cdkConnectedOverlayOpen]="displayPanel$ | async"
+  cdkConnectedOverlayBackdropClass="transparent-backdrop"
+  (backdropClick)="compact()"
+>
+  <div class="search-bar-panel">
+    <ng-container *ngIf="isSearchInpEmpty$ | async; else searchResults">
+      <t-recent-search-list (searchSelect)="searchControl.setValue($event)"></t-recent-search-list>
+      <t-recent-search-result-list></t-recent-search-result-list>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #searchResults>
+  <div class="search-bar-panel__group">
+    <t-search-result-list [list]="searchResults$ | async"></t-search-result-list>
+  </div>
+</ng-template>

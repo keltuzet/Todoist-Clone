@@ -15,4 +15,18 @@
     margin-right: 6px;
     word-break: normal;
   }
+
+  &.btn_theme_outline {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #555;
+    font-size: 13px;
+    line-height: 18px;
+    transition: background-color .3s cubic-bezier(.4,0,.2,1);
+  }
+
+  &:disabled {
+    pointer-events: none;
+  }
 }

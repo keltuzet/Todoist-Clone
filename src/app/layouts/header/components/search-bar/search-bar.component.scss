@@ -1,29 +1,69 @@
 .search-bar {
+  width: 12.5rem;
   position: relative;
   display: flex;
   align-items: center;
-  border-radius: 3px;
-  background: hsla(0,0%,100%,.2);
-  transition: background .15s cubic-bezier(.4,0,.2,1);
-  padding: 2px 5px;
+  margin-left: 5px;
   color: #fff;
 
-  &:hover, &.active {
-    background-color: #fff;
+  &_active {
+    z-index: 10001;
+  }
+
+  &:hover, &.focused {
     color: #202020;
 
+    .search-bar__inp {
+      background-color: #fff;
+      color: #202020;
+
+      &::placeholder {
+        color: #929292;
+      }
+    }
+  }
+
+  &:hover {
     .search-bar__shortcut-hint {
+      opacity: 1;
+      border-color: #ddd;
+    }
+  }
+
+  &.focused {
+    .search-bar__shortcut-hint {
+      display: none;
+    }
+  }
+
+  &.focused {
+    width: 28.125rem;
+
+    .search-bar__clear, .search-bar__help {
+      z-index: 10;
       opacity: 1;
     }
   }
 
+  &__search-icon {
+    line-height: 0;
+    left: 5px;
+    top: 2px;
+    position: absolute;
+  }
+
   &__inp {
-    line-height: 17px;
-    height: 17px;
-    margin-left: 5px;
-    color: inherit;
-    background-color: transparent;
     width: 100%;
+    padding: 5px 0 5px 34px;
+    height: 17px;
+    border-radius: 3px;
+    line-height: 17px;
+    font-weight: 300;
+
+    border: 1px solid transparent;
+    background: hsla(0,0%,100%,.2);
+    color: inherit;
+    transition: background .15s cubic-bezier(.4,0,.2,1);
     transition: width .2s ease-in;
 
     &:focus-visible {
@@ -36,22 +76,105 @@
   }
 
   &__shortcut-hint {
-    position: absolute;
-    right: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     width: 18px;
     height: 18px;
+    position: absolute;
+    right: 5px;
     top: 50%;
     margin-top: -9px;
+
     font-size: 13px;
     line-height: 10px;
     border-radius: 2px;
-    border: 1px solid #ddd;
+    border: 1px solid transparent;
     color: grey;
-    transition: opacity .15s cubic-bezier(.4,0,.2,1);
     opacity: 0;
+    transition: opacity .15s cubic-bezier(.4,0,.2,1);
+  }
+
+  &__help {
+    right: 34px;
+  }
+
+  &__clear {
+    height: 24px;
+    width: 24px;
+    right: 5px;
+  }
+
+  &__help, &__clear {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 3px;
+    border-radius: 3px;
+    line-height: 0;
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: grey;
+
+    &:hover {
+      background-color: #eee;
+      color: #202020;
+    }
   }
 }
+
+::ng-deep {
+  .search-bar-panel {
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 6px 6px 0 rgb(0 0 0 / 10%);
+    width: 100%;
+    max-height: 480px;
+    overflow-y: auto;
+    line-height: 18px;
+
+    &__label {
+      display: flex;
+      align-items: center;
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+    &__empty, &__searching {
+      font-style: italic;
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: 0.975em;
+      color: #464646;
+
+      &:hover {
+        background-color: rgba(230, 230, 230, 0.4);
+      }
+
+      .indicator {
+        margin-right: 0.5rem;
+      }
+
+      .remove-btn {
+        margin-left: auto;
+        padding: 5px;
+        line-height: 0;
+        border-radius: 3px;
+
+        &:hover {
+          background-color: rgba(214, 214, 214, 0.3);
+        }
+      }
+    }
+
+    &__label, &__item, &__empty, &__searching {
+      padding: 8px 12px;
+    }
+  }
+}
+

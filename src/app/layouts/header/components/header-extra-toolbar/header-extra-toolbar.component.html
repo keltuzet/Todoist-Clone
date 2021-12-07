@@ -1,6 +1,6 @@
 <ul class="header-extra-toolbar">
   <li class="header-extra-toolbar__item">
-    <button class="header-extra-toolbar__btn">
+    <button tTooltip [tlpTemplate]="addTodoTooltip" class="header-extra-toolbar__btn">
       <svg-icon name="plus" svgClass="icon_size_m"></svg-icon>
     </button>
   </li>
@@ -26,3 +26,7 @@
     </button>
   </li>
 </ul>
+
+<ng-template #addTodoTooltip>
+  <div class="tooltip sm-space"><span class="mr-2">Быстрое добавление задачи</span><span class="key mr-1">q</span></div>
+</ng-template>
