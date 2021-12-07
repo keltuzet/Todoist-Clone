@@ -51,10 +51,15 @@
     margin-bottom: 3px;
 
     .todo-title {
-      font-size: 14px;
-      line-height: 21px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
       word-wrap: break-word;
       word-break: break-word;
+      overflow: hidden;
+      font-size: 14px;
+      line-height: 21px;
+      color: #202020;
     }
   }
 

@@ -1,5 +1,19 @@
+
+<!-- <div class="wrap">
+  <t-date-scheduler></t-date-scheduler>
+  <t-create-task></t-create-task>
+</div> -->
 <t-upcoming-calendar></t-upcoming-calendar>
 <div class="task-container">
-  <t-overdue-todo-list></t-overdue-todo-list>
-  <t-date-tasks-section *ngFor="let date of dates" [date]="date"></t-date-tasks-section>
+  <div class="task-container-scrollable">
+    <div class="task-container-scrollable__content">
+      <div class="task-container-scrollable__inner">
+        <t-overdue-todo-list></t-overdue-todo-list>
+        <div class="section-container" *ngFor="let date of dates">
+          <t-date-tasks-section [date]="date"></t-date-tasks-section>
+          <t-create-task></t-create-task>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

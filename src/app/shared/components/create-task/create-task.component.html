@@ -1,0 +1,37 @@
+<ng-container *ngIf="isFormModel; then formModel; else defaultModel"> </ng-container>
+
+<ng-template #formModel>
+  <form [formGroup]="form" (submit)="submit()" class="task-editor">
+    <div class="task-editor__editing-area">
+      <div class="task-editor__input-fields">
+        <input formControlName="title" placeholder="напр., Купить подарок завтра а 18:00" class="task-editor__content-field" />
+        <textarea formControlName="description" autosize placeholder="Описание" class="task-editor__description-field"></textarea>
+      </div>
+      <div class="task-editor__tools">
+        <div class="task-editor__left-tools">
+          <button class="schedule-btn btn btn_theme_outline">
+            <svg-icon name="calendar-solid" svgClass="icon_size_s-2"></svg-icon>Вчера
+          </button>
+          <button class="project-assign-btn btn btn_theme_outline">
+            <svg-icon name="inbox" svgClass="icon_size_s-2"></svg-icon>Входящие
+          </button>
+          <button *ngIf="false"><svg-icon></svg-icon></button>
+        </div>
+        <div class="task-editor__right-tools">
+          <button class="icon-btn"><svg-icon name="tag-outline" svgClass="icon_size_m"></svg-icon></button>
+          <button class="icon-btn"><svg-icon name="transparent-flag" svgClass="icon_size_m"></svg-icon></button>
+          <button class="icon-btn"><svg-icon name="alarm-clock" svgClass="icon_size_m"></svg-icon></button>
+        </div>
+      </div>
+    </div>
+    <div class="task-editor__actions">
+      <button [disabled]="formInvalid$ | async" type="submit" class="submit-btn">Добавить задачу</button><button class="cancel-btn">Отмена</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #defaultModel>
+  <button class="add-btn">
+    <svg-icon name="small-plus" [svgStyle]="{ 'width.px': 13, 'height.px': 13 }"></svg-icon>Добавить задачу
+  </button>
+</ng-template>

@@ -18,9 +18,9 @@
     placeholder="Поиск"
   />
   <button (click)="handleInputFocus()" class="search-bar__shortcut-hint" type="button">f</button>
-  <a appTooltip="Как пользоваться поиском" class="search-bar__help" href=""><svg-icon name="question-circle" svgClass="icon_size_m"></svg-icon></a>
+  <a tTooltip="Как пользоваться поиском" class="search-bar__help" href=""><svg-icon name="question-circle" svgClass="icon_size_m"></svg-icon></a>
   <button (click)="reset()" class="search-bar__clear">
-    <svg-icon name="cross" [svgStyle]="{ 'width.px': 18, 'height.px': 18 }"></svg-icon>
+    <svg-icon name="cross" svgClass="icon_size_s-2"></svg-icon>
   </button>
 </form>
 

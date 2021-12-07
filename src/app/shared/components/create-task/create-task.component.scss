@@ -1,0 +1,167 @@
+:host {
+  display: block;
+  padding: 4px 0!important;
+  background: none!important;
+  margin-bottom: 9px;
+}
+
+.add-btn {
+  padding: 8px 0 8px;
+  width: 100%;
+  font-size: 14px;
+  text-align: left;
+  color: grey;
+
+  svg-icon {
+    margin-left: -2px;
+    margin-right: 11px;
+    padding: 2px;
+    border-radius: 50%;
+    display: inline-flex;
+    color: #dd4b39;
+  }
+
+  &:hover {
+    color: #dd4b39;
+
+    svg-icon {
+      color: #fff;
+      background-color: #dd4b39;
+    }
+  }
+}
+
+.task-editor {
+
+  &__editing-area {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 10px 0;
+    cursor: text;
+  }
+
+  &__input-fields {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+  }
+
+  &__content-field {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    width: 100%;
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: grey;
+      font-weight: 400;
+    }
+  }
+
+  &__description-field {
+    width: 100%;
+    margin: 8px 0 0;
+    padding: 0;
+    border: none;
+    font-size: 13px;
+    line-height: 16px;
+    overflow: hidden;
+  }
+
+  &__tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+  }
+
+  &__left-tools {
+    display: flex;
+
+    .schedule-btn {
+      color: #d1453b;
+      margin-right: 8px;
+    }
+
+    .project-assign-btn {
+      svg-icon {
+        color: #246fe0;
+      }
+    }
+
+    .btn {
+      svg-icon {
+        margin-left: -3px;
+        margin-right: 3px;
+      }
+    }
+  }
+
+  &__right-tools {
+    display: flex;
+
+    .icon-btn:nth-child(n + 2) {
+      margin-left: 12px;
+    }
+
+    .icon-btn {
+      line-height: 0;
+      border-radius: 3px;
+      color: grey;
+
+      &:hover {
+        color: #202020;
+        background-color: #eee;
+      }
+    }
+  }
+
+  &__actions {
+    margin: 0 0 0 -12px;
+
+    .submit-btn {
+      background-color: #db4c3f;
+      border-color: #db4c3f;
+      color: #fff;
+    }
+
+    .cancel-btn {
+      color: rgba(0,0,0,.88);
+      background-color: transparent;
+      border-color: #d6d6d6;
+
+      &:hover {
+        background-color: #ebebeb;
+        border-color: #bdbdbd;
+      }
+    }
+
+    button {
+      margin: 12px 0 0 12px;
+      padding: 6px 10px;
+
+      border: 1px solid;
+      border-radius: 5px;
+
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      white-space: nowrap;
+
+      transition-property: box-shadow,border;
+      transition-duration: .3s;
+      transition-timing-function: ease;
+
+      &:disabled {
+        opacity: .4;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

@@ -16,8 +16,11 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageLayoutModule } from './layouts';
 import { ProductModule } from './shared/components/product/product.module';
+import * as moment from 'moment';
 
 registerLocaleData(localeRu);
+
+moment.locale('ru');
 
 @NgModule({
   declarations: [AppComponent],

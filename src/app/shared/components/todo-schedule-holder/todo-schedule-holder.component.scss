@@ -3,11 +3,19 @@
   display: flex;
   color: #808080;
 
-  &__item {
-    &:nth-child(n + 2) {
-      margin-left: 12px;
+  &_view-row {
+    flex-direction: column;
+  }
+
+  &_view-col {
+    .schedule-holder__item {
+      &:nth-child(n + 2) {
+        margin-left: 12px;
+      }
     }
   }
+
+  &__item {}
 
   &__btn {
     border-radius: 3px;

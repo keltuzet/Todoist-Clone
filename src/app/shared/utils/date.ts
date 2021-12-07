@@ -1,21 +1,29 @@
-export function setToday(date: Date, now = new Date()): Date {
-  date.setFullYear(now.getFullYear(), now.getMonth(), now.getDate());
-  return date;
-}
+import * as moment from 'moment';
 
-export function setTomorrow(date: Date, now = new Date()): Date {
-  date.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-  return date;
-}
+type dateFn = (date: moment.Moment, now?: moment.Moment) => moment.Moment;
+type comparisonFn = (date: moment.Moment, now?: moment.Moment) => boolean;
+type setWeekendFn = (date: moment.Moment, now?: moment.Moment, weekends?: number[]) => moment.Moment;
 
-export function setWeekend(date: Date, now = new Date(), weekends: number[] = [6, 7]): Date {
+export const setCurrentMonth: dateFn = (date, now = moment()) => {
+  return date.year(now.year()).month(now.month());
+};
+
+export const setToday: dateFn = (date, now = moment()) => {
+  return setCurrentMonth(date, now).date(now.date());
+};
+
+export const setTomorrow: dateFn = (date, now = moment()) => {
+  return setCurrentMonth(date).date(now.date() + 1);
+};
+
+export const setWeekend: setWeekendFn = (date, now = moment(), weekends = [6, 7]) => {
   weekends = Array.from(new Set(weekends))
     .filter((weekend) => weekend >= 1 && weekend <= 7)
     .sort();
 
   if (!weekends.length) return date;
 
-  const curDay = now.getDay() || 7;
+  const curDay = now.day() || 7;
   let diff: number;
 
   if (curDay === weekends[weekends.length - 1]) {
@@ -29,14 +37,20 @@ export function setWeekend(date: Date, now = new Date(), weekends: number[] = [6
     }
   }
 
-  date.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() + diff);
+  return setCurrentMonth(date).date(now.date() + diff);
+};
+
+export const setNextWeek: dateFn = (date, now = moment()) => {
+  const curDay = now.day() || 7;
+  setCurrentMonth(date).date(now.date() + (8 - curDay));
 
   return date;
-}
+};
 
-export function setNextWeek(date: Date, now = new Date()): Date {
-  const curDay = now.getDay() || 7;
-  date.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() + (8 - curDay));
+export const isSameDate = (dateA: moment.Moment, dateB: moment.Moment): boolean => {
+  return dateA.startOf('day').isSame(dateB.startOf('day'));
+};
 
-  return date;
-}
+export const isBeforeToday: comparisonFn = (date, now = moment()) => {
+  return date.startOf('day').isBefore(now.startOf('day'));
+};

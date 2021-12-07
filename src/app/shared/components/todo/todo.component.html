@@ -21,7 +21,7 @@
         <svg-icon name="branch" [svgStyle]="{ 'width.px': 16, 'height.px': 16 }"></svg-icon
         ><span class="todo-info__text">{{ todo.subTodoIds.length }}</span>
       </a>
-      <button appTooltip [tlpTemplate]="endDateTooltip" *ngIf="showTerm" class="todo-info__item term" [ngClass]="{ overdue: isOverdue }">
+      <button tTooltip [tlpTemplate]="endDateTooltip" *ngIf="showTerm" class="todo-info__item term" [ngClass]="{ overdue: isOverdue }">
         <svg-icon name="small-calendar-solid" [svgStyle]="{ 'width.px': 12, 'height.px': 12 }"></svg-icon
         ><span class="todo-info__text">{{ todo.endDate | date: termFormat }}</span>
       </button>
@@ -37,16 +37,16 @@
     </div>
   </div>
   <div class="todo-toolbar">
-    <button appTooltip [tlpTemplate]="editTooltip" class="todo-toolbar__item">
+    <button tTooltip [tlpTemplate]="editTooltip" class="todo-toolbar__item">
       <svg-icon name="pen" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
     </button>
-    <button appTooltip="Срок" class="todo-toolbar__item">
+    <button tTooltip="Срок" class="todo-toolbar__item">
       <svg-icon name="small-calendar" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
     </button>
-    <button appTooltip="Комментировать" class="todo-toolbar__item">
+    <button tTooltip="Комментировать" class="todo-toolbar__item">
       <svg-icon name="comment" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
     </button>
-    <button [appMenuTrigger]="menu" [menuData]="todo" appTooltip="Другие действия в задаче" class="todo-toolbar__item">
+    <button [appMenuTrigger]="menu" [menuData]="todo" tTooltip="Другие действия в задаче" class="todo-toolbar__item">
       <svg-icon name="x-menu" [svgStyle]="{ 'width.px': 15, 'height.px': 3 }"></svg-icon>
     </button>
   </div>

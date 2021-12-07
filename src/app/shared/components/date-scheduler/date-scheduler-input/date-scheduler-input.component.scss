@@ -1,0 +1,18 @@
+.date-scheduler-input {
+  padding: 4px 10px 4px 13px;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+
+  input {
+    padding: 1px 2px;
+    width: 100%;
+    line-height: 24px;
+    font-weight: 300;
+  }
+
+  .date-scheduler-input__icon {
+    margin-left: 4px;
+    line-height: none;
+  }
+}

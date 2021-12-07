@@ -1,7 +1,7 @@
 <ul class="priority-list">
   <li
     *ngFor="let priority of priorities$ | async; trackBy: priorityTrackBy"
-    [appTooltip]="priority.title"
+    [tTooltip]="priority.title"
     [ngClass]="{ 'priority-item_selected': priority.id === selectedPriority }"
     class="priority-item"
   >

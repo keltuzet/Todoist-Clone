@@ -1,0 +1,5 @@
+<form (submit)="handleSubmit()" class="date-scheduler-input">
+  <input [formControl]="dateControl" type="text" placeholder="Введите срок выполнения" />
+  <button type="reset" *ngIf="dateControl.value" class="date-scheduler-input__icon"><svg-icon name="bold-cross" svgClass="icon_size_s"></svg-icon></button>
+</form>
+<div class="date-scheduler-input-result"></div>

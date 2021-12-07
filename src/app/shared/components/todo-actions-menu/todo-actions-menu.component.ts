@@ -7,7 +7,6 @@ import { TodosQuery, TodosService, TodosStore } from '@stores/todos';
 import { MenuRef } from '@features/menu/models';
 
 @Component({
-  selector: 'app-todo-actions-menu',
   templateUrl: './todo-actions-menu.component.html',
   styleUrls: ['./todo-actions-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,16 +25,15 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
     private todosService: TodosService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.$sub.add(this.data$.subscribe());
-    console.log(this.menuRef);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.$sub.unsubscribe();
   }
 
-  updateTodoPriority(priority: TodoPriority) {
+  updateTodoPriority(priority: TodoPriority): void {
     this.todosService
       .updateTodo(this.data$.value.id, {
         ...this.data$.value,
@@ -45,7 +43,7 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
     this.menuRef.close();
   }
 
-  updateTodoSchedule(date: Date) {
+  updateTodoSchedule(date: Date): void {
     this.todosService
       .updateTodo(this.data$.value.id, {
         ...this.data$.value,
@@ -55,7 +53,7 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
     this.menuRef.close();
   }
 
-  removeTodo() {
+  removeTodo(): void {
     this.todosService.delete(this.data$.value.id).subscribe();
     this.menuRef.close();
   }

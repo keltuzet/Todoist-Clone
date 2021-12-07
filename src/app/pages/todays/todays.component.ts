@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { applyTransaction } from '@datorama/akita';
+import { isBeforeToday, isSameDate, setToday } from '@shared/utils';
 
 import { AuthorsService } from '@stores/authors';
 import { ProjectsService } from '@stores/projects';
 import { TagsService } from '@stores/tags';
 import { TodosQuery, TodosService } from '@stores/todos';
+import * as moment from 'moment';
 import { tap } from 'rxjs/operators';
 import { SortMenuComponent } from './components/sort-menu/sort-menu.component';
 
@@ -29,5 +31,9 @@ export class TodaysComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const now = moment();
+    console.log(now.date(), now.year(), now.month());
+    const newDate = moment("2021-09-30T00:00:00");
+    console.log(isBeforeToday(newDate));
   }
 }
