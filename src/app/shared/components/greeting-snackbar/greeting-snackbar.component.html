@@ -1,0 +1,8 @@
+<div class="header">
+  <span class="header-title">
+    <svg-icon class="header-icon" name="message" svgClass="icon_size_m"></svg-icon>
+    <span><strong>Fancy</strong> header here</span>
+  </span>
+  <svg-icon (click)="close()" class="clickable" name="cross" svgClass="icon_size_xs"></svg-icon>
+</div>
+<p class="body">{{ data?.message }}</p>

@@ -51,4 +51,5 @@ export const SVG_ICONS: string[] = [
   'time-back',
   'small-plus',
   'tag-outline',
+  'message',
 ];

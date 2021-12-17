@@ -1,6 +1,10 @@
 svg-icon {
   line-height: 0;
   font-size: 0;
+
+  &.clickable {
+    cursor: pointer;
+  }
 }
 
 $icon-sizes: (

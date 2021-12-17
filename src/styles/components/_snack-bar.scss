@@ -1,0 +1,17 @@
+t-snackbar-container.apply-default-theme {
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 24px;
+  max-width: 33vw;
+  min-width: 344px;
+  padding: 14px 16px;
+  min-height: 48px;
+  transform-origin: center;
+  color: #ffffffb3;
+  background: #323232;
+  box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+}
+

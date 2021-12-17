@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PageLayoutModule } from './layouts';
 import { ProductModule } from './shared/components/product/product.module';
 import * as moment from 'moment';
+import { SnackbarModule } from '@features/snackbar/snackbar.module';
 
 registerLocaleData(localeRu);
 
@@ -36,6 +37,7 @@ moment.locale('ru');
     ReactiveFormsModule,
     CommonModule,
     ProductModule,
+    SnackbarModule,
   ],
   providers: [
     {
