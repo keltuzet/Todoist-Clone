@@ -15,3 +15,7 @@
 @import "components/todo-list";
 @import "components/nav-list-item";
 @import "components/snack-bar";
+
+:root {
+  --view-header-height: 92px;
+}

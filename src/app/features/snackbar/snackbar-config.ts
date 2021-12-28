@@ -13,22 +13,21 @@ export interface SnackBarConfig<D = any> {
   horizontalPosition?: SnackBarHorizontalPosition;
   verticalPosition?: SnackBarVerticalPosition;
   viewContainerRef?: ViewContainerRef;
-  disuseDefaultTheme?: boolean;
+  disuseContainerTheme?: boolean;
+  disuseContainerAnimation?: boolean;
 }
 
-export interface SnackBarDefaultConfig extends SnackBarConfig<SnackBarActionTextData | SnackBarActionIconData> {}
+export interface SnackBarDefaultConfig extends SnackBarConfig<SnackBarData | SnackBarActionTextData | SnackBarActionIconData> {}
 
 export interface SnackBarData {
   message: string;
 }
 
-export interface SnackBarActionTextData {
-  message: string;
+export interface SnackBarActionTextData extends SnackBarData {
   icon: string;
   size?: string;
 }
 
-export interface SnackBarActionIconData {
-  message: string;
+export interface SnackBarActionIconData extends SnackBarData {
   action: string;
 }

@@ -2,6 +2,8 @@ import { ComponentType, OverlayRef } from '@angular/cdk/overlay';
 import { TemplateRef } from '@angular/core';
 import { SnackBarConfig } from './snackbar-config';
 
+const ININITY_DURATION = 2147483647;
+
 export class SnackBarRef<T = any> {
   durationTimeoutId;
   hasContent: boolean;
@@ -24,7 +26,7 @@ export class SnackBarRef<T = any> {
     this.overlayRef.dispose();
   }
 
-  private scheduleSnackbarDismiss(duration = Number.MAX_VALUE): void {
+  private scheduleSnackbarDismiss(duration = ININITY_DURATION): void {
     this.durationTimeoutId = setTimeout(() => this.dismiss(), duration);
   }
 }

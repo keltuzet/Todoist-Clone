@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HashMap, QueryEntity } from '@datorama/akita';
+import { RouterQuery } from '@datorama/akita-ng-router-store';
 import { Project, ProjectQueryModel, TodoStatusDetailed } from '@shared/models';
 import { entityToObj, selectArrProps } from '@shared/utils';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { ProjectsStore, ProjectsState } from './projects.store';
 
 @Injectable({ providedIn: 'root' })
@@ -14,18 +15,18 @@ export class ProjectsQuery extends QueryEntity<ProjectsState> {
   todoStatusesHashMap$ = this.selectAll().pipe(map(selectArrProps('todoStatuses')), map(entityToObj));
   todoStatuses$ = this.selectAll().pipe(map(selectArrProps('todoStatuses')));
 
-  todoStatusesDetailed$: Observable<TodoStatusDetailed[]> = this.selectAll().pipe(map(
-    projects => {
+  todoStatusesDetailed$: Observable<TodoStatusDetailed[]> = this.selectAll().pipe(
+    map((projects) => {
       const statuses: TodoStatusDetailed[] = [];
       projects.forEach((project) => {
         statuses.push(...project.todoStatuses.map((status) => ({ ...status, project })));
       });
 
       return statuses;
-    }
-  ));
+    }),
+  );
 
-  constructor(protected store: ProjectsStore) {
+  constructor(protected store: ProjectsStore, private routerQuery: RouterQuery) {
     super(store);
   }
 
@@ -51,5 +52,14 @@ export class ProjectsQuery extends QueryEntity<ProjectsState> {
     });
 
     return statuses;
+  }
+
+  selectSelectedProperty(): Observable<Project> {
+    return this.routerQuery.selectParams('id').pipe(
+      switchMap((id: string) => {
+        return this.selectEntity(+id);
+      }),
+      filter((project) => Boolean(project)),
+    );
   }
 }

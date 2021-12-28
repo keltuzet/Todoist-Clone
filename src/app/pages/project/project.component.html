@@ -1,1 +1,45 @@
-<p>project works!</p>
+<ng-container *ngIf="project$ | async as project; else projectNotFound">
+  <header class="header">
+    <h1 role="header">{{ project.title }}</h1>
+    <div class="header-actions">
+      <button tTooltip="Комментарии" class="header-action" tButton theme="icon-button">
+        <svg-icon name="comment" svgClass="icon_size_m"></svg-icon>
+        <span *tShowOnDesktop class="inner">Комментарии</span>
+      </button>
+      <button tTooltip [tlpTemplate]="generalAccessTooltip" class="header-action" tButton theme="icon-button">
+        <svg-icon name="user-light-plus" svgClass="icon_size_m"></svg-icon>
+        <span *tShowOnDesktop class="inner">Общий доступ</span>
+      </button>
+      <button tTooltip="Отображение" class="header-action" tButton theme="icon-button">
+        <svg-icon name="sliders-h" svgClass="icon_size_m"></svg-icon>
+        <span *tShowOnDesktop class="inner">Отображение</span>
+      </button>
+      <button
+        tTooltip
+        [tlpTemplate]="additionalProjectActionsTooltip"
+        class="header-action"
+        tButton
+        theme="icon-button"
+      >
+        <svg-icon name="ellipsis-h-alt-large" svgClass="icon_size_m"></svg-icon>
+      </button>
+    </div>
+  </header>
+</ng-container>
+
+<ng-template #generalAccessTooltip>
+  <div class="tooltip sm-space">
+    <span class="mr-2">Общий доступ к проекту</span>
+    <span class="key mr-1">&#x21E7;</span><span class="key">S</span>
+  </div>
+</ng-template>
+
+<ng-template #additionalProjectActionsTooltip>
+  <div class="tooltip sm-space">
+    <span class="mr-2">Открыть доп. действия в проекте</span><span class="key">W</span>
+  </div>
+</ng-template>
+
+<ng-template #projectNotFound>
+  <t-project-not-found></t-project-not-found>
+</ng-template>

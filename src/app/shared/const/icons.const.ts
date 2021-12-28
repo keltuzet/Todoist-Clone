@@ -52,4 +52,9 @@ export const SVG_ICONS: string[] = [
   'small-plus',
   'tag-outline',
   'message',
+  'project-not-found-preview',
+  'sliders-h',
+  'user-light',
+  'user-light-plus',
+  'ellipsis-h-alt-large',
 ];
