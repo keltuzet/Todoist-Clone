@@ -8,7 +8,7 @@ import { TOOLTIP_CONTENT, TOOLTIP_POSITIONS } from '../const';
 import { TooltipPosition } from '../models';
 
 @Directive({
-  selector: '[tTooltip]',
+  selector: '[tTooltip]', // Rename it to "Bitch!"
 })
 export class TooltipDirective implements OnInit, OnDestroy {
   private overlayRef: OverlayRef;

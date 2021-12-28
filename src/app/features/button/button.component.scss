@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  align-items: center;
+
+  &.icon-button {
+    color: grey;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: #eee;
+      color: #202020;
+    }
+
+    ::ng-deep .inner {
+      font-size: 12px;
+      margin-left: 3px;
+      margin-right: 6px;
+      word-break: normal;
+    }
+  }
+}

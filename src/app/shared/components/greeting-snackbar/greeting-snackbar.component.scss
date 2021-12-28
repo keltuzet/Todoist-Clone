@@ -30,6 +30,7 @@
 
 :host.light {
   max-width: 350px;
+  min-width: 250px;
   border-color: rgba(0,0,0,.1);
   background-color: hsla(0,0%,100%,.85);
   box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);
@@ -49,6 +50,7 @@
 
 :host.dark {
   max-width: 450px;
+  min-width: 270px;
   border: none;
   background: rgba(48, 48, 48, 94%);
   color: rgb(255,255,255);

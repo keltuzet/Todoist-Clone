@@ -3,7 +3,7 @@
   <app-expansion-panel-body>
     <ul class="nav-list" cdkDropList>
       <li *ngFor="let project of list$ | async; trackBy: projectTrackyBy" cdkDrag>
-        <a href="" [routerLink]="'./projects/' + project.id">
+        <a [routerLink]="['project', project.id]">
           <app-nav-list-item [todoCount]="3" [color]="project.color" [hasMenu]="true" [icon]="project | projectIcon">
             <span>{{ project.title }}</span>
             <button class="nav-list-item__replace-tool" cdkDragHandle>

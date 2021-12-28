@@ -1,0 +1,18 @@
+import { Component, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
+import { ButtonColor, ButtonTheme } from './button-config';
+
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: '[tButton]',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ButtonComponent {
+  @Input() color: ButtonColor = ButtonColor.Basic;
+  @Input() theme: ButtonTheme = ButtonTheme.Basic;
+
+  @HostBinding('class') get cssClass(): string[] {
+    return [this.color || ButtonColor.Basic, this.theme || ButtonTheme.Basic];
+  }
+}
