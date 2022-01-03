@@ -4,4 +4,5 @@ export const APP_ROUTES = Object.freeze({
   upcoming: 'upcoming',
   inbox: 'inbox',
   project: 'project',
+  label: 'label',
 });

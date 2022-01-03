@@ -1,9 +1,9 @@
 <app-expansion-panel tag="projects">
   <app-expansion-panel-header>Проекты</app-expansion-panel-header>
   <app-expansion-panel-body>
-    <ul class="nav-list" cdkDropList>
-      <li *ngFor="let project of list$ | async; trackBy: projectTrackyBy" cdkDrag>
-        <a [routerLink]="['project', project.id]">
+    <ul class="nav-list" cdkDropList (cdkDropListDropped)="drop($event)">
+      <li class="nav-list-item-container" *ngFor="let project of projects; trackBy: projectTrackyBy" cdkDrag [cdkDragData]="project">
+        <a [routerLink]="['project', project.id]" routerLinkActive="active">
           <app-nav-list-item [todoCount]="3" [color]="project.color" [hasMenu]="true" [icon]="project | projectIcon">
             <span>{{ project.title }}</span>
             <button class="nav-list-item__replace-tool" cdkDragHandle>

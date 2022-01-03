@@ -57,4 +57,7 @@ export const SVG_ICONS: string[] = [
   'user-light',
   'user-light-plus',
   'ellipsis-h-alt-large',
+  'layer-group',
+  'chevron-bottom',
+  'check-solid',
 ];

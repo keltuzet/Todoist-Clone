@@ -4,3 +4,6 @@ export * from './todo-priority-list';
 export * from './todo-schedule-holder';
 export * from './next-prev-button';
 export * from './overdue-todo-list';
+export * from './todo-list/todo-list.component';
+export * from './todo-list/todo-list.module';
+export * from './display-todos-menu';

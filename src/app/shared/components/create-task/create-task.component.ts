@@ -19,7 +19,6 @@ export class CreateTaskComponent implements OnInit {
     map(() => this.form.invalid),
   );
 
-
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}
@@ -28,7 +27,7 @@ export class CreateTaskComponent implements OnInit {
     this.isFormModel = true;
   }
 
-  submit() {
+  submit(): void {
     console.log(this.form.value);
   }
 }

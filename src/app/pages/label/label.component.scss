@@ -1,0 +1,34 @@
+.header {
+  padding: 36px 55px 28px;
+  display: flex;
+  align-items: center;
+
+  h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 25px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+
+    .header-action {
+      margin-left: 16px;
+    }
+  }
+}
+
+.todos {
+  padding-left: 55px;
+  padding-right: 55px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}

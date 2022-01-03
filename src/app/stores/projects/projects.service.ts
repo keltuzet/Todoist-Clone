@@ -12,4 +12,8 @@ export class ProjectsService extends NgEntityService<ProjectsState> {
   constructor(protected store: ProjectsStore) {
     super(store);
   }
+
+  saveProjects() {
+    // this.update
+  }
 }

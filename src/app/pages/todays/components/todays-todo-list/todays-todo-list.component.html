@@ -6,14 +6,14 @@
   </header>
   <ul class="todo-list-content" cdkDropList (cdkDropListDropped)="drop($event)">
     <li>
-      <app-todo
+      <t-todo
         cdkDrag
         *ngFor="let todo of todos; trackBy: todoTrackBy"
         [todo]="todo"
         [todoCount]="todos.length"
         [showTerm]="todo.hasEndTime"
         [termFormatFn]="termFormatFn"
-      ></app-todo>
+      ></t-todo>
     </li>
   </ul>
 </article>

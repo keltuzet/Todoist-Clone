@@ -1,8 +1,8 @@
 <app-expansion-panel tag="filters">
   <app-expansion-panel-header>Фильтры</app-expansion-panel-header>
   <app-expansion-panel-body>
-    <ul class="nav-list" cdkDropList>
-      <li *ngFor="let filter of filterList$ | async; trackBy: filterTrackyBy" cdkDrag>
+    <ul class="nav-list" cdkDropList (cdkDropListDropped)="drop($event)">
+      <li *ngFor="let filter of filterList; trackBy: trackyBy" cdkDrag class="nav-list-item-container">
         <a href="" [routerLink]="'./projects/' + filter.id">
           <app-nav-list-item [color]="filter.color" [hasMenu]="true" icon="tint">
             <span>{{ filter.title }}</span>

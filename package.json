@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "json-server": "json-server db.json --middlewares ./middleware.js --routes routes.json"
+    "json-server": "json-server db.json -w --middlewares ./middleware.js --routes routes.json"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +31,8 @@
     "material-icons": "^0.6.1",
     "mobile-detect": "^1.4.5",
     "moment": "^2.29.1",
+    "ng-let": "^13.0.3",
+    "ngx-let-directive": "^1.0.1",
     "ngx-spinner": "^11.0.2",
     "ngx-textarea-autosize": "^2.0.3",
     "rxjs": "~6.6.0",
