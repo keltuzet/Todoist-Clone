@@ -31,6 +31,7 @@ import { RecentSearchListComponent } from './header/components/recent-search-lis
 import { RecentSearchResultListComponent } from './header/components/recent-search-result-list/recent-search-result-list.component';
 import { TakeModule } from '@shared/pipes/take/take.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NavListComponent } from './nav/components/nav-list/nav-list.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     SearchResultListComponent,
     RecentSearchListComponent,
     RecentSearchResultListComponent,
+    NavListComponent,
   ],
   imports: [
     CommonModule,

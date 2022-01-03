@@ -38,7 +38,7 @@
     {
       "id": 0,
       "projectId": 0,
-      "priorityId": 2,
+      "priorityId": 3,
       "statusId": 0,
       "subTodoIds": [
         3
@@ -69,7 +69,7 @@
     {
       "id": 1,
       "projectId": 0,
-      "priorityId": 2,
+      "priorityId": 0,
       "statusId": 1,
       "subTodoIds": [],
       "tagIds": [
@@ -125,6 +125,108 @@
       "endDate": "2021-04-25T15:00",
       "hasEndTime": true,
       "comments": []
+    },
+    {
+      "id": 5,
+      "projectId": 0,
+      "priorityId": 2,
+      "statusId": 1,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "Add e2e tests",
+      "createdDate": "2021-07-20T19:31",
+      "endDate": "2021-07-25T15:00",
+      "comments": []
+    },
+    {
+      "id": 6,
+      "projectId": 0,
+      "priorityId": 1,
+      "statusId": 2,
+      "subTodoIds": [],
+      "tagIds": [
+        0,
+        1
+      ],
+      "title": "Add unit tests",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-16T01:00",
+      "hasEndTime": true,
+      "comments": []
+    },
+    {
+      "id": 7,
+      "projectId": 0,
+      "priorityId": 2,
+      "statusId": 1,
+      "subTodoIds": [],
+      "tagIds": [
+        0,
+        1
+      ],
+      "title": "Roles are not positions, any person having a job title can be in one or multiple roles depending on the context or project. For example, Sr Engineering Lead is in an Engineer role as part of the Vertical team and could be a Domain Expert in some business-related project. Roles help teams and groups to organize their work. The rotating nature of some Roles engages people to learn and grow. It forces a person to focus on specific responsibilities, avoiding problems related to shared responsibilities (mean no responsibilities). At the same time, rotating helps to not get bored or overwhelmed.",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-16T01:00",
+      "hasEndTime": true,
+      "comments": []
+    },
+    {
+      "id": 8,
+      "projectId": 0,
+      "priorityId": 1,
+      "statusId": 2,
+      "subTodoIds": [],
+      "tagIds": [
+        0,
+        1
+      ],
+      "title": "We want to be explicit on how to work in our company. The exact and transparent definition of responsibilities, boundaries, and expectations allows people to feel comfortable, focused, and accountable. Transparency leads to a culture of trust and psychological safety.",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-16T01:00",
+      "hasEndTime": true,
+      "comments": []
+    },
+    {
+      "id": 9,
+      "projectId": 0,
+      "priorityId": 1,
+      "statusId": 2,
+      "subTodoIds": [],
+      "tagIds": [
+        0,
+        1
+      ],
+      "title": "Everyone in Engineering will be invited.  The tracking will start for anything planned after August 2nd.  All of the time off before that should go through already established channels, via the lead.",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-16T01:00",
+      "hasEndTime": true,
+      "comments": []
+    },
+    {
+      "id": 10,
+      "projectId": 1,
+      "priorityId": 0,
+      "statusId": 0,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "This document is a definition of the team lead role in Engineering that describes a set of expectations from the lead and the ways to grow. Also, this document can be used for new tech leads onboarding. In contrast to the traditional management role, Mynd Leads serve and guide teams, providing autonomy and empowering teammates to make decisions. Micromanagement and bureaucracy ruin trust as the foundation of a healthy, collaborative, and constantly improving team. Lead isn't obliged to be an example of perfection but rather should not be afraid to fail, own up mistakes, and commit to learning among teammates. Nobody is able to oversee the complexity and fragility of collaboration, so improving retrospectively is the best way to go.",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-16T01:00",
+      "hasEndTime": true,
+      "comments": []
+    },
+    {
+      "id": 11,
+      "projectId": 1,
+      "priorityId": 0,
+      "statusId": 0,
+      "subTodoIds": [],
+      "tagIds": [],
+      "title": "This document is dedicated to being an essential part of the onboarding and company familiarization processes, inspirational and instructional source, and be a potential problem indicator for retrospective reviews. The purpose of this document is to provide a more practical definition of how to apply high-level culture principles in engineering. Culture Code is intended to minimize abstraction to make it easy to digest and implement, it isn't meant to be overly instructional making it hard to remember and maintain. This document is not meant to contain definitions of particular processes or role-based specifics.  It is generic enough to be applicable to all aspects of day-to-day work.",
+      "createdDate": "2021-08-15T23:31",
+      "endDate": "2021-08-20T03:00",
+      "hasEndTime": true,
+      "comments": []
     }
   ],
   "projects": [
@@ -159,6 +261,25 @@
         }
       ],
       "color": "#f5147c"
+    },
+    {
+      "id": 2,
+      "title": "Mobile app",
+      "todoStatuses": [
+        {
+          "id": 0,
+          "title": "Backlog"
+        },
+        {
+          "id": 1,
+          "title": "In review"
+        },
+        {
+          "id": 2,
+          "title": "Team acceptance"
+        }
+      ],
+      "color": "#6accbc"
     }
   ],
   "authors": [

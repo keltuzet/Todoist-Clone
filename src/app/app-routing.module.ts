@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('./pages/project/project.module').then((m) => m.ProjectModule),
       },
       {
+        path: APP_ROUTES.label,
+        loadChildren: () => import('./pages/label/label.module').then((m) => m.LabelModule),
+      },
+      {
         path: '**',
         pathMatch: 'full',
         redirectTo: APP_ROUTES.todays,

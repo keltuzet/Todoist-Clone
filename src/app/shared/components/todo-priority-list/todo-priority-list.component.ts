@@ -4,7 +4,7 @@ import { TodoPriority } from '@shared/models';
 import { TodosQuery } from '@stores/todos';
 
 @Component({
-  selector: 'app-todo-priority-list',
+  selector: 't-todo-priority-list',
   templateUrl: './todo-priority-list.component.html',
   styleUrls: ['./todo-priority-list.component.scss'],
 })

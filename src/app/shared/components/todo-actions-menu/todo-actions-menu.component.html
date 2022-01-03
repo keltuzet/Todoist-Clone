@@ -12,11 +12,11 @@
   <li class="menu-divider"></li>
   <li class="section-menu-item">
     <div class="section-menu-item__label">Срок</div>
-    <app-todo-schedule-holder (scheduleChange)="updateTodoSchedule($event)" [date]="todo.endDate"></app-todo-schedule-holder>
+    <t-todo-schedule-holder (scheduleChange)="updateTodoSchedule($event)" [date]="todo.endDate"></t-todo-schedule-holder>
   </li>
   <li class="section-menu-item">
     <div class="section-menu-item__label">Приоритет</div>
-    <app-todo-priority-list [selectedPriority]="todo.priorityId" (onselect)="updateTodoPriority($event)"></app-todo-priority-list>
+    <t-todo-priority-list [selectedPriority]="todo.priorityId" (onselect)="updateTodoPriority($event)"></t-todo-priority-list>
   </li>
   <li class="menu-divider"></li>
   <li class="menu-item icon-menu-item">

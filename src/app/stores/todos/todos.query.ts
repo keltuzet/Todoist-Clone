@@ -121,4 +121,14 @@ export class TodosQuery extends QueryEntity<TodosState> {
   private getTodoStatus(todo: ExtractedTodo, project?: Project): TodoStatus {
     return project?.todoStatuses.find((statuses) => statuses.id === todo.statusId);
   }
+
+  selectByTag(tag: TodoTag): Observable<Todo[]> {
+    return this.toTodo(
+      this.selectAll({
+        filterBy: ({ tagIds }) => {
+          return tagIds.includes(tag.id);
+        },
+      }),
+    );
+  }
 }

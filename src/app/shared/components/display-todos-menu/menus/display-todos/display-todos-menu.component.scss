@@ -1,0 +1,42 @@
+.menu-item {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  color: #202020;
+  line-height: 24px;
+
+  &-title {
+    padding: 4px 12px;
+    line-height: 24px;
+    font-weight: bold;
+    font-size: 13px;
+  }
+
+  &-label,
+  &-select {
+    display: flex;
+    align-items: stretch;
+  }
+
+  &-label {
+    margin-right: 8px;
+
+    &__icon {
+      margin-right: 10px;
+      color: #808080;
+    }
+  }
+
+  &-select {
+    text-overflow: ellipsis;
+    width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: right;
+    color: #808080;
+
+    &:hover {
+      color: #202020;
+    }
+  }
+}

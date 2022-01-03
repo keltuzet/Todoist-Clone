@@ -1,9 +1,9 @@
 import { Subject } from 'rxjs';
 
 export class MenuRef {
-  public close$ = new Subject<void>();
+  public close$ = new Subject<any>();
 
-  close() {
-    this.close$.next();
+  close(value?: any): void {
+    this.close$.next(value);
   }
 }

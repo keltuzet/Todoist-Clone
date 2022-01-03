@@ -5,6 +5,26 @@
   border-radius: 3px;
   border: 1px solid #ddd;
   box-shadow: 0 1px 8px 0 rgb(0 0 0 / 8%);
+  color: #202020;
+
+  &.small {
+    padding: 0;
+  }
+
+  &.select-menu {
+    width: 200px;
+
+    .menu-item {
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      svg-icon {
+        padding: 2px 7px;
+      }
+    }
+  }
 
   .icon-menu-item {
     display: flex;
@@ -52,6 +72,21 @@
     margin: 4px 0;
     border-bottom: 1px solid #ddd;
   }
+}
+
+.menu {
+  padding: 4px 0;
+  position: relative;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 8px 0 rgb(0 0 0 / 8%);
+
+  &.small {
+    padding: 0;
+  }
+
+
 }
 
 
