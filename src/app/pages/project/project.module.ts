@@ -9,9 +9,10 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ButtonModule } from '@features/button/button.module';
 import { ShowOnBreakpointModule } from '@shared/directives';
 import { TooltipModule } from '@features/tooltip';
+import { DisplayTodosMenuComponent } from './components/display-todos-menu/display-todos-menu.component';
 
 @NgModule({
-  declarations: [ProjectComponent, ProjectNotFoundComponent],
+  declarations: [ProjectComponent, ProjectNotFoundComponent, DisplayTodosMenuComponent],
   imports: [
     CommonModule,
     ProjectRoutingModule,

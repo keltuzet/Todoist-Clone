@@ -10,7 +10,7 @@
         <svg-icon name="user-light-plus" svgClass="icon_size_m"></svg-icon>
         <span *tShowOnDesktop class="inner">Общий доступ</span>
       </button>
-      <button tTooltip="Отображение" class="header-action" tButton theme="icon-button">
+      <button [appMenuTrigger]="menu" class="header-action" tButton theme="icon-button">
         <svg-icon name="sliders-h" svgClass="icon_size_m"></svg-icon>
         <span *tShowOnDesktop class="inner">Отображение</span>
       </button>

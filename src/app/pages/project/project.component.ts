@@ -6,6 +6,7 @@ import { SnackbarService } from '@features/snackbar/services/snackbar.service';
 import { GreetingSnackbarComponent } from '@shared/components/greeting-snackbar/greeting-snackbar.component';
 import { ProjectsQuery } from '@stores/projects';
 import { ProjectNotFoundComponent } from './components';
+import { DisplayTodosMenuComponent } from './components/display-todos-menu/display-todos-menu.component';
 
 @Component({
   selector: 't-project',
@@ -15,6 +16,7 @@ import { ProjectNotFoundComponent } from './components';
 export class ProjectComponent implements OnInit {
   project$ = this.projectsQuery.selectSelectedProperty();
   ref: OverlayRef;
+  menu = DisplayTodosMenuComponent;
 
   constructor(
     private snackbarService: SnackbarService,
