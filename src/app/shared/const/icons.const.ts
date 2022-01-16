@@ -60,4 +60,11 @@ export const SVG_ICONS: string[] = [
   'layer-group',
   'chevron-bottom',
   'check-solid',
+  'productivity-illustration',
+  'template',
+  'keyboard-shortcuts',
+  'command-line',
+  'getting-started-guide',
+  'lightbulb-on',
+  'sync',
 ];

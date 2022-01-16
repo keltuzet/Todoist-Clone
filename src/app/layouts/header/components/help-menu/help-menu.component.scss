@@ -1,0 +1,42 @@
+:host {
+  max-width: 350px !important;
+  min-width: 276px !important;
+  max-height: 80vh !important;
+}
+
+.last-synced {
+  color: rgba(0, 0, 0, 0.56);
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.command-menu-item {
+  flex-direction: column;
+
+  &-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &-description {
+    white-space: normal;
+    line-height: 18px;
+    width: 230px;
+    color: rgba(0, 0, 0, 0.561);
+    font-size: 12px;
+    text-align: start;
+  }
+
+  .keyboard-shortcuts > kbd {
+    display: inline-block;
+
+    > kbd {
+      margin: 0 1px;
+    }
+  }
+}
+
+:host.menu-list-v2 .menu-item.send-feedback {
+  color: #dd4b39;
+}

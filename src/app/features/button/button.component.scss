@@ -1,6 +1,7 @@
 :host {
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   &.icon-button {
     color: grey;
@@ -16,6 +17,18 @@
       margin-left: 3px;
       margin-right: 6px;
       word-break: normal;
+    }
+  }
+
+  &.basic {
+    font-size: 13px;
+    line-height: 17px;
+    padding: 6px 12px 7px;
+    border-radius: 3px;
+
+    &.primary {
+      background-color: #db4c3f;
+      color: #fff;
     }
   }
 }

@@ -6,4 +6,5 @@ export enum ButtonColor {
 export enum ButtonTheme {
   Basic = 'basic',
   Icon = 'icon-button',
+  Flat = 'flat',
 }

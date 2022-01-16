@@ -63,3 +63,22 @@ export const parseTodoResp = (todoResp: TodoResponse): ExtractedTodo => ({
   endDate: new Date(todoResp.endDate),
   comments: todoResp.comments.map((comment) => ({ ...comment, postedDate: new Date(comment.postedDate) })),
 });
+
+export enum GroupTodosBy {
+  Default = 'По умолчанию',
+  PeriodOfExecution = 'Срок выполнения',
+  DateAdded = 'Дата добавления',
+  Priority = 'Приоритет',
+  Tag = 'Метка',
+  Project = 'Проект',
+}
+
+export enum SortTodosBy {
+  Default = 'По умолчанию',
+  Alphabetically = 'По алфавиту',
+  Performer = 'Исполнитель',
+  PeriodOfExecution = 'Срок выполнения',
+  DateAdded = 'Дата добавления',
+  Priority = 'Приоритет',
+  Project = 'Проект',
+}

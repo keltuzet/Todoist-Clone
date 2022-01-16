@@ -46,7 +46,7 @@
     <button tTooltip="Комментировать" class="todo-toolbar__item">
       <svg-icon name="comment" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
     </button>
-    <button [appMenuTrigger]="menu" [menuData]="todo" tTooltip="Другие действия в задаче" class="todo-toolbar__item">
+    <button [tMenuTrigger]="menu" [menuData]="todo" tTooltip="Другие действия в задаче" class="todo-toolbar__item">
       <svg-icon name="x-menu" [svgStyle]="{ 'width.px': 15, 'height.px': 3 }"></svg-icon>
     </button>
   </div>

@@ -18,13 +18,15 @@ import { PageLayoutModule } from './layouts';
 import { ProductModule } from './shared/components/product/product.module';
 import * as moment from 'moment';
 import { SnackbarModule } from '@features/snackbar/snackbar.module';
+import { DevComponent } from './pages/dev/dev.component';
+import { OverlayExampleComponent } from './pages/dev/overlay-example/overlay-example.component';
 
 registerLocaleData(localeRu);
 
 moment.locale('ru');
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DevComponent, OverlayExampleComponent],
   imports: [
     BrowserAnimationsModule,
     AppRoutingModule,
