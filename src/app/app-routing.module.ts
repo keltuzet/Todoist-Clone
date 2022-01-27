@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DevComponent } from '@pages/dev/dev.component';
 import { APP_ROUTES } from '@shared/const';
 import { ProjectsResolver, TagsResolver, TodosResolver, AuthorsResolver } from '@shared/resolvers';
 import { PageLayoutComponent } from './layouts';
 
 const routes: Routes = [
+  {
+    path: APP_ROUTES.dev,
+    component: DevComponent,
+  },
   {
     path: APP_ROUTES.root,
     component: PageLayoutComponent,

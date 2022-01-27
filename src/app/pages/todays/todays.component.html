@@ -5,7 +5,7 @@
       ><small class="ml-2 page-todays-header__date">{{ today | date: 'EE d LLL' | capitalize }}</small>
     </h1>
     <div class="ml-auto">
-      <button [appMenuTrigger]="sortMenu" class="btn btn-stroke">
+      <button [tMenuTrigger]="sortMenu" class="btn btn-stroke">
         <svg-icon name="sort-alt" [svgStyle]="{ 'width.px': '24', 'height.px': 24 }"></svg-icon
         ><span class="btn-label">Сортировать</span>
       </button>

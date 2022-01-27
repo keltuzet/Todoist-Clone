@@ -1,0 +1,17 @@
+<div class="author-avatar"></div>
+<div class="comment-meta">
+  <span class="author-name">{{ comment?.author.name }}</span>
+  <span class="posted-date">{{ comment?.postedDate | date: 'd MMMM y HH:mm' }}</span>
+  <div class="comment-actions">
+    <button class="comment-action" tTooltip="Изменить комментарий">
+      <svg-icon name="pen" svgClass="icon_size_m"></svg-icon>
+    </button>
+    <button (click)="remove()" class="comment-action" tTooltip="Удалить комментарий">
+      <svg-icon name="trash-alt" svgClass="icon_size_m"></svg-icon>
+    </button>
+    <button class="comment-action" tTooltip="Отреагировать">
+      <svg-icon name="emoji" svgClass="icon_size_m"> </svg-icon>
+    </button>
+  </div>
+</div>
+<pre class="comment-text" [innerHTML]="comment?.text"></pre>

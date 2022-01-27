@@ -1,22 +1,25 @@
 <ul class="menu-list">
-  <li class="menu-item-title">Сортировать</li>
-  <li [appMenuTrigger]="menuGroupBy" class="menu-item">
+  <li class="menu-item-title">
+    <span>Сортировать</span>
+    <button *ngIf="isFilterApplied$ | async" (click)="resetFilters()" class="reset-btn">Сбросить</button>
+  </li>
+  <li [tMenuTrigger]="menuGroupBy" [menuData]="groupBy$ | async" (afterClose)="selectGroupBy($event)" class="menu-item">
     <div class="menu-item-label">
       <svg-icon name="layer-group" svgClass="icon_size_m" class="menu-item-label__icon"></svg-icon>
       Группировать по
     </div>
     <div class="menu-item-select">
-      По умолчанию
+      <span class="menu-item-select__inner">{{ groupBy$ | async }}</span>
       <svg-icon name="chevron-bottom" svgClass="icon_size_m"></svg-icon>
     </div>
   </li>
-  <li class="menu-item">
+  <li [tMenuTrigger]="menuSortBy" [menuData]="sortBy$ | async" (afterClose)="selectSortBy($event)" class="menu-item">
     <div class="menu-item-label">
       <svg-icon name="sort-alt" svgClass="icon_size_m" class="menu-item-label__icon"></svg-icon>
       Сортировка
     </div>
     <div class="menu-item-select">
-      По умолчанию
+      <span class="menu-item-select__inner">{{ sortBy$ | async }}</span>
       <svg-icon name="chevron-bottom" svgClass="icon_size_m"></svg-icon>
     </div>
   </li>

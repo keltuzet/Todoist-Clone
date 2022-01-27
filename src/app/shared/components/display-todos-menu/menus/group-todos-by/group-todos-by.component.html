@@ -1,4 +1,4 @@
-<ul class="menu-list small select-menu">
+<ul *let="selected$ | async as selected" class="menu-list small select-menu">
   <li *ngFor="let item of menuItems" (click)="select(item)" class="menu-item">
     <span>{{ item }}</span>
     <svg-icon *ngIf="item === selected" name="check-solid" svgClass="icon_size_xs"></svg-icon>

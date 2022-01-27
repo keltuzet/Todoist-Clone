@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
-import { TooltipModule } from '@features/tooltip';
-import { MenuModule } from '@features/menu';
+import { TooltipModule } from 'todoist-tooltip';
+import { MenuModule } from 'todoist-menu';
 import { OverdueTodoListModule, TodoModule } from '@shared/components';
 import { CapitalizeModule } from '@shared/pipes';
 import { TodaysRoutingModule } from './todays-routing.module';

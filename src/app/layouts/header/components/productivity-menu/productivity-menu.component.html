@@ -1,0 +1,23 @@
+<header class="productivity-header">
+  <h1>Your Productivity</h1>
+</header>
+<div class="productivity-content">
+  <ng-container *ngTemplateOutlet="emptyState"></ng-container>
+</div>
+
+<ng-template #emptyState>
+  <div class="empty-state-productivity empty-state">
+    <div class="empty-state-illustration">
+      <svg-icon name="productivity-illustration" [svgStyle]="{ 'width.px': 220, 'height.px': 200 }"></svg-icon>
+    </div>
+    <div class="empty-state-header">See tangible progress</div>
+    <div class="empty-state-body">
+      Set daily and weekly goals, review your productivity trends, and watch your Karma points grow.
+    </div>
+    <button tButton color="primary" class="empty-state-button">Set your goals</button>
+    <a class="empty-state-footer">
+      <svg-icon name="question-circle" [svgStyle]="{ 'width.px': 22, 'height.px': 22 }"></svg-icon>
+      <span>Learn about Karma</span>
+    </a>
+  </div>
+</ng-template>
