@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SortTodosComponent } from './sort-todos.component';
+import { SortTodosByComponent } from './sort-todos.component';
 
-describe('SortTodosComponent', () => {
-  let component: SortTodosComponent;
-  let fixture: ComponentFixture<SortTodosComponent>;
+describe('SortTodosByComponent', () => {
+  let component: SortTodosByComponent;
+  let fixture: ComponentFixture<SortTodosByComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SortTodosComponent ]
+      declarations: [ SortTodosByComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SortTodosComponent);
+    fixture = TestBed.createComponent(SortTodosByComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

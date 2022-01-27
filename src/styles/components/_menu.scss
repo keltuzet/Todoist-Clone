@@ -1,4 +1,4 @@
-.menu-list {
+.menu {
   padding: 4px 0;
   position: relative;
   background-color: #fff;
@@ -10,6 +10,10 @@
   &.small {
     padding: 0;
   }
+}
+
+.menu-list {
+  @extend .menu;
 
   &.select-menu {
     width: 200px;
@@ -74,19 +78,72 @@
   }
 }
 
-.menu {
-  padding: 4px 0;
-  position: relative;
+.menu-list-v2 {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0;
+  border-radius: 10px;
   background-color: #fff;
-  border-radius: 3px;
-  border: 1px solid #ddd;
-  box-shadow: 0 1px 8px 0 rgb(0 0 0 / 8%);
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 8%);
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 0.81rem;
 
-  &.small {
-    padding: 0;
+  .menu-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin: 0 6px;
+    padding: 4px 6px;
+    border-radius: 5px;
+    line-height: 24px;
+
+    &:not(.not-selectable) {
+      cursor: pointer;
+
+      &:hover {
+        color: rgb(0, 0, 0, 88%);
+        background-color: #f3f3f3;
+      }
+    }
+
+    svg-icon {
+      margin-right: 10px;
+      color: #808080;
+    }
+
+    .keyboard-shortcuts {
+      margin-left: auto;
+      height: 16px;
+      border-radius: 2px;
+      line-height: 16px;
+
+      > kbd {
+        kbd {
+          padding: 0 4.25px;
+          display: inline-block;
+          height: 16px;
+          line-height: 16px;
+          margin: 0;
+          text-align: center;
+          background-color: #f2f2f2;
+          border-radius: 2px;
+          font-style: normal;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Apple Color Emoji, Helvetica, Arial,
+            sans-serif, Segoe UI Emoji, Segoe UI Symbol;
+        }
+      }
+    }
+
+    .offset-for-icon {
+      padding-left: 34px;
+    }
   }
 
-
+  hr {
+    background-color: #e6e6e6;
+    border: none;
+    height: 1px;
+    margin: 4px 0;
+  }
 }
-
-

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { parseTodoResp, ExtractedTodo, TodoPriority, TodoResponse } from '@shared/models';
+import { Todo, TodoPriority } from '@shared/models';
 
-export interface TodosState extends EntityState<ExtractedTodo, number> {
+export interface TodosState extends EntityState<Todo, number> {
   priorities: TodoPriority[];
   isPrioritiesFetched: boolean;
 }
@@ -16,19 +16,5 @@ export class TodosStore extends EntityStore<TodosState> {
       isPrioritiesFetched: false,
     });
     this.akitaPreAddEntity = this.akitaPreAddEntity.bind(this);
-  }
-
-  // akitaPreAddEntity(todo: TodoResponse): ExtractedTodo {
-  //   console.log('call');
-  //   return parseTodoResp(todo);
-  // }
-
-  propsToDate<T extends object>(obj: T, key: Extract<keyof T, string> | Extract<keyof T, string>[]): T {
-    const keys: string[] = Array.isArray(key) ? key : [key];
-    keys.forEach((k) => {
-      obj[k] = new Date(obj[k]);
-    });
-
-    return obj;
   }
 }

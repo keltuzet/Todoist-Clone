@@ -67,6 +67,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    min-height: 16px;
 
     &__item {
       margin-right: 8px;
@@ -130,6 +131,7 @@
     position: absolute;
     top: 8px;
     right: -18px;
+    background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0, #fff 16px 100%);
 
     &__item {
       display: flex;

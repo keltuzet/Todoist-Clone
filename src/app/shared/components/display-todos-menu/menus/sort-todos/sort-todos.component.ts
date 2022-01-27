@@ -1,16 +1,21 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { MENU_DATA } from '@features/menu/const';
+import { MenuRef } from '@features/menu/models';
+import { SortTodosBy } from '@shared/models';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 't-sort-todos',
+  selector: 't-sort-todos-by',
   templateUrl: './sort-todos.component.html',
   styleUrls: ['./sort-todos.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SortTodosComponent implements OnInit {
+export class SortTodosByComponent {
+  menuItems: SortTodosBy[] = Object.values(SortTodosBy);
 
-  constructor() { }
+  constructor(@Inject(MENU_DATA) public selected$: BehaviorSubject<SortTodosBy>, private menuRef: MenuRef) {}
 
-  ngOnInit(): void {
+  select(item: SortTodosBy): void {
+    this.menuRef.close(item);
   }
-
 }

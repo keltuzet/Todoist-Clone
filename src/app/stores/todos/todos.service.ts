@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { getIDType, transaction } from '@datorama/akita';
+import { arrayRemove, getIDType, transaction } from '@datorama/akita';
 import { HttpUpdateConfig, NgEntityService, NgEntityServiceConfig } from '@datorama/akita-ng-entity-service';
-import { Observable } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { mapTo, switchMap, tap } from 'rxjs/operators';
 
-import { parseTodoResp, ExtractedTodo, TodoPriority, todoToHttpBody, Todo } from '@shared/models';
+import { TodoPriority, todoToHttpBody, Todo, CreateTodo, Comment } from '@shared/models';
 import { TodosState, TodosStore } from './todos.store';
 import { TodosQuery } from './todos.query';
 
@@ -19,17 +19,15 @@ export class TodosService extends NgEntityService<TodosState> {
     super(store);
   }
 
-  getTodos(): Observable<ExtractedTodo[]> {
-    return this.preGetTodo<ExtractedTodo[]>(
-      this.get<ExtractedTodo[]>({ mapResponseFn: (todos) => todos.map(parseTodoResp) }),
-    );
+  getTodos(): Observable<Todo[]> {
+    return this.preGetTodo<Todo[]>(this.get<Todo[]>());
   }
 
-  getTodo(id: getIDType<TodosState>): Observable<ExtractedTodo> {
-    return this.preGetTodo(this.get(id, { mapResponseFn: parseTodoResp }));
+  getTodo(id: getIDType<TodosState>): Observable<Todo> {
+    return this.preGetTodo(this.get(id));
   }
 
-  preGetTodo<T = ExtractedTodo | ExtractedTodo[]>(todoStream$: Observable<T>): Observable<T> {
+  preGetTodo<T = Todo | Todo[]>(todoStream$: Observable<T>): Observable<T> {
     return this.todosQuery.getValue().isPrioritiesFetched
       ? todoStream$
       : this.getPriorities().pipe(switchMap(() => todoStream$));
@@ -40,7 +38,7 @@ export class TodosService extends NgEntityService<TodosState> {
       .get<TodoPriority[]>(`${this.api}/priorities`)
       .pipe(
         tap(
-          (priorities) =>
+          priorities =>
             this.store.update({
               priorities,
               isPrioritiesFetched: true,
@@ -50,10 +48,38 @@ export class TodosService extends NgEntityService<TodosState> {
       );
   }
 
-  updateTodo(id: number, entity: Todo, config?: HttpUpdateConfig<ExtractedTodo>): Observable<ExtractedTodo> {
-    return super.update<ExtractedTodo>(id, todoToHttpBody(entity), {
+  updateTodo(id: number, entity: Todo, config?: HttpUpdateConfig<Todo>): Observable<Todo> {
+    return super.update<Todo>(id, todoToHttpBody(entity), {
       ...config,
-      mapResponseFn: parseTodoResp,
     });
+  }
+
+  create(todo: CreateTodo): Observable<Todo[]> {
+    return this.add(todo as Todo);
+  }
+
+  postComment(text: string, todoId: number): Observable<Todo> {
+    const todo = this.todosQuery.getEntity(todoId);
+    if (!todo) return;
+    return this.update(todoId, {
+      ...todo,
+      comments: [
+        ...todo.comments,
+        {
+          text,
+          authorId: 0,
+          postedDate: new Date().toJSON(),
+        } as Comment,
+      ],
+    }).pipe(switchMap((updatedTodo: Todo) => this.getTodos().pipe(mapTo(updatedTodo))));
+  }
+
+  removeComment(commentId: number, todoId: number): Observable<void> {
+    const todo = this.todosQuery.getEntity(todoId);
+    if (!todo) return;
+    return this.update(todoId, {
+      ...todo,
+      comments: arrayRemove(todo.comments, commentId, 'id'),
+    }).pipe(switchMap(() => of<void>()));
   }
 }

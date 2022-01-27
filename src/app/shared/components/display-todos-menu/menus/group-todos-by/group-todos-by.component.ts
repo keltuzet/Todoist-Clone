@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { MENU_DATA } from '@features/menu/const';
 import { MenuRef } from '@features/menu/models';
+import { BehaviorSubject } from 'rxjs';
 import { GroupTodosBy } from '../../group-todos-by.enum';
 
 @Component({
@@ -10,10 +11,9 @@ import { GroupTodosBy } from '../../group-todos-by.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupTodosByComponent {
-  // menuItems = ['По умолчанию', 'Срок выполнения', 'Дата добавления', 'Приоритет', 'Метка', 'Проект'];
   menuItems: GroupTodosBy[] = Object.values(GroupTodosBy);
 
-  constructor(@Inject(MENU_DATA) public selected: GroupTodosBy, private menuRef: MenuRef) {}
+  constructor(@Inject(MENU_DATA) public selected$: BehaviorSubject<GroupTodosBy>, private menuRef: MenuRef) {}
 
   select(item: GroupTodosBy): void {
     this.menuRef.close(item);

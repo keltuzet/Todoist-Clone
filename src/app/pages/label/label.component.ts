@@ -1,10 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DisplayTodosMenuComponent } from '@shared/components';
-import { Todo } from '@shared/models';
-import { TagsQuery } from '@stores/tags';
+import { GroupTodosBy, Todo } from '@shared/models';
+import { TagsQuery, TagsService, TagsStore } from '@stores/tags';
+import { TagsUiQuery } from '@stores/tags-ui/tags-ui.query';
+import { TagsUiStore } from '@stores/tags-ui/tags-ui.store';
 import { TodosQuery } from '@stores/todos';
 import { Observable } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 't-label',
@@ -17,10 +19,24 @@ export class LabelComponent implements OnInit {
   todos$: Observable<Todo[]>;
   menu = DisplayTodosMenuComponent;
 
-  constructor(private tagsQuery: TagsQuery, private todosQuery: TodosQuery) {}
+  constructor(
+    private tagsQuery: TagsQuery,
+    private tagsService: TagsService,
+    private todosQuery: TodosQuery,
+  ) {}
 
   ngOnInit(): void {
+    this.initTodosDisplaying();
     this.todos$ = this.tag$.pipe(switchMap((tag) => this.todosQuery.selectByTag(tag)));
+  }
+
+  initTodosDisplaying(): void {
+    this.tagsQuery
+      .selectSelectedTagUIState()
+      .subscribe((state) => {
+        if (state) return;
+        this.tagsService.setDefaultUIStateOfSelected();
+      });
   }
 
   trackBy(index: number, item: Todo): number {
@@ -29,7 +45,5 @@ export class LabelComponent implements OnInit {
 
   termFormatFn = (todo: Todo) => `d MMMM${todo.hasEndTime ? ' HH:mm' : ''}`;
 
-  openDisplayMenu(): void {
-
-  }
+  openDisplayMenu(): void {}
 }

@@ -8,7 +8,8 @@ import { ProjectNotFoundComponent } from './components';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ButtonModule } from '@features/button/button.module';
 import { ShowOnBreakpointModule } from '@shared/directives';
-import { TooltipModule } from '@features/tooltip';
+import { TooltipModule } from 'todoist-tooltip';
+import { TabsModule } from '@features/tabs/tabs.module';
 
 @NgModule({
   declarations: [ProjectComponent, ProjectNotFoundComponent],
@@ -20,6 +21,7 @@ import { TooltipModule } from '@features/tooltip';
     ButtonModule,
     ShowOnBreakpointModule,
     TooltipModule,
+    TabsModule,
   ],
 })
 export class ProjectModule {}
