@@ -10,16 +10,16 @@ import { DialogRef } from './dialog-ref';
 export class Dialog {
   constructor(private injector: Injector, private overlay: Overlay) {}
 
-  open<T, D = any, R = any>(component: ComponentType<T>, config?: DialogConfig<D>): DialogRef<T, R> {
+  open<T, D = any, R = any>(component: ComponentType<T>, config?: DialogConfig<D>): DialogRef<R> {
     const overlayRef = this.createOverlay(config);
-    const dialogRef = new DialogRef<T, R>(overlayRef);
+    const dialogRef = new DialogRef<R>(overlayRef);
     const injector = this.createInjector(dialogRef, config?.data);
     const componentPortal = new ComponentPortal<T>(component, config?.viewContainerRef, injector);
     overlayRef.attach(componentPortal);
     return dialogRef;
   }
 
-  private createInjector<D>(dialogRef: DialogRef<any, any>, data: D): Injector {
+  private createInjector<D>(dialogRef: DialogRef, data: D): Injector {
     return Injector.create({
       providers: [
         {

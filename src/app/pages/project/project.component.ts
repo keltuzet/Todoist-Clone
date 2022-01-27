@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { SnackbarService } from '@features/snackbar/services/snackbar.service';
 import { GreetingSnackbarComponent } from '@shared/components/greeting-snackbar/greeting-snackbar.component';
 import { ProjectsQuery } from '@stores/projects';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { ProjectNotFoundComponent } from './components';
 
 @Component({
@@ -15,6 +17,7 @@ import { ProjectNotFoundComponent } from './components';
 export class ProjectComponent implements OnInit {
   project$ = this.projectsQuery.selectSelectedProperty();
   ref: OverlayRef;
+  delay$ = of(true).pipe(delay(10));
 
   constructor(
     private snackbarService: SnackbarService,

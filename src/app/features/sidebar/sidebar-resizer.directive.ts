@@ -28,13 +28,13 @@ export class SidebarResizerDirective implements OnDestroy, OnInit {
   private mouseDownX: number | null;
   private transitionDurationCache: string;
 
-  constructor(@Inject(DOCUMENT) private document: Document, private cdr: ChangeDetectorRef) {
+  constructor(@Inject(DOCUMENT) private document: Document, private changeDetectorRef: ChangeDetectorRef) {
     this.document.addEventListener('mousemove', this.handleMouseMove);
     this.document.addEventListener('mouseup', this.handleMouseUp);
   }
 
   ngOnInit() {
-    this.cdr.detach();
+    this.changeDetectorRef.detach();
   }
 
   ngOnDestroy() {

@@ -43,3 +43,11 @@
 <ng-template #projectNotFound>
   <t-project-not-found></t-project-not-found>
 </ng-template>
+
+<t-tabs [selectedTab]="10">
+  <ng-container *ngIf="delay$ | async">
+    <ng-template tTab="Sub-tasks">A</ng-template>
+    <ng-template tTab="Comments">B</ng-template>
+    <ng-template tTab="Activity">C</ng-template>
+  </ng-container>
+</t-tabs>

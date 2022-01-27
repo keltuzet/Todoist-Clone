@@ -3,7 +3,7 @@
   align-items: center;
   cursor: pointer;
 
-  &.icon-button {
+  &.theme-icon-button {
     color: grey;
     border-radius: 3px;
 
@@ -20,13 +20,17 @@
     }
   }
 
-  &.basic {
+  &.theme-basic {
     font-size: 13px;
     line-height: 17px;
     padding: 6px 12px 7px;
     border-radius: 3px;
 
-    &.primary {
+    &.color-basic {
+      background-color: #efefef;
+    }
+
+    &.color-primary {
       background-color: #db4c3f;
       color: #fff;
     }

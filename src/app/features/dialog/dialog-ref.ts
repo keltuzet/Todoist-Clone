@@ -2,7 +2,7 @@ import { OverlayRef } from '@angular/cdk/overlay';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
-export class DialogRef<T, R> {
+export class DialogRef<R = any> {
   private close$ = new Subject<R>();
   private open$ = new Subject<void>();
 

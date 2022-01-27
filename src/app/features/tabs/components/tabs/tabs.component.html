@@ -1,0 +1,14 @@
+<div *ngLet="selectedTabIndex$ | async as selectedTabIndex" class="tab-list" role="tablist">
+  <button
+    *ngFor="let label of labels$ | async; index as i; trackBy: trackByIndex"
+    (click)="select(i)"
+    [class.selected]="i === selectedTabIndex"
+    class="tab-label"
+    role="tab"
+  >
+    {{ label }}
+  </button>
+</div>
+<div class="tab-content" role="tabpanel">
+  <ng-container #container></ng-container>
+</div>

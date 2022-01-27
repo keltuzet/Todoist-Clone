@@ -1,36 +1,33 @@
-import { dateToNonTmzJson } from '@shared/utils';
+
 import { Project, TodoStatus } from '../project';
-import { TodoComment, TodoCommentDetailed, TodoResponseComment } from './comment.model';
 import { TodoPriority } from './priority.model';
 import { TodoTag } from './tag.model';
+import { Comment, DetailedComment } from './comment.model';
 
-export interface TodoResponse {
+export interface Todo {
   id: number;
-  projectId: number;
-  priorityId: number;
-  statusId: number;
-  subTodoIds: number[];
-  tagIds: number[];
   title: string;
   createdDate: string;
   endDate: string;
-  comments: TodoResponseComment[];
+  comments: Comment[];
+  subTodoIds: number[];
+  tagIds: number[];
+  projectId?: number;
+  priorityId?: number;
+  statusId?: number;
+  description?: string;
   hasEndTime?: true;
 }
 
-export interface ExtractedTodo extends Omit<TodoResponse, 'createdDate' | 'endDate' | 'comments'> {
-  createdDate: Date;
-  endDate: Date;
-  comments: TodoComment[];
-}
-
-export interface Todo extends ExtractedTodo {
+export interface DetailedTodo extends Todo {
   project: Project;
   priority: TodoPriority;
   status: TodoStatus;
   tags: TodoTag[];
-  comments: TodoCommentDetailed[];
+  comments: DetailedComment[];
 }
+
+export interface CreateTodo extends Omit<Todo, 'id'> {}
 
 export function todoToHttpBody(todo: Todo): any {
   return {
@@ -43,26 +40,25 @@ export function todoToHttpBody(todo: Todo): any {
     title: todo.title,
     createdDate: todo.createdDate,
     endDate: todo.endDate,
-    comments: todo.comments.map(todoCommentToHttpBody),
+    comments: todo.comments,
+    description: todo.description,
     hasEndTime: todo.hasEndTime,
   };
 }
 
-export function todoCommentToHttpBody(comment: TodoCommentDetailed): any {
-  return {
-    id: comment.id,
-    authorId: comment.authorId,
-    postedDate: comment.postedDate,
-    text: comment.text,
-  };
-}
+// export function todoCommentToHttpBody(comment: TodoCommentDetailed): any {
+//   return {
+//     id: comment.id,
+//     authorId: comment.authorId,
+//     postedDate: comment.postedDate,
+//     text: comment.text,
+//   };
+// }
 
-export const parseTodoResp = (todoResp: TodoResponse): ExtractedTodo => ({
-  ...todoResp,
-  createdDate: new Date(todoResp.createdDate),
-  endDate: new Date(todoResp.endDate),
-  comments: todoResp.comments.map((comment) => ({ ...comment, postedDate: new Date(comment.postedDate) })),
-});
+// export const parseTodoResp = (todoResp: TodoResponse): ExtractedTodo => ({
+//   ...todoResp,
+//   comments: todoResp.comments.map((comment) => ({ ...comment, postedDate: new Date(comment.postedDate) })),
+// });
 
 export enum GroupTodosBy {
   Default = 'По умолчанию',

@@ -9,8 +9,8 @@
   <app-radio-button
     class="mark-tool"
     [checked]="false"
-    [primary]="todo.priority.colors.primary"
-    [secondary]="todo.priority.colors.secondary"
+    [primary]="todo.priority?.colors.primary"
+    [secondary]="todo.priority?.colors.secondary"
   ></app-radio-button>
   <div class="todo-content">
     <div class="todo-content-wrap">
@@ -30,7 +30,7 @@
         ><span class="todo-info__text">{{ todo.comments.length }}</span>
       </button>
       <a *ngFor="let tag of todo.tags" [ngStyle]="{ color: tag.color }" class="todo-info__item">{{ tag.title }}</a>
-      <div class="todo-info__item projects-info">
+      <div *ngIf="todo.project" class="todo-info__item projects-info">
         <span class="projects-info__title">{{ todo.project.title }}<ng-container *ngIf="todo.status"> / {{ todo.status.title }}</ng-container></span>
         <svg-icon name="circle" svgClass="icon_size_xs" class="projects-info__icon" [svgStyle]="{ color: todo.project.color }"></svg-icon>
       </div>
@@ -43,7 +43,7 @@
     <button tTooltip="Срок" class="todo-toolbar__item">
       <svg-icon name="small-calendar" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
     </button>
-    <button tTooltip="Комментировать" class="todo-toolbar__item">
+    <button (click)="comment(todo.id)" tTooltip="Комментировать" class="todo-toolbar__item">
       <svg-icon name="comment" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
     </button>
     <button [tMenuTrigger]="menu" [menuData]="todo" tTooltip="Другие действия в задаче" class="todo-toolbar__item">

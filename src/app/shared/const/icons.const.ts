@@ -67,4 +67,8 @@ export const SVG_ICONS: string[] = [
   'getting-started-guide',
   'lightbulb-on',
   'sync',
+  'comment-illustration',
+  'attachment',
+  'microphone',
+  'emoji',
 ];

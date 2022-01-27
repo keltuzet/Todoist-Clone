@@ -7,7 +7,7 @@ import { SearchBarComponent } from './header/components/search-bar/search-bar.co
 import { HeaderExtraToolbarComponent } from './header/components/header-extra-toolbar/header-extra-toolbar.component';
 import { HeaderMainToolbarComponent } from './header/components/header-main-toolbar/header-main-toolbar.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { TooltipModule } from '@features/tooltip';
+import { TooltipModule } from 'todoist-tooltip';
 import { NavComponent } from './nav/nav.component';
 import { SidebarModule } from '@features/sidebar/sidebar.module';
 import { MainListComponent } from './nav/components/nav-main-list/nav-main-list.component';
@@ -36,7 +36,7 @@ import { QuickAddTodoDialogComponent } from './header/components/quick-add-todo-
 import { ProductivityMenuComponent } from './header/components/productivity-menu/productivity-menu.component';
 import { ButtonModule } from '@features/button/button.module';
 import { HelpMenuComponent } from './header/components/help-menu/help-menu.component';
-import { MenuModule } from '@features/menu';
+import { MenuModule } from 'todoist-menu';
 
 @NgModule({
   declarations: [

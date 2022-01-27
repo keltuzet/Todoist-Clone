@@ -18,12 +18,12 @@ export class OverdueTodoListComponent implements OnInit, OnDestroy {
   now = this.appDateRef.now;
   sub$: Subscription;
 
-  constructor(private todosQuery: TodosQuery, private appDateRef: AppDateRef, private cdr: ChangeDetectorRef) {}
+  constructor(private todosQuery: TodosQuery, private appDateRef: AppDateRef, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.sub$ = this.overdue$.subscribe(todos => {
       this.todos = todos;
-      this.cdr.detectChanges();
+      this.changeDetectorRef.detectChanges();
     });
   }
 

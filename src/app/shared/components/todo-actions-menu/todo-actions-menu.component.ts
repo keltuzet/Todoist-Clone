@@ -47,7 +47,7 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
     this.todosService
       .updateTodo(this.data$.value.id, {
         ...this.data$.value,
-        endDate: date,
+        endDate: date.toString(),
       })
       .subscribe();
     this.menuRef.close();
