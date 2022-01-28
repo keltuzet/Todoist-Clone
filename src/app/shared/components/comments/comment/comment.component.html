@@ -1,17 +1,36 @@
 <div class="author-avatar"></div>
-<div class="comment-meta">
-  <span class="author-name">{{ comment?.author.name }}</span>
-  <span class="posted-date">{{ comment?.postedDate | date: 'd MMMM y HH:mm' }}</span>
-  <div class="comment-actions">
-    <button class="comment-action" tTooltip="Изменить комментарий">
-      <svg-icon name="pen" svgClass="icon_size_m"></svg-icon>
-    </button>
-    <button (click)="remove()" class="comment-action" tTooltip="Удалить комментарий">
-      <svg-icon name="trash-alt" svgClass="icon_size_m"></svg-icon>
-    </button>
-    <button class="comment-action" tTooltip="Отреагировать">
-      <svg-icon name="emoji" svgClass="icon_size_m"> </svg-icon>
-    </button>
+
+<ng-container *ngIf="!isEditMode">
+  <div class="comment-meta">
+    <span class="author-name">{{ comment?.author.name }}</span>
+    <span *let="comment?.isEdited as isEdited" class="posted-date">
+      <span *ngIf="isEdited" class="last-update-label mr-1">Изменено:</span>
+      <span>{{ (isEdited ? comment?.lastEditedDate : comment?.postedDate) | date: 'd MMMM y HH:mm' }}</span>
+    </span>
+    <div class="comment-actions">
+      <button (click)="edit()" class="comment-action" tTooltip="Изменить комментарий">
+        <svg-icon name="pen" svgClass="icon_size_m"></svg-icon>
+      </button>
+      <button (click)="remove()" class="comment-action" tTooltip="Удалить комментарий">
+        <svg-icon name="trash-alt" svgClass="icon_size_m"></svg-icon>
+      </button>
+      <button [tMenuTrigger]="emojiMenu" (afterClose)="react($event)" class="comment-action" tTooltip="Отреагировать">
+        <svg-icon name="emoji" svgClass="icon_size_m"> </svg-icon>
+      </button>
+    </div>
   </div>
-</div>
-<pre class="comment-text" [innerHTML]="comment?.text"></pre>
+  <pre class="comment-text" [innerHTML]="comment?.text"></pre>
+  <t-comment-reactions [comment]="comment"></t-comment-reactions>
+</ng-container>
+
+<ng-container *ngIf="isEditMode">
+  <form class="comment-edit-view">
+    <div class="comment-textarea">
+      <t-comment-editor [text]="comment?.text"></t-comment-editor>
+    </div>
+    <div class="comment-edit-actions">
+      <button (click)="update()" tButton color="primary" class="update-comment">Изменить</button>
+      <button (click)="cancel()" tButton class="cancel-update-comment">Отмена</button>
+    </div>
+  </form>
+</ng-container>

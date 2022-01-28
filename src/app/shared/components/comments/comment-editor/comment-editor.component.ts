@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 't-comment-editor',
@@ -7,15 +7,14 @@ import { Component, ChangeDetectionStrategy, Output, EventEmitter, ViewChild, El
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommentEditorComponent {
-  @ViewChild('textbox', { read: ElementRef }) textbox: ElementRef<HTMLDivElement>;
-  @Output('comment') commentEvent = new EventEmitter<string>();
-  readonly placeholder = 'Написать комментарий';
-
-  comment(): void {
-    const text = this.textbox.nativeElement.innerHTML;
-    if (!text.trim()) return;
-    this.commentEvent.emit(text);
-    this.clearTextboxInner();
+  @ViewChild('textbox', { read: ElementRef, static: true }) textbox: ElementRef<HTMLDivElement>;
+  @Input() placeholder = 'Написать комментарий';
+  @Input() set text(value: string) {
+    if (!value) return;
+    this.textbox.nativeElement.innerHTML = value;
+  }
+  get text(): string {
+    return this.textbox.nativeElement.innerHTML;
   }
 
   handleKeyUp(event: KeyboardEvent): void {
@@ -24,7 +23,7 @@ export class CommentEditorComponent {
     }
   }
 
-  private clearTextboxInner(): void {
+  clearTextboxInner(): void {
     this.textbox.nativeElement.innerHTML = '';
   }
 

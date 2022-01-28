@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.comment-reaction {
+  display: flex;
+  align-items: center;
+  height: 27px;
+  width: 45px;
+  margin: 7px 8px 0 0;
+  border: 1px solid rgba(5, 118, 185, 0.1);
+  border-radius: 3px;
+  color: #397fbe;
+  background-color: rgba(5, 118, 185, 0.05);
+  cursor: pointer;
+}
+
+.comment-reaction-emoji {
+  flex: 1;
+  text-align: left;
+  font-size: 15px;
+  padding-left: 8px;
+  margin-top: -1px;
+}
+
+.comment-reaction-count {
+  padding-right: 7px;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+.reaction-tooltip {
+  display: flex;
+  flex-direction: column;
+}

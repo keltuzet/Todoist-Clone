@@ -52,10 +52,36 @@
       "endDate": "2021-06-12T16:30:00.000Z",
       "comments": [
         {
-          "text": "Fucc!",
+          "text": "fnjskdf <div>s df nmsd fsd</div><div>f sfn skldf</div>",
           "authorId": 0,
-          "postedDate": "2022-01-27T20:18:30.896Z",
-          "id": 15
+          "postedDate": "2022-01-28T16:26:14.940Z",
+          "id": 19,
+          "reacts": {
+            "😂": [
+              {
+                "authorId": 0,
+                "reactedDate": "2022-01-28T18:20:32.209Z"
+              }
+            ],
+            "😁": [
+              {
+                "authorId": 0,
+                "reactedDate": "2022-01-28T18:20:46.794Z"
+              }
+            ],
+            "😆": [
+              {
+                "authorId": 0,
+                "reactedDate": "2022-01-28T18:27:50.446Z"
+              }
+            ],
+            "😅": [
+              {
+                "authorId": 0,
+                "reactedDate": "2022-01-28T18:29:50.995Z"
+              }
+            ]
+          }
         }
       ],
       "hasEndTime": true

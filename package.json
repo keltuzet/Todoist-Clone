@@ -28,7 +28,9 @@
     "@datorama/akita-ng-router-store": "^6.0.0",
     "angular-svg-icon": "^11.2.0",
     "concurrently": "^6.2.0",
+    "emojis-list": "^3.0.0",
     "escape-string-regexp": "^5.0.0",
+    "firebase": "^9.4.0",
     "material-icons": "^0.6.1",
     "mobile-detect": "^1.4.5",
     "moment": "^2.29.1",
@@ -36,13 +38,13 @@
     "ngx-let-directive": "^1.0.1",
     "ngx-spinner": "^13.0.0",
     "ngx-textarea-autosize": "^2.0.3",
+    "node-emoji": "^1.11.0",
+    "rxfire": "^6.0.0",
     "rxjs": "~6.6.0",
     "todoist-menu": "0.0.2",
     "todoist-tooltip": "0.0.1",
     "tslib": "^2.0.0",
-    "zone.js": "~0.11.4",
-    "firebase": "^9.4.0",
-    "rxfire": "^6.0.0"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.1.3",

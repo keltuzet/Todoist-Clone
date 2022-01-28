@@ -1,0 +1,11 @@
+<button tTooltip [tlpTemplate]="tooltip" [tlpTemplateContext]="reaction" class="comment-reaction" *ngFor="let reaction of reactions$ | async">
+  <span class="comment-reaction-emoji">{{ reaction.emoji }}</span>
+  <span class="comment-reaction-count">{{ reaction.count }}</span>
+</button>
+
+<ng-template #tooltip let-authors="authors">
+  <div class="tooltip reaction-tooltip">
+    <div *ngFor="let author of authors">{{author.name}}</div>
+  </div>
+</ng-template>
+

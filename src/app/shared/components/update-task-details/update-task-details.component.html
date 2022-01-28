@@ -68,7 +68,7 @@
             <t-comment [comment]="comment" [relatedTodoId]="todo.id" *ngFor="let comment of todo.comments"></t-comment>
           </div>
         </ng-container>
-        <t-comment-editor (comment)="postComment($event)"></t-comment-editor>
+        <t-post-comment (comment)="postComment($event)"></t-post-comment>
       </ng-template>
       <ng-template tTab="Activity"></ng-template>
     </t-tabs>

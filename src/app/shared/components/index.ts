@@ -7,3 +7,5 @@ export * from './overdue-todo-list';
 export * from './todo-list/todo-list.component';
 export * from './todo-list/todo-list.module';
 export * from './display-todos-menu';
+export * from './emoji-menu/emoji-menu.component';
+export * from './emoji-menu/emoji-menu.module';
