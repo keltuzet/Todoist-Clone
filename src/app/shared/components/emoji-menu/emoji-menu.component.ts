@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { EmojisService } from '@http/services';
 import { MenuRef } from 'todoist-menu';
 
 @Component({
@@ -7,11 +8,9 @@ import { MenuRef } from 'todoist-menu';
   styleUrls: ['./emoji-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmojiMenuComponent implements OnInit {
-  recent: string[] = [];
-  peopleAndEmoticons: string[] = ['😀', '😃', '😄', '😁', '😆', '😅', '🤣', '😂'];
-  AnimalsAndNature: string[] = ['🐵', '🐒', '🦍', '🦧', '🐶', '🐕', '🦮', '🐕‍🦺'];
-  nav: string[] = [
+export class EmojiMenuComponent {
+  readonly recent = this.emojisService.getRecent();
+  readonly nav: string[] = [
     'clock',
     'emoji-solid',
     'dog',
@@ -23,12 +22,12 @@ export class EmojiMenuComponent implements OnInit {
     'flag-solid',
     'bell-solid',
   ];
+  readonly emojiGroups$ = this.emojisService.getAll();
 
-  constructor(private menuRef: MenuRef) {}
+  constructor(private menuRef: MenuRef, private emojisService: EmojisService) {}
 
-  ngOnInit(): void {}
-
-  select(emoji: string): void {
+  select(emoji: string, markAsRecent = true): void {
+    if (markAsRecent) this.emojisService.markAsRecent(emoji);
     this.menuRef.close(emoji);
   }
 }

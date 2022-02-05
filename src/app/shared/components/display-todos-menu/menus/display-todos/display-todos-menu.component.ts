@@ -14,7 +14,7 @@ import { SortTodosByComponent } from '../sort-todos/sort-todos.component';
 export class DisplayTodosMenuComponent implements OnInit {
   menuGroupBy = GroupTodosByComponent;
   menuSortBy = SortTodosByComponent;
-  uiState$ = this.tagsQuery.selectSelectedTagUIState();
+  uiState$ = this.tagsQuery.selectRouteTagUIState();
   groupBy$ = this.uiState$.pipe(map((state) => state.groupedBy));
   sortBy$ = this.uiState$.pipe(map((state) => state.sortedBy));
   isFilterApplied$ = this.uiState$.pipe(

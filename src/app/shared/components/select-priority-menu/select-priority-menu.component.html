@@ -1,0 +1,14 @@
+<ul *let="selectedPriorityId$ | async as selectedPriorityId" class="menu-list small select-menu">
+  <li *ngFor="let priority of priorities$ | async" (click)="select(priority)" class="menu-item">
+    <div class="priority-content">
+      <svg-icon [tPriorityFlagIcon]="priority" svgClass="icon_size_m"></svg-icon>
+      <span class="priority-title text-truncate">{{ priority.title }}</span>
+    </div>
+    <svg-icon
+      *ngIf="priority.id === selectedPriorityId"
+      name="check-solid"
+      [svgStyle]="{ 'width.px': 14, 'height.px': 14 }"
+      class="select-icon"
+    ></svg-icon>
+  </li>
+</ul>

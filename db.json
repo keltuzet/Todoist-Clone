@@ -31,83 +31,19 @@
         "primary": "#808080",
         "secondary": "rgb(130,130,130,0.2)"
       },
-      "iconFlagTransparent": true
+      "default": true
     }
   ],
   "todos": [
     {
-      "id": 0,
-      "projectId": 0,
-      "priorityId": 3,
-      "statusId": 0,
-      "subTodoIds": [
-        3
-      ],
-      "tagIds": [
-        0,
-        1
-      ],
-      "title": "Create SSR Application in Angular!",
-      "createdDate": "2021-05-21T16:30:00.000Z",
-      "endDate": "2021-06-12T16:30:00.000Z",
-      "comments": [
-        {
-          "text": "fnjskdf <div>s df nmsd fsd</div><div>f sfn skldf</div>",
-          "authorId": 0,
-          "postedDate": "2022-01-28T16:26:14.940Z",
-          "id": 19,
-          "reacts": {
-            "😂": [
-              {
-                "authorId": 0,
-                "reactedDate": "2022-01-28T18:20:32.209Z"
-              }
-            ],
-            "😁": [
-              {
-                "authorId": 0,
-                "reactedDate": "2022-01-28T18:20:46.794Z"
-              }
-            ],
-            "😆": [
-              {
-                "authorId": 0,
-                "reactedDate": "2022-01-28T18:27:50.446Z"
-              }
-            ],
-            "😅": [
-              {
-                "authorId": 0,
-                "reactedDate": "2022-01-28T18:29:50.995Z"
-              }
-            ]
-          }
-        }
-      ],
-      "hasEndTime": true
-    },
-    {
-      "id": 1,
-      "projectId": 0,
-      "priorityId": 0,
-      "statusId": 1,
-      "subTodoIds": [],
-      "tagIds": [
-        4,
-        6
-      ],
-      "title": "Create pre rendered todos list with http",
-      "createdDate": "2021-04-08T23:44:00.000Z",
-      "endDate": "2021-06-12T23:44:00.000Z",
-      "comments": []
-    },
-    {
       "id": 2,
       "projectId": 0,
-      "priorityId": 3,
+      "priorityId": 2,
       "statusId": 2,
       "subTodoIds": [],
-      "tagIds": [],
+      "tagIds": [
+        4
+      ],
       "title": "Change fonts",
       "createdDate": "2021-04-09T03:00:00.000Z",
       "endDate": "2021-06-11T03:00:00.000Z",
@@ -123,14 +59,7 @@
       "title": "Make http service for current date todos",
       "createdDate": "2021-03-05T13:31:00.000Z",
       "endDate": "2021-04-30T09:00:00.000Z",
-      "comments": [
-        {
-          "id": 2,
-          "authorId": null,
-          "postedDate": "2021-04-08T00:00:00.000Z",
-          "text": "Schema of todo"
-        }
-      ],
+      "comments": [],
       "hasEndTime": true
     },
     {

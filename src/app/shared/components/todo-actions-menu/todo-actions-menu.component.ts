@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { MenuRef, MENU_DATA } from 'todoist-menu';
 
-import { MENU_DATA } from '@features/menu/const';
-import { TodoPriority, todoToHttpBody, Todo } from '@shared/models';
+import { TodoPriority, Todo } from '@shared/models';
 import { TodosQuery, TodosService, TodosStore } from '@stores/todos';
-import { MenuRef } from '@features/menu/models';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './todo-actions-menu.component.html',
@@ -23,10 +23,12 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
     private todosQuery: TodosQuery,
     private todosStore: TodosStore,
     private todosService: TodosService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.$sub.add(this.data$.subscribe());
+    this.router.navigate(['projects', 'id']);
   }
 
   ngOnDestroy(): void {

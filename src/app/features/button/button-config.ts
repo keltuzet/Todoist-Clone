@@ -7,4 +7,5 @@ export enum ButtonTheme {
   Basic = 'basic',
   Icon = 'icon-button',
   Flat = 'flat',
+  Outline = 'outline',
 }

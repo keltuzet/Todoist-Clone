@@ -35,4 +35,20 @@
       color: #fff;
     }
   }
+
+  &.theme-outline {
+    font-size: 13px;
+    line-height: 17px;
+    border-radius: 5px;
+    padding: 6px 12px 7px;
+
+    &.color-basic {
+      border: 1px solid #d6d6d6;
+
+      &:hover {
+        background-color: #ebebeb;
+        border-color: #bdbdbd;
+      }
+    }
+  }
 }

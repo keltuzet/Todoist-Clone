@@ -13,7 +13,7 @@ export class ButtonComponent {
   @Input() theme: ButtonTheme = ButtonTheme.Basic;
 
   @HostBinding('class') get cssClass(): string[] {
-    return [this.getColorCSSClass(this.color), this.getThemeCSSClass(this.theme)];
+    return ['button', this.getColorCSSClass(this.color), this.getThemeCSSClass(this.theme)];
   }
 
   @HostBinding('attr.type') type = 'button';

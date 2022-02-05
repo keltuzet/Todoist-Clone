@@ -8,7 +8,7 @@ import { Spinner } from 'ngx-spinner/lib/ngx-spinner.enum';
   providedIn: 'root',
 })
 export class SpinnerService {
-  private spinnerDefaultOptions: Spinner = {
+  private readonly spinnerDefaultOptions: Spinner = {
     zIndex: 1,
     fullScreen: false,
     type: 'ball-clip-rotate-multiple',
@@ -27,14 +27,10 @@ export class SpinnerService {
     const mergedOptions = { ...this.spinnerDefaultOptions, ...options };
 
     this.spinner.show(spinnerName, mergedOptions);
-    return stream.pipe(
-      tap(
-        () => this.hideSpinner(spinnerName),
-      ),
-    );
+    return stream.pipe(tap(() => this.hideSpinner(spinnerName)));
   }
 
-  private hideSpinner(spinnerName: string) {
+  private hideSpinner(spinnerName: string): void {
     this.spinner.hide(spinnerName);
   }
 }

@@ -1,0 +1,21 @@
+.menu-list {
+  width: 275px;
+}
+
+.priority-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+
+  svg-icon {
+    padding: 0;
+  }
+
+  .priority-title {
+    margin: 0 10px;
+  }
+}
+
+.select-icon {
+  color: #dd4b39;
+}

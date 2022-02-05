@@ -1,10 +1,18 @@
 <div class="content">
   <div class="search-emoji"></div>
   <div class="emojis-container">
-    <div class="emoji-group">
-      <div class="emoji-group-name">Люди и смайлики</div>
+    <div *ngIf="recent.emojis.length" class="emoji-group">
+      <div class="emoji-group-name">{{ recent.title }}</div>
       <div class="emoji-group-list">
-        <span (click)="select(emoji)" class="emoji-group-item" *ngFor="let emoji of peopleAndEmoticons">{{ emoji }}</span>
+        <span (click)="select(emoji, false)" class="emoji-group-item" *ngFor="let emoji of recent.emojis">
+          {{ emoji }}
+        </span>
+      </div>
+    </div>
+    <div *ngFor="let group of emojiGroups$ | async" class="emoji-group">
+      <div class="emoji-group-name">{{ group.title }}</div>
+      <div class="emoji-group-list">
+        <span (click)="select(emoji)" class="emoji-group-item" *ngFor="let emoji of group.emojis">{{ emoji }}</span>
       </div>
     </div>
   </div>

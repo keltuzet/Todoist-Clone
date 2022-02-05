@@ -13,8 +13,6 @@ export interface TagsUiState extends EntityState<TagsUI> {}
 @StoreConfig({ name: 'tags-ui' })
 export class TagsUiStore extends EntityStore<TagsUiState> {
   constructor() {
-    super({
-      a: 'sa'
-    });
+    super();
   }
 }

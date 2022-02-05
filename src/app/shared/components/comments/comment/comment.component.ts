@@ -1,8 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ViewChild } from '@angular/core';
-import { EmojiMenuComponent } from '@shared/components/emoji-menu/emoji-menu.component';
-import { DetailedComment } from '@shared/models';
+import { Component, ChangeDetectionStrategy, Input, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { switchMap, take } from 'rxjs/operators';
+
+import { Dialog } from '@features/dialog';
 import { TodosQuery, TodosService } from '@stores/todos';
-import { switchMap, take, tap } from 'rxjs/operators';
+import { EmojiMenuComponent, ConfirmRemoveDialogComponent } from '@shared/components';
+import { DetailedComment, Todo } from '@shared/models';
+import { isNil } from '@shared/utils';
 import { CommentEditorComponent } from '../comment-editor/comment-editor.component';
 
 @Component({
@@ -12,24 +16,33 @@ import { CommentEditorComponent } from '../comment-editor/comment-editor.compone
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommentComponent {
+  readonly emojiMenu = EmojiMenuComponent;
+  todo$: Observable<Todo>;
+  isEditMode = false;
+
   @ViewChild(CommentEditorComponent) editor: CommentEditorComponent;
   @Input() comment: DetailedComment;
-  @Input() relatedTodoId: number;
-  isEditMode = false;
-  readonly emojiMenu = EmojiMenuComponent;
+  @Input() set relatedTodoId(id: number) {
+    if (isNil(id)) return;
+    this.todo$ = this.todosQuery.selectEntity(id);
+  }
 
-  constructor(private todosQuery: TodosQuery, private todosService: TodosService) {}
+  constructor(private todosQuery: TodosQuery, private todosService: TodosService, private dialog: Dialog) {}
 
   remove(): void {
-    this.todosQuery
-      .selectEntity(this.relatedTodoId)
-      .pipe(
-        take(1),
-        switchMap(todo => {
-          return this.todosService.removeComment(this.comment.id, todo.id);
-        }),
-      )
-      .subscribe();
+    this.dialog
+      .open<ConfirmRemoveDialogComponent, null, boolean>(ConfirmRemoveDialogComponent)
+      .afterClosed()
+      .subscribe(confirm => {
+        if (!confirm) return;
+
+        this.todo$
+          .pipe(
+            take(1),
+            switchMap(todo => this.todosService.removeComment(this.comment.id, todo.id)),
+          )
+          .subscribe();
+      });
   }
 
   edit(): void {
@@ -37,8 +50,7 @@ export class CommentComponent {
   }
 
   update(): void {
-    this.todosQuery
-      .selectEntity(this.relatedTodoId)
+    this.todo$
       .pipe(
         take(1),
         switchMap(todo => this.todosService.editComment(this.editor.text, this.comment.id, todo.id)),
@@ -52,8 +64,9 @@ export class CommentComponent {
   }
 
   react(emoji: string): void {
-    this.todosQuery
-      .selectEntity(this.relatedTodoId)
+    if (!emoji) return;
+
+    this.todo$
       .pipe(
         take(1),
         switchMap(todo => this.todosService.reactToComment(emoji, this.comment.id, todo.id)),

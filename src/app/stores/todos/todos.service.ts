@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { arrayFind, arrayRemove, arrayUpdate, getIDType, transaction } from '@datorama/akita';
+import { arrayRemove, arrayUpdate, getIDType } from '@datorama/akita';
 import { HttpUpdateConfig, NgEntityService, NgEntityServiceConfig } from '@datorama/akita-ng-entity-service';
 import { Observable, of } from 'rxjs';
 import { map, mapTo, switchMap, tap } from 'rxjs/operators';
@@ -27,12 +27,6 @@ export class TodosService extends NgEntityService<TodosState> {
     return this.preGetTodo(this.get(id));
   }
 
-  preGetTodo<T = Todo | Todo[]>(todoStream$: Observable<T>): Observable<T> {
-    return this.todosQuery.getValue().isPrioritiesFetched
-      ? todoStream$
-      : this.getPriorities().pipe(switchMap(() => todoStream$));
-  }
-
   getPriorities(): Observable<TodoPriority[]> {
     return this.getHttp()
       .get<TodoPriority[]>(`${this.api}/priorities`)
@@ -48,8 +42,8 @@ export class TodosService extends NgEntityService<TodosState> {
       );
   }
 
-  updateTodo(id: number, entity: Todo, config?: HttpUpdateConfig<Todo>): Observable<Todo> {
-    return super.update<Todo>(id, todoToHttpBody(entity), {
+  updateTodo(id: number, entity: Partial<Todo>, config?: HttpUpdateConfig<Todo>): Observable<Todo> {
+    return super.update<Todo>(id, todoToHttpBody({ ...this.todosQuery.getEntity(id), ...entity }), {
       ...config,
     });
   }
@@ -121,7 +115,29 @@ export class TodosService extends NgEntityService<TodosState> {
     }).pipe(map((updatedTodo: Todo) => this.findCommentById(commentId, updatedTodo.comments)));
   }
 
-  findCommentById(commentId: number, comments: Comment[]): Comment {
+  unreactToComment(): void {}
+
+  toggleReactToComment(emoji: string, commentId: number, todoId: number): Observable<any> {
+    const todo = this.todosQuery.getEntity(todoId);
+    if (!todo) return;
+    const comment = this.findCommentById(commentId, todo.comments);
+    const emojis = Object.keys(comment.reacts);
+    const hasAnyReactions = Boolean(emojis.length);
+    if (!hasAnyReactions) return this.reactToComment(emoji, commentId, todoId);
+    const hasAuthorAlreadyReacted = Boolean(emojis.find(item => item === emoji));
+    if (hasAuthorAlreadyReacted) {
+    } else {
+      return this.reactToComment(emoji, commentId, todoId);
+    }
+  }
+
+  private findCommentById(commentId: number, comments: Comment[]): Comment {
     return comments.find(comment => comment.id === commentId);
+  }
+
+  private preGetTodo<T = Todo | Todo[]>(todoStream$: Observable<T>): Observable<T> {
+    return this.todosQuery.getValue().isPrioritiesFetched
+      ? todoStream$
+      : this.getPriorities().pipe(switchMap(() => todoStream$));
   }
 }

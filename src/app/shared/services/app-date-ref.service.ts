@@ -7,7 +7,7 @@ import { interval } from 'rxjs';
 export class AppDateRef {
   now = new Date();
 
-  constructor(private zone: NgZone) {
+  constructor(zone: NgZone) {
     zone.runOutsideAngular(() => {
       interval(60000).subscribe(() => {
         this.now.setMinutes(this.now.getMinutes() + 1);

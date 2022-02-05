@@ -1,0 +1,9 @@
+<div class="icon-catalog">
+  <div class="icon-catalog-name">Svg icons</div>
+  <div class="icon-catalog-list">
+    <div *ngFor="let name of icons" class="icon-catalog-item">
+      <svg-icon [name]="name" svgClass="icon_size_m"></svg-icon>
+      <span>{{ name }}</span>
+    </div>
+  </div>
+</div>

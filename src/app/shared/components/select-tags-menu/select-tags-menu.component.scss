@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  width: 275px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 8%);
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.filter-tag {
+  padding: 5px 12px;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  line-height: 24px;
+  box-sizing: border-box;
+}
+
+.tag-list {
+  list-style: none;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 0;
+
+  .tag {
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f3f3f3;
+    }
+
+    .label {
+      flex-grow: 1;
+      margin: 0 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    t-checkbox {
+      color: grey;
+    }
+  }
+
+  .shared-tags-title {
+    color: #555;
+    padding: 7px 10px;
+  }
+}

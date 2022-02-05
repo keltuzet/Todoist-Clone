@@ -10,10 +10,11 @@ import {
   Input,
   OnDestroy,
 } from '@angular/core';
-import { TabDirective } from '@features/tabs/directives/tab.directive';
+import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
+import { map, startWith, switchMap } from 'rxjs/operators';
+
+import { TabDirective } from '../../directives/tab.directive';
 import { trackByIndex } from '@shared/utils';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map, startWith, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 't-tabs',
@@ -23,11 +24,12 @@ import { map, startWith, takeUntil, tap } from 'rxjs/operators';
 })
 export class TabsComponent implements AfterViewInit, OnDestroy {
   readonly select$ = new BehaviorSubject<number>(0);
-  readonly labels$ = new BehaviorSubject<string[]>([]);
   readonly trackByIndex = trackByIndex;
+
   @Input() set selectedTab(index: number) {
     this.select$.next(index);
   }
+  labels$: Observable<string[]>;
   selectedTabIndex$: Observable<number>;
 
   @ContentChildren(TabDirective) private tabs: QueryList<TabDirective>;
@@ -38,12 +40,11 @@ export class TabsComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     const contentChanges: Observable<QueryList<TabDirective>> = this.tabs.changes.pipe(startWith(this.tabs));
-    contentChanges
-      .pipe(
-        takeUntil(this.unsubscriber),
-        tap(() => this.labels$.next(this.tabs.map(tab => tab.label))),
-      )
-      .subscribe();
+
+    this.labels$ = contentChanges.pipe(
+      switchMap(() => combineLatest(this.tabs.map(tab => tab.getLabel()))),
+      map((labels: string[]) => labels),
+    );
 
     this.selectedTabIndex$ = this.select$.asObservable().pipe(
       map(() => {

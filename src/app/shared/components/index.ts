@@ -9,3 +9,8 @@ export * from './todo-list/todo-list.module';
 export * from './display-todos-menu';
 export * from './emoji-menu/emoji-menu.component';
 export * from './emoji-menu/emoji-menu.module';
+export * from './shared-dialogs';
+export * from './select-tags-menu/select-tags-menu.component';
+export * from './select-tags-menu/select-tags-menu.module';
+export * from './checkbox/checkbox.component';
+export * from './checkbox/checkbox.module';

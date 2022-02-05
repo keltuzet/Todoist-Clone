@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "json-server": "json-server db.json -w --middlewares ./middleware.js --routes routes.json"
+    "json-server": "json-server db.json -w --middlewares ./middleware.js --routes routes.json --static ./public",
+    "create-icon-catalog": "create-html --title='icon-catalog'"
   },
   "private": true,
   "dependencies": {

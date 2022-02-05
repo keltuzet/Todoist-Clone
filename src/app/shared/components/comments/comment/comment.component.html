@@ -2,7 +2,7 @@
 
 <ng-container *ngIf="!isEditMode">
   <div class="comment-meta">
-    <span class="author-name">{{ comment?.author.name }}</span>
+    <span class="author-name">{{ comment?.author?.name }}</span>
     <span *let="comment?.isEdited as isEdited" class="posted-date">
       <span *ngIf="isEdited" class="last-update-label mr-1">Изменено:</span>
       <span>{{ (isEdited ? comment?.lastEditedDate : comment?.postedDate) | date: 'd MMMM y HH:mm' }}</span>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <pre class="comment-text" [innerHTML]="comment?.text"></pre>
-  <t-comment-reactions [comment]="comment"></t-comment-reactions>
+  <t-comment-reactions [comment]="comment" [relatedTodoId]="relatedTodoId"></t-comment-reactions>
 </ng-container>
 
 <ng-container *ngIf="isEditMode">

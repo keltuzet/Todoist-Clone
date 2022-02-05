@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthorsHttpService } from './authors-http.service';
+import { EmojisService } from './emojis.service';
 
-describe('AuthorsHttpService', () => {
-  let service: AuthorsHttpService;
+describe('EmojisService', () => {
+  let service: EmojisService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthorsHttpService);
+    service = TestBed.inject(EmojisService);
   });
 
   it('should be created', () => {

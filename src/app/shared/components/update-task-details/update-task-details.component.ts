@@ -1,8 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
-import { DIALOG_DATA } from '@features/dialog/dialog-config';
-import { DialogRef } from '@features/dialog/dialog-ref';
-import { TodosQuery, TodosService } from '@stores/todos';
+import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { switchMap, take } from 'rxjs/operators';
+
+import { DIALOG_DATA, DialogRef } from '@features/dialog/';
+import { TodoPriority } from '@shared/models';
+import { TodosQuery, TodosService } from '@stores/todos';
+import { SelectPriorityMenuComponent } from '../select-priority-menu/select-priority-menu.component';
+import { SelectTagsMenuComponent } from '../select-tags-menu/select-tags-menu.component';
 
 @Component({
   selector: 't-update-task-details',
@@ -10,22 +13,18 @@ import { switchMap, take } from 'rxjs/operators';
   styleUrls: ['./update-task-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UpdateTaskDetailsComponent implements OnInit {
-  todo$ = this.todosQuery.selectTodo(this.id);
+export class UpdateTaskDetailsComponent {
+  readonly todo$ = this.todosQuery.selectTodo(this.id);
+  readonly tagOpacity = 0.2;
+  readonly selectPriorityMenu = SelectPriorityMenuComponent;
+  readonly selectTagsMenu = SelectTagsMenuComponent;
+
   constructor(
     @Inject(DIALOG_DATA) private id: number,
     private todosQuery: TodosQuery,
     private dialogRef: DialogRef,
     private todosService: TodosService,
   ) {}
-
-  ngOnInit(): void {}
-
-  addAlpha(color: string, opacity: number): string {
-    // coerce values so ti is between 0 and 1.
-    const colorOpacity = Math.round(Math.min(Math.max(opacity || 1, 0), 1) * 255);
-    return color + colorOpacity.toString(16).toUpperCase();
-  }
 
   close(): void {
     this.dialogRef.close();
@@ -39,4 +38,16 @@ export class UpdateTaskDetailsComponent implements OnInit {
       )
       .subscribe();
   }
+
+  updatePriority(priority: TodoPriority): void {
+    if (!priority) return;
+    this.todo$
+      .pipe(
+        take(1),
+        switchMap(todo => this.todosService.updateTodo(todo.id, { priorityId: priority.id })),
+      )
+      .subscribe();
+  }
+
+  updateTags(arg: any): void {}
 }

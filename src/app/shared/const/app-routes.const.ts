@@ -6,4 +6,5 @@ export const APP_ROUTES = Object.freeze({
   project: 'project',
   label: 'label',
   dev: 'dev',
+  iconCatalog: 'icon-catalog',
 });

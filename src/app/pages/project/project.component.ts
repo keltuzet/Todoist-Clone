@@ -17,7 +17,7 @@ import * as emojisList from 'emojis-list';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  project$ = this.projectsQuery.selectSelectedProperty();
+  project$ = this.projectsQuery.selectRouteProject();
   ref: OverlayRef;
   delay$ = of(true).pipe(delay(10));
 
@@ -32,7 +32,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     console.log(emoji.search(''));
     console.log(emojisList);
-    // this.projectsQuery.selectSelectedProperty()
+    // this.projectsQuery.selectRouteProject()
     // .subscribe(v => console.log(v));
   }
 
