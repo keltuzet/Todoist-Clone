@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ProjectActionsMenuComponent } from '@shared/components';
 
 import { Project } from '@shared/models';
 import { UnsubscribeService } from '@shared/services';
@@ -15,6 +16,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class NavProjectListComponent implements OnInit {
   projects: Project[];
+  readonly projectActionsMenu = ProjectActionsMenuComponent;
 
   constructor(
     private projectsQuery: ProjectsQuery,
@@ -23,7 +25,7 @@ export class NavProjectListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.projectsQuery.all$.pipe(takeUntil(this.unsubscribe)).subscribe((projects) => {
+    this.projectsQuery.all$.pipe(takeUntil(this.unsubscribe)).subscribe(projects => {
       this.projects = projects;
       this.changeDetectorRef.markForCheck();
     });

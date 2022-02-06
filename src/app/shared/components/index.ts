@@ -14,3 +14,5 @@ export * from './select-tags-menu/select-tags-menu.component';
 export * from './select-tags-menu/select-tags-menu.module';
 export * from './checkbox/checkbox.component';
 export * from './checkbox/checkbox.module';
+export * from './project-actions-menu/project-actions-menu.component';
+export * from './project-actions-menu/project-actions-menu.module';

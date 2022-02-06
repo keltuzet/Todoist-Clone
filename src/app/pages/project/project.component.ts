@@ -8,8 +8,6 @@ import { ProjectsQuery } from '@stores/projects';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { ProjectNotFoundComponent } from './components';
-import * as emoji from 'node-emoji';
-import * as emojisList from 'emojis-list';
 
 @Component({
   selector: 't-project',
@@ -30,8 +28,6 @@ export class ProjectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(emoji.search(''));
-    console.log(emojisList);
     // this.projectsQuery.selectRouteProject()
     // .subscribe(v => console.log(v));
   }

@@ -220,7 +220,8 @@
           "title": "Requires a problem statement"
         }
       ],
-      "color": "#f5147c"
+      "color": "#f5147c",
+      "isFavorite": true
     },
     {
       "id": 2,
@@ -239,7 +240,48 @@
           "title": "Team acceptance"
         }
       ],
-      "color": "#6accbc"
+      "color": "#6accbc",
+      "isFavorite": true
+    },
+    {
+      "id": 3,
+      "title": "Копия Mobile app",
+      "todoStatuses": [
+        {
+          "id": 0,
+          "title": "Backlog"
+        },
+        {
+          "id": 1,
+          "title": "In review"
+        },
+        {
+          "id": 2,
+          "title": "Team acceptance"
+        }
+      ],
+      "color": "#6accbc",
+      "isFavorite": true
+    },
+    {
+      "id": 4,
+      "title": "Копия Mobile app",
+      "todoStatuses": [
+        {
+          "id": 0,
+          "title": "Backlog"
+        },
+        {
+          "id": 1,
+          "title": "In review"
+        },
+        {
+          "id": 2,
+          "title": "Team acceptance"
+        }
+      ],
+      "color": "#6accbc",
+      "isFavorite": true
     }
   ],
   "authors": [

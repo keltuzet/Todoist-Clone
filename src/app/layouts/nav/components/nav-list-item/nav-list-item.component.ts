@@ -1,8 +1,8 @@
 import { ComponentType } from '@angular/cdk/portal';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-nav-list-item',
+  selector: 't-nav-list-item',
   templateUrl: './nav-list-item.component.html',
   styleUrls: ['./nav-list-item.component.scss'],
 })
@@ -12,6 +12,7 @@ export class NavListItemComponent implements OnInit {
   @Input() todoCount: number;
   @Input() hasMenu: boolean;
   @Input() menu: ComponentType<any>;
+  @Output() actions = new EventEmitter<void>();
 
   constructor() {}
 

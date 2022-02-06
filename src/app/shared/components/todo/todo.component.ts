@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Dialog } from '@features/dialog/dialog.service';
 
+import { Dialog } from '@features/dialog';
 import { DetailedTodo, Todo } from '@shared/models';
-import { interval, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { TodoActionsMenuComponent } from '../todo-actions-menu';
 import { UpdateTaskDetailsComponent } from '../update-task-details/update-task-details.component';
 
@@ -21,16 +19,13 @@ export class TodoComponent implements OnInit {
   @Input() isOverdue: boolean;
   termFormat: string;
 
-  now = new Date();
-  menu = TodoActionsMenuComponent;
-  overdue$: Observable<boolean>;
+  readonly now = new Date();
+  readonly todoActionsMenu = TodoActionsMenuComponent;
 
-  @Input() overdueFn: (Date) => boolean = d => true;
   constructor(private dialog: Dialog) {}
 
   ngOnInit(): void {
     this.termFormat = this.termFormatFn(this.todo);
-    this.overdue$ = interval(60000).pipe(map(() => this.overdueFn(new Date())));
   }
 
   comment(id: number): void {

@@ -2,14 +2,28 @@
   <app-expansion-panel-header>Проекты</app-expansion-panel-header>
   <app-expansion-panel-body>
     <ul class="nav-list" cdkDropList (cdkDropListDropped)="drop($event)">
-      <li class="nav-list-item-container" *ngFor="let project of projects; trackBy: projectTrackyBy" cdkDrag [cdkDragData]="project">
+      <li
+        class="nav-list-item-container"
+        *ngFor="let project of projects; trackBy: projectTrackyBy"
+        cdkDrag
+        [cdkDragData]="project"
+      >
         <a [routerLink]="['project', project.id]" routerLinkActive="active">
-          <app-nav-list-item [todoCount]="3" [color]="project.color" [hasMenu]="true" [icon]="project | projectIcon">
+          <t-nav-list-item
+            [todoCount]="3"
+            [color]="project.color"
+            [icon]="project | projectIcon"
+            [hasMenu]="true"
+            [menu]="projectActionsMenu"
+          >
             <span>{{ project.title }}</span>
             <button class="nav-list-item__replace-tool" cdkDragHandle>
               <svg-icon name="drag" svgClass="icon_size_m"></svg-icon>
             </button>
-          </app-nav-list-item>
+            <button [tMenuTrigger]="projectActionsMenu" [menuData]="project.id" class="nav-list-item__menu-btn">
+              <svg-icon name="x-menu" [svgStyle]="{ 'width.px': 15, 'height.px': 3 }"></svg-icon>
+            </button>
+          </t-nav-list-item>
         </a>
       </li>
     </ul>

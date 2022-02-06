@@ -82,4 +82,9 @@ export const SVG_ICONS: string[] = [
   'flag-solid',
   'bell-solid',
   'info-outline',
+  'arrow-top-plus',
+  'arrow-bottom-plus',
+  'archive',
+  'leave',
+  'small-heart-solid',
 ];
