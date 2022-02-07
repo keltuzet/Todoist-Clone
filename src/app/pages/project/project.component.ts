@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { SnackbarService } from '@features/snackbar/services/snackbar.service';
 import { GreetingSnackbarComponent } from '@shared/components/greeting-snackbar/greeting-snackbar.component';
 import { ProjectsQuery } from '@stores/projects';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { ProjectNotFoundComponent } from './components';
 import { DisplayTodosMenuComponent } from './components/display-todos-menu/display-todos-menu.component';
 
@@ -14,9 +16,9 @@ import { DisplayTodosMenuComponent } from './components/display-todos-menu/displ
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  project$ = this.projectsQuery.selectSelectedProperty();
+  project$ = this.projectsQuery.selectRouteProject();
   ref: OverlayRef;
-  menu = DisplayTodosMenuComponent;
+  delay$ = of(true).pipe(delay(10));
 
   constructor(
     private snackbarService: SnackbarService,
@@ -27,7 +29,7 @@ export class ProjectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.projectsQuery.selectSelectedProperty()
+    // this.projectsQuery.selectRouteProject()
     // .subscribe(v => console.log(v));
   }
 

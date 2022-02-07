@@ -1,0 +1,24 @@
+.comment-editor-field {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  max-height: 120px;
+  line-height: 20px;
+  border: none;
+  outline: none;
+  overflow-y: auto;
+  resize: none;
+  color: #202020;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: break-spaces;
+  -webkit-font-variant-ligatures: none;
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0;
+
+  &[contenteditable]:empty::before {
+    content: attr(data-placeholder);
+    opacity: 0.3;
+  }
+}

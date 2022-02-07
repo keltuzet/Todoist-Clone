@@ -1,28 +1,40 @@
 import { Injectable } from '@angular/core';
-import { QueryEntity } from '@datorama/akita';
+import { EntityUIQuery, HashMap, QueryEntity } from '@datorama/akita';
 import { RouterQuery } from '@datorama/akita-ng-router-store';
 import { TodoTag } from '@shared/models';
 import { Observable } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
-import { TagsStore, TagsState } from './tags.store';
+import { TagsStore, TagsState, TagsUIState, TagPageUI } from './tags.store';
 
 @Injectable({ providedIn: 'root' })
 export class TagsQuery extends QueryEntity<TagsState> {
-  all$ = this.selectAll();
-  hashMap$ = this.selectAll({ asObject: true });
-  shared$ = this.all$.pipe(map((tags) => tags.filter((tag) => tag.isShared)));
-  unshared$ = this.all$.pipe(map((tags) => tags.filter((tag) => !tag.isShared)));
+  readonly all$: Observable<TodoTag[]> = this.selectAll();
+  readonly hashMap$: Observable<HashMap<TodoTag>> = this.selectAll({ asObject: true });
+  readonly shared$: Observable<TodoTag[]> = this.all$.pipe(map(tags => tags.filter(tag => tag.isShared)));
+  readonly unshared$: Observable<TodoTag[]> = this.all$.pipe(map(tags => tags.filter(tag => !tag.isShared)));
+  ui: EntityUIQuery<TagsUIState>;
 
   constructor(protected store: TagsStore, private routerQuery: RouterQuery) {
     super(store);
+    this.createUIQuery();
   }
 
-  selectSelectedTag(): Observable<TodoTag> {
+  selectRouteTag(): Observable<TodoTag> {
     return this.routerQuery.selectParams('label').pipe(
       switchMap((tagLabel: string) => {
         return this.selectEntity((tag: TodoTag) => tag.title === tagLabel);
       }),
-      filter((project) => Boolean(project)),
+      filter(project => Boolean(project)),
+    );
+  }
+
+  selectRouteTagUIState(): Observable<TagPageUI> {
+    return this.routerQuery.selectParams('label').pipe(
+      switchMap((tagLabel: string) => {
+        return this.selectEntity((tag: TodoTag) => tag.title === tagLabel).pipe(
+          switchMap(tag => this.ui.selectEntity(tag.id)),
+        );
+      }),
     );
   }
 }

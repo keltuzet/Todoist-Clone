@@ -8,8 +8,9 @@
       <ng-content></ng-content>
     </div>
     <span class="nav-list-item__counter">{{ todoCount }}</span>
-    <button class="nav-list-item__menu-btn" *ngIf="hasMenu">
+    <ng-content select=".nav-list-item__menu-btn"></ng-content>
+    <!-- <button [tMenuTrigger]="menu" class="nav-list-item__menu-btn" *ngIf="hasMenu">
       <svg-icon name="x-menu" [svgStyle]="{ 'width.px': 15, 'height.px': 3 }"></svg-icon>
-    </button>
+    </button> -->
   </div>
 </div>

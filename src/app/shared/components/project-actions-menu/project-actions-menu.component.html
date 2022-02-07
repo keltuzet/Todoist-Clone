@@ -1,0 +1,49 @@
+<ul *let="project$ | async as project" class="menu-list">
+  <li appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="arrow-top-plus"></svg-icon>
+    <span class="icon-menu-item__content">Добавить проект выше</span>
+  </li>
+  <li appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="arrow-bottom-plus"></svg-icon>
+    <span class="icon-menu-item__content">Добавить проект ниже</span>
+  </li>
+  <li class="menu-divider"></li>
+  <li appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="pen"></svg-icon>
+    <span class="icon-menu-item__content">Редактировать проект</span>
+  </li>
+  <li appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="user-light-plus"></svg-icon>
+    <span class="icon-menu-item__content">Общий доступ к проекту</span>
+  </li>
+  <li *ngIf="!project.isFavorite" (click)="markAsFavorite()" appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="small-heart-solid"></svg-icon>
+    <span class="icon-menu-item__content">Добавить в избранное</span>
+  </li>
+  <li class="menu-divider"></li>
+  <li (click)="duplicate()" appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="rect-plus"></svg-icon>
+    <span class="icon-menu-item__content">Дублировать проект</span>
+  </li>
+  <li appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="message"></svg-icon>
+    <span class="icon-menu-item__content">Добавлять задачи по Email</span>
+  </li>
+  <li appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="list"></svg-icon>
+    <span class="icon-menu-item__content">Календарная лента проекта</span>
+  </li>
+  <li class="menu-divider"></li>
+  <li appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="archive"></svg-icon>
+    <span class="icon-menu-item__content">Архивировать проект</span>
+  </li>
+  <li *ngIf="!project.shared" (click)="remove()" appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="trash-alt"></svg-icon>
+    <span class="icon-menu-item__content">Удалить проект</span>
+  </li>
+  <li *ngIf="project.shared" (click)="leave()" appMenuClose class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="leave"></svg-icon>
+    <span class="icon-menu-item__content">Покинуть проект</span>
+  </li>
+</ul>

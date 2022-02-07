@@ -1,1 +1,1 @@
-
+export * from './emoji.model';

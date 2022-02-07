@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { SVG_ICONS } from '@shared/const/icons.const';
 import { SvgIconRegistryService } from 'angular-svg-icon';
-import { forkJoin, merge, zip } from 'rxjs';
+import { forkJoin } from 'rxjs';
+
+import { SVG_ICONS } from '@shared/const';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { forkJoin, merge, zip } from 'rxjs';
 export class IconRegistrarService {
   constructor(private iconReg: SvgIconRegistryService) {}
 
-  init() {
-    forkJoin(SVG_ICONS.map((icon) => this.iconReg.loadSvg(`/assets/img/svg/${icon}.svg`, icon))).subscribe();
+  init(): void {
+    forkJoin(SVG_ICONS.map(icon => this.iconReg.loadSvg(`/assets/img/svg/${icon}.svg`, icon))).subscribe();
   }
 }

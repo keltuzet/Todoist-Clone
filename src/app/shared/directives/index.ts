@@ -4,3 +4,5 @@ export * from './layout-for/layout-for.directive';
 export * from './layout-for/layout-for.module';
 export * from './show-on-breakpoint/show-on-breakpoint.directive';
 export * from './show-on-breakpoint/show-on-breakpoint.module';
+export * from './priority-flag-icon/priority-flag-icon.directive';
+export * from './priority-flag-icon/priority-flag-icon.module';

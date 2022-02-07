@@ -31,7 +31,7 @@
         "primary": "#808080",
         "secondary": "rgb(130,130,130,0.2)"
       },
-      "iconFlagTransparent": true
+      "default": true
     }
   ],
   "todos": [

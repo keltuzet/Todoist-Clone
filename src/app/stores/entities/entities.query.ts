@@ -8,11 +8,11 @@ import { TodosQuery } from '@stores/todos';
   providedIn: 'root',
 })
 export class EntitiesQuery {
-  entities$ = combineQueries([
+  readonly entities$ = combineQueries([
     this.projectsQuery.all$,
     this.tagsQuery.all$,
     this.todosQuery.all$,
-    this.projectsQuery.todoStatusesDetailed$,
+    this.projectsQuery.detailedStatuses$,
   ]);
 
   constructor(private projectsQuery: ProjectsQuery, private tagsQuery: TagsQuery, private todosQuery: TodosQuery) {}

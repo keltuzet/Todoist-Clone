@@ -16,7 +16,7 @@ export class UpcomingCalendarComponent implements OnInit {
   week: Date[] = [];
   selected: Date;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.calcWeek();

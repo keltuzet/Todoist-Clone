@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Todo } from '@shared/models';
 import { setNextWeek, setToday, setTomorrow, setWeekend } from '@shared/utils';
-import { TodosService } from '@stores/todos';
 import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ScheduleHolderItem, ScheduleHolderItemType } from './schedule-holder-item.model';
-import { getScheduleHolderList, SCHEDULE_HOLDER_LIST } from './schedule-holder-list.const';
+import { getScheduleHolderList } from './schedule-holder-list.const';
 
 @Component({
   selector: 't-todo-schedule-holder',
@@ -16,44 +15,40 @@ import { getScheduleHolderList, SCHEDULE_HOLDER_LIST } from './schedule-holder-l
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoScheduleHolderComponent implements OnInit {
-  date$ = new BehaviorSubject<Date>(null);
+  date$ = new BehaviorSubject<moment.Moment>(null);
   list$: Observable<ScheduleHolderItem[]>;
   now = new Date();
+  nowMoment = moment();
   currDay = this.now.getDate();
 
   @Output() scheduleChange = new EventEmitter<Date | null>();
 
   @Input() isColView = true;
-  @Input('date') set date(val: Date) {
-    this.date$.next(val);
+  @Input('date') set date(val: string) {
+    this.date$.next(moment(val));
   }
   @Input() todo: Todo;
 
-  constructor(private todosService: TodosService) {}
-
   ngOnInit(): void {
-    this.list$ = this.date$.pipe(
-      map((date) => getScheduleHolderList(date, this.now)),
-    );
+    this.list$ = this.date$.pipe(map(date => getScheduleHolderList(date.toDate(), this.now)));
   }
 
-  handleClick(type: ScheduleHolderItemType) {}
+  handleClick(type: ScheduleHolderItemType): void {}
 
-  setSchedule(type: ScheduleHolderItemType) {
+  setSchedule(type: ScheduleHolderItemType): void {
     if (!this.date$.value) return;
+    const date = this.date$.value;
     switch (type) {
       case 'today':
-        // return this.scheduleChange.emit(setToday(new Date(this.date$.value.getTime()), this.now));
+        return this.scheduleChange.emit(setToday(date, this.nowMoment).toDate());
       case 'tomorrow':
-        // return this.scheduleChange.emit(setTomorrow(new Date(this.date$.value.getTime()), this.now));
+        return this.scheduleChange.emit(setTomorrow(date, this.nowMoment).toDate());
       case 'weekends':
-        // return this.scheduleChange.emit(setWeekend(new Date(this.date$.value.getTime()), this.now));
+        return this.scheduleChange.emit(setWeekend(date, this.nowMoment).toDate());
       case 'nextWeek':
-        // return this.scheduleChange.emit(setNextWeek(new Date(this.date$.value.getTime()), this.now));
+        return this.scheduleChange.emit(setNextWeek(date, this.nowMoment).toDate());
       case 'noTimeLimit':
-        const noLimitDate = new Date(this.date$.value.getTime());
-        noLimitDate.setFullYear(99999);
-        // return this.scheduleChange.emit(noLimitDate);
+        return this.scheduleChange.emit(date.toDate());
       case 'more':
         return;
     }

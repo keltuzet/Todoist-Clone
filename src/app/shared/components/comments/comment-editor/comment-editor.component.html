@@ -1,0 +1,14 @@
+<div
+  #textbox
+  role="textbox"
+  contenteditable="true"
+  aria-multiline="true"
+  aria-readonly="false"
+  translate="no"
+  aria-labelledby="txtboxLabel"
+  class="comment-editor-field"
+  [attr.aria-label]="placeholder"
+  [attr.aria-placeholder]="placeholder"
+  [attr.data-placeholder]="placeholder"
+  (keyup)="handleKeyUp($event)"
+></div>

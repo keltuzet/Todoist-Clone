@@ -8,8 +8,8 @@ import { ProjectNotFoundComponent } from './components';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ButtonModule } from '@features/button/button.module';
 import { ShowOnBreakpointModule } from '@shared/directives';
-import { TooltipModule } from '@features/tooltip';
-import { DisplayTodosMenuComponent } from './components/display-todos-menu/display-todos-menu.component';
+import { TooltipModule } from 'todoist-tooltip';
+import { TabsModule } from '@features/tabs/tabs.module';
 
 @NgModule({
   declarations: [ProjectComponent, ProjectNotFoundComponent, DisplayTodosMenuComponent],
@@ -21,6 +21,7 @@ import { DisplayTodosMenuComponent } from './components/display-todos-menu/displ
     ButtonModule,
     ShowOnBreakpointModule,
     TooltipModule,
+    TabsModule,
   ],
 })
 export class ProjectModule {}

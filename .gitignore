@@ -1,9 +1,13 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Angular
+/.angular
+
 # compiled output
 /dist
 /tmp
 /out-tsc
+
 # Only exists if Bazel was run
 /bazel-out
 
@@ -32,6 +36,7 @@ speed-measure-plugin*.json
 .history/*
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage

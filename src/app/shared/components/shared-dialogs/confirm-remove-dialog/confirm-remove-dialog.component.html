@@ -1,0 +1,11 @@
+<header class="header">
+  <svg-icon class="info" name="info-outline" svgClass="icon_size_m"></svg-icon>
+  <button (click)="close()" tButton theme="icon-button">
+    <svg-icon class="close" name="cross" svgClass="icon_size_m"></svg-icon>
+  </button>
+</header>
+<div class="title">Вы действительно хотите это удалить?</div>
+<div class="actions">
+  <button (click)="close()" tButton theme="outline">Отмена</button>
+  <button (click)="confirm()" tButton color="primary">Удалить</button>
+</div>

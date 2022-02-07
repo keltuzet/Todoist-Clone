@@ -1,0 +1,62 @@
+:host {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.comment-reaction {
+  display: flex;
+  align-items: center;
+  height: 29px;
+  width: 45px;
+  margin: 7px 8px 0 0;
+  border: 1px solid rgba(5, 118, 185, 0.1);
+  border-radius: 3px;
+  color: #397fbe;
+  background-color: rgba(5, 118, 185, 0.05);
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &:hover {
+    color: #397fbe;
+    background-color: rgba(5, 118, 185, 0.1);
+    border: 1px solid rgba(5, 118, 185, 0.09);
+  }
+}
+
+.react-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 29px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  margin: 7px 8px 0 0;
+  cursor: pointer;
+  color: #999;
+  box-sizing: border-box;
+
+  &:hover {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+  }
+}
+
+.comment-reaction-emoji {
+  flex: 1;
+  text-align: left;
+  font-size: 15px;
+  padding-left: 8px;
+  margin-top: -1px;
+}
+
+.comment-reaction-count {
+  padding-right: 7px;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+.reaction-tooltip {
+  display: flex;
+  flex-direction: column;
+}

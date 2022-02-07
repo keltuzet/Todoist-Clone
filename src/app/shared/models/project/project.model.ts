@@ -5,7 +5,7 @@ export interface TodoStatus {
   title: string;
 }
 
-export interface TodoStatusDetailed extends TodoStatus {
+export interface TodoDetailedStatus extends TodoStatus {
   project: Project;
 }
 

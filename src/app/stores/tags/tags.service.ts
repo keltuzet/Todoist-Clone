@@ -1,34 +1,36 @@
 import { Injectable } from '@angular/core';
 import { NgEntityService, NgEntityServiceConfig } from '@datorama/akita-ng-entity-service';
+import { take } from 'rxjs/operators';
 
-import { TagsStore, TagsState } from './tags.store';
+import { GroupTodosBy, SortTodosBy } from '@shared/models';
+import { TagsQuery } from './tags.query';
+import { TagsStore, TagsState, TagPageUI } from './tags.store';
+
+export const initialUIState: Omit<TagPageUI, 'id'> = {
+  groupedBy: GroupTodosBy.Default,
+  sortedBy: SortTodosBy.Default,
+};
 
 @NgEntityServiceConfig({
   resourceName: 'tags',
 })
 @Injectable({ providedIn: 'root' })
 export class TagsService extends NgEntityService<TagsState> {
-  constructor(protected tagsStore: TagsStore) {
+  constructor(protected tagsStore: TagsStore, private tagsQuery: TagsQuery) {
     super(tagsStore);
   }
 
-  // get() {
-  //   return this.http.get<Tag[]>('https://api.com').pipe(
-  //     tap((entities) => {
-  //       this.tagsStore.set(entities);
-  //     }),
-  //   );
-  // }
+  setDefaultUIStateOfRouteTag(): void {
+    this.tagsQuery
+      .selectRouteTag()
+      .pipe(take(1))
+      .subscribe(state => {
+        if (!state) return;
+        this.setDefaultUIState(state.id);
+      });
+  }
 
-  // add(tag: Tag) {
-  //   this.tagsStore.add(tag);
-  // }
-
-  // update(id, tag: Partial<Tag>) {
-  //   this.tagsStore.update(id, tag);
-  // }
-
-  // remove(id: ID) {
-  //   this.tagsStore.remove(id);
-  // }
+  private setDefaultUIState(id: number): void {
+    this.tagsStore.ui.add({ ...initialUIState, id });
+  }
 }

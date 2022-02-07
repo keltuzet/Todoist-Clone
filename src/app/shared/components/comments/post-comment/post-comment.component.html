@@ -1,0 +1,18 @@
+<form class="comment-editor-form">
+  <t-comment-editor></t-comment-editor>
+
+  <div class="comment-editor-toolbar">
+    <div class="comment-editor-tools">
+      <button tTooltip="Прикрепить файл" class="comment-editor-tool">
+        <svg-icon name="attachment" svgClass="icon_size_m"></svg-icon>
+      </button>
+      <butto tTooltip="Записать аудио" n class="comment-editor-tool">
+        <svg-icon name="microphone" svgClass="icon_size_m"></svg-icon>
+      </butto>
+      <button tTooltip="Вставить эмодзи" class="comment-editor-tool">
+        <svg-icon name="emoji" svgClass="icon_size_m"></svg-icon>
+      </button>
+    </div>
+    <button tButton color="primary" class="comment-editor-submit" (click)="comment()">Комментировать</button>
+  </div>
+</form>

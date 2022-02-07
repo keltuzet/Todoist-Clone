@@ -1,0 +1,94 @@
+<ng-container *ngIf="todo$ | async as todo">
+  <div class="header">
+    <div class="header__title">{{ todo.project?.title }}</div>
+    <button tButton theme="icon-button" class="header__close-btn" (click)="close()">
+      <svg-icon name="cross" svgClass="icon_size_m"></svg-icon>
+    </button>
+  </div>
+  <div class="body">
+    <div class="todo-details">
+      <app-radio-button
+        class="mark-tool"
+        [checked]="false"
+        [primary]="todo.priority?.colors.primary"
+        [secondary]="todo.priority?.colors.secondary"
+      ></app-radio-button>
+      <div class="todo-main">
+        <div class="todo-header">
+          <div class="todo-header__title">{{ todo.title }}</div>
+          <div class="todo-header__description">{{ todo.description || 'Описание' }}</div>
+        </div>
+        <div class="todo-sub">
+          <button tButton theme="icon-button" class="todo-date-btn">
+            <svg-icon name="calendar-solid" svgClass="icon_size_s"></svg-icon>
+            <span class="inner">{{ todo.endDate | date: (todo.hasEndTime ? 'd MMMM y HH:mm' : 'd MMMM y') }}</span>
+          </button>
+          <a
+            *ngFor="let tag of todo.tags"
+            [ngStyle]="{ backgroundColor: tag.color | hexTransparency: tagOpacity }"
+            class="label-pill"
+          >
+            {{ tag.title }}
+          </a>
+        </div>
+        <div class="todo-footer">
+          <div class="todo-actions">
+            <button tButton theme="icon-button">
+              <svg-icon name="list" svgClass="icon_size_m"></svg-icon>
+            </button>
+            <button
+              tButton
+              theme="icon-button"
+              [tMenuTrigger]="selectTagsMenu"
+              [menuData]="todo.id"
+              (afterClose)="updateTags($event)"
+            >
+              <svg-icon name="tag-outline" svgClass="icon_size_m"></svg-icon>
+            </button>
+            <button
+              tButton
+              theme="icon-button"
+              [tMenuTrigger]="selectPriorityMenu"
+              [menuData]="todo.priorityId"
+              (afterClose)="updatePriority($event)"
+            >
+              <svg-icon [tPriorityFlagIcon]="todo?.priority" svgClass="icon_size_m"></svg-icon>
+            </button>
+            <button tTooltip="Добавить напоминание" tButton theme="icon-button">
+              <svg-icon name="alarm-clock" svgClass="icon_size_m"></svg-icon>
+            </button>
+            <button tTooltip="Действия в задаче" tButton theme="icon-button">
+              <svg-icon
+                name="x-menu"
+                [ngStyle]="{ padding: '0 4.5px' }"
+                [svgStyle]="{ 'width.px': 15, 'height.px': 3 }"
+              ></svg-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <t-tabs [selectedTab]="1">
+      <ng-template tTab="Sub-tasks"></ng-template>
+      <ng-template [tTab]="'Comments' + ' ' + todo.comments.length">
+        <ng-container *let="!todo.comments.length as isEmpty">
+          <div *ngIf="isEmpty" class="empty-state">
+            <div class="empty-state-illustration">
+              <svg-icon name="comment-illustration" [svgStyle]="{ 'width.px': 145, 'height.px': 132 }"></svg-icon>
+            </div>
+            <div class="empty-state-body">Add relevant notes, links, files, photos, or anything else here.</div>
+          </div>
+          <div *ngIf="!isEmpty" class="comments-list">
+            <t-comment [comment]="comment" [relatedTodoId]="todo.id" *ngFor="let comment of todo.comments"></t-comment>
+          </div>
+        </ng-container>
+        <t-post-comment (comment)="postComment($event)"></t-post-comment>
+      </ng-template>
+      <ng-template tTab="Activity"></ng-template>
+    </t-tabs>
+  </div>
+</ng-container>
+
+<ng-template #tooltip></ng-template>

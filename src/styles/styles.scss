@@ -1,20 +1,22 @@
 @import '~@angular/cdk/overlay-prebuilt.css';
 
-@import "utils/common";
-@import "utils/size";
-@import "utils/space";
+@import 'utils/common';
+@import 'utils/size';
+@import 'utils/space';
 
-@import "base/reset";
-@import "base/typography";
+@import 'base/reset';
+@import 'base/typography';
 
-@import "components/icon";
-@import "components/button";
-@import "components/tooltip";
-@import "components/overlay";
-@import "components/menu";
-@import "components/todo-list";
-@import "components/nav-list";
-@import "components/snack-bar";
+@import 'components/button';
+@import 'components/empty-state';
+@import 'components/icon';
+@import 'components/menu';
+@import 'components/nav-list';
+@import 'components/overlay';
+@import 'components/snack-bar';
+@import 'components/tabs';
+@import 'components/todo-list';
+@import 'components/tooltip';
 
 :root {
   --view-header-height: 92px;

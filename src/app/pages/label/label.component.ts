@@ -1,10 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 import { DisplayTodosMenuComponent } from '@shared/components';
 import { Todo } from '@shared/models';
-import { TagsQuery } from '@stores/tags';
+import { trackByIdentity } from '@shared/utils';
+import { TagsQuery, TagsService } from '@stores/tags';
 import { TodosQuery } from '@stores/todos';
-import { Observable } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 't-label',
@@ -13,23 +15,27 @@ import { switchMap, tap } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LabelComponent implements OnInit {
-  tag$ = this.tagsQuery.selectSelectedTag();
-  todos$: Observable<Todo[]>;
-  menu = DisplayTodosMenuComponent;
+  readonly tag$ = this.tagsQuery.selectRouteTag();
+  readonly menu = DisplayTodosMenuComponent;
+  readonly trackById = trackByIdentity<Todo>('id');
+  readonly todos$ = this.getTodos();
 
-  constructor(private tagsQuery: TagsQuery, private todosQuery: TodosQuery) {}
+  readonly termFormatFn = (todo: Todo) => `d MMMM${todo.hasEndTime ? ' HH:mm' : ''}`;
+
+  constructor(private tagsQuery: TagsQuery, private tagsService: TagsService, private todosQuery: TodosQuery) {}
 
   ngOnInit(): void {
-    this.todos$ = this.tag$.pipe(switchMap((tag) => this.todosQuery.selectByTag(tag)));
+    this.initTodosDisplaying();
   }
 
-  trackBy(index: number, item: Todo): number {
-    return item.id;
+  private initTodosDisplaying(): void {
+    this.tagsQuery.selectRouteTagUIState().subscribe(state => {
+      if (state) return;
+      this.tagsService.setDefaultUIStateOfRouteTag();
+    });
   }
 
-  termFormatFn = (todo: Todo) => `d MMMM${todo.hasEndTime ? ' HH:mm' : ''}`;
-
-  openDisplayMenu(): void {
-
+  private getTodos(): Observable<Todo[]> {
+    return this.tag$.pipe(switchMap(tag => this.todosQuery.selectByTag(tag)));
   }
 }

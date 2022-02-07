@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  padding: 16px;
+  width: 450px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 16%);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 8px;
+
+  .info {
+    color: rgba(0, 0, 0, 0.56);
+  }
+
+  .close {
+    color: #6c777a;
+  }
+}
+
+.title {
+  padding-top: 16px;
+  padding-bottom: 32px;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    margin: 16px 0 0 16px;
+    font-size: 14px;
+  }
+}
