@@ -10,6 +10,8 @@ import { ButtonModule } from '@features/button/button.module';
 import { ShowOnBreakpointModule } from '@shared/directives';
 import { TooltipModule } from 'todoist-tooltip';
 import { TabsModule } from '@features/tabs/tabs.module';
+import { DisplayTodosMenuComponent } from './components/display-todos-menu/display-todos-menu.component';
+
 
 @NgModule({
   declarations: [ProjectComponent, ProjectNotFoundComponent, DisplayTodosMenuComponent],
