@@ -7,6 +7,7 @@ import { TooltipModule } from 'todoist-tooltip';
 import { TodoPriorityListModule } from '../todo-priority-list';
 import { TodoActionsMenuComponent } from './todo-actions-menu.component';
 import { TodoScheduleHolderModule } from '../todo-schedule-holder';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [TodoActionsMenuComponent],
@@ -17,6 +18,7 @@ import { TodoScheduleHolderModule } from '../todo-schedule-holder';
     TooltipModule,
     TodoPriorityListModule,
     TodoScheduleHolderModule,
+    RouterModule,
   ],
   exports: [TodoActionsMenuComponent],
 })

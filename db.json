@@ -36,29 +36,15 @@
   ],
   "todos": [
     {
-      "id": 2,
-      "projectId": 0,
-      "priorityId": 2,
-      "statusId": 2,
-      "subTodoIds": [],
-      "tagIds": [
-        4
-      ],
-      "title": "Change fonts",
-      "createdDate": "2021-04-09T03:00:00.000Z",
-      "endDate": "2021-06-11T03:00:00.000Z",
-      "comments": []
-    },
-    {
       "id": 3,
       "projectId": 1,
-      "priorityId": 2,
+      "priorityId": 0,
       "statusId": 0,
       "subTodoIds": [],
       "tagIds": [],
       "title": "Make http service for current date todos",
       "createdDate": "2021-03-05T13:31:00.000Z",
-      "endDate": "2021-04-30T09:00:00.000Z",
+      "endDate": "Wed Feb 09 2022 15:00:00 GMT+0600 (Киргизия)",
       "comments": [],
       "hasEndTime": true
     },

@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MenuRef, MENU_DATA } from 'todoist-menu';
 
 import { TodoPriority, Todo } from '@shared/models';
 import { TodosQuery, TodosService, TodosStore } from '@stores/todos';
 import { Router } from '@angular/router';
+import { switchMap, take } from 'rxjs/operators';
 
 @Component({
   templateUrl: './todo-actions-menu.component.html',
@@ -18,13 +19,13 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
   $sub = new Subscription();
 
   constructor(
-    @Inject(MENU_DATA) public data$: BehaviorSubject<Todo>,
+    @Inject(MENU_DATA) public data$: Observable<Todo>,
     private menuRef: MenuRef,
     private todosQuery: TodosQuery,
     private todosStore: TodosStore,
     private todosService: TodosService,
     private router: Router,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.$sub.add(this.data$.subscribe());
@@ -36,27 +37,29 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
   }
 
   updateTodoPriority(priority: TodoPriority): void {
-    this.todosService
-      .updateTodo(this.data$.value.id, {
-        ...this.data$.value,
-        priorityId: priority.id,
-      })
+    this.data$.pipe(
+      take(1),
+      switchMap(todo => this.todosService.updateTodo(todo.id, { ...todo, priorityId: priority.id }))
+    )
       .subscribe();
     this.menuRef.close();
   }
 
   updateTodoSchedule(date: Date): void {
-    this.todosService
-      .updateTodo(this.data$.value.id, {
-        ...this.data$.value,
-        endDate: date.toString(),
-      })
+    this.data$.pipe(
+      take(1),
+      switchMap(todo => this.todosService.updateTodo(todo.id, { ...todo, endDate: date.toString() }))
+    )
       .subscribe();
     this.menuRef.close();
   }
 
   removeTodo(): void {
-    this.todosService.delete(this.data$.value.id).subscribe();
+    this.data$.pipe(
+      take(1),
+      switchMap(todo => this.todosService.delete(todo.id))
+    )
+      .subscribe();
     this.menuRef.close();
   }
 }
