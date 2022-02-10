@@ -53,7 +53,12 @@
     <button tTooltip [tlpTemplate]="editTooltip" class="todo-toolbar__item">
       <svg-icon name="pen" svgClass="icon_size_m"></svg-icon>
     </button>
-    <button tTooltip="Срок" class="todo-toolbar__item">
+    <button 
+      [tMenuTrigger]="todoDeadline" 
+      [menuData]="todo"
+      tTooltip="Назначить срок" 
+      class="todo-toolbar__item"
+    >
       <svg-icon name="small-calendar" svgClass="icon_size_m"></svg-icon>
     </button>
     <button (click)="comment(todo.id)" tTooltip="Комментировать" class="todo-toolbar__item">
