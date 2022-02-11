@@ -9,6 +9,7 @@ import { CapitalizeModule, TimePassedModule } from '@shared/pipes';
 import { TodoComponent } from './todo.component';
 import { TodoActionsMenuModule } from '../todo-actions-menu';
 import { UpdateTaskDetailsModule } from '../update-task-details/update-task-details.module';
+import { TodoDeadlineMenuModule } from '../t-todo-deadline-menu/t-todo-deadline-menu.module';
 
 @NgModule({
   declarations: [TodoComponent],
@@ -22,6 +23,7 @@ import { UpdateTaskDetailsModule } from '../update-task-details/update-task-deta
     TodoActionsMenuModule,
     MenuModule,
     UpdateTaskDetailsModule,
+    TodoDeadlineMenuModule,
   ],
   exports: [TodoComponent],
 })

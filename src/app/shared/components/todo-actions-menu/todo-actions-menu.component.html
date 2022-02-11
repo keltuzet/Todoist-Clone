@@ -1,12 +1,12 @@
-<ul *ngIf="(data$ | async) as todo" class="menu-list">
+<ul *ngIf="(todo$ | async) as todo" class="menu-list">
   <li appMenuClose class="menu-item icon-menu-item">
     <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="pen"></svg-icon>
     <div class="icon-menu-item__content">Изменить задачу</div>
   </li>
   <li class="menu-item">
-    <a class="icon-menu-item d-block" href="">
+    <a class="icon-menu-item d-block" [routerLink]="['/project', todo.projectId]">
       <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="list"></svg-icon>
-      <div class="icon-menu-item__content">Изменить задачу</div>
+      <div class="icon-menu-item__content">Перейти к проекту</div>
     </a>
   </li>
   <li class="menu-divider"></li>
