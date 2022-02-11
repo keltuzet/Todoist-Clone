@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TodoDeadlineComponent } from './todo-deadline.component';
+import { TodoDeadlineMenuComponent } from './t-todo-deadline-menu.component';
 import { TodoScheduleHolderModule } from '../todo-schedule-holder/todo-schedule-holder.module';
 
 
 
 @NgModule({
   declarations: [
-    TodoDeadlineComponent
+    TodoDeadlineMenuComponent
   ],
   imports: [
     CommonModule, TodoScheduleHolderModule
   ],
   exports: [
-    TodoDeadlineComponent
+    TodoDeadlineMenuComponent
   ]
 })
-export class TodoDeadlineModule { }
+export class TodoDeadlineMenuModule { }

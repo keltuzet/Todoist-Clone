@@ -19,7 +19,7 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
   $sub = new Subscription();
 
   constructor(
-    @Inject(MENU_DATA) public data$: Observable<Todo>,
+    @Inject(MENU_DATA) public todo$: Observable<Todo>,
     private menuRef: MenuRef,
     private todosQuery: TodosQuery,
     private todosStore: TodosStore,
@@ -28,7 +28,7 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.$sub.add(this.data$.subscribe());
+    this.$sub.add(this.todo$.subscribe());
     this.router.navigate(['projects', 'id']);
   }
 
@@ -37,7 +37,7 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
   }
 
   updateTodoPriority(priority: TodoPriority): void {
-    this.data$.pipe(
+    this.todo$.pipe(
       take(1),
       switchMap(todo => this.todosService.updateTodo(todo.id, { ...todo, priorityId: priority.id }))
     )
@@ -46,7 +46,7 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
   }
 
   updateTodoSchedule(date: Date): void {
-    this.data$.pipe(
+    this.todo$.pipe(
       take(1),
       switchMap(todo => this.todosService.updateTodo(todo.id, { ...todo, endDate: date.toString() }))
     )
@@ -55,7 +55,7 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
   }
 
   removeTodo(): void {
-    this.data$.pipe(
+    this.todo$.pipe(
       take(1),
       switchMap(todo => this.todosService.delete(todo.id))
     )

@@ -5,12 +5,12 @@ import { MENU_DATA } from 'todoist-menu';
 
 
 @Component({
-  selector: 't-todo-deadline',
-  templateUrl: './todo-deadline.component.html',
-  styleUrls: ['./todo-deadline.component.scss'],
+  selector: 't-todo-deadline-menu',
+  templateUrl: './t-todo-deadline-menu.component.html',
+  styleUrls: ['./t-todo-deadline-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TodoDeadlineComponent implements OnInit {
+export class TodoDeadlineMenuComponent implements OnInit {
 
   constructor(
     @Inject(MENU_DATA) public data$: Observable<Todo>
