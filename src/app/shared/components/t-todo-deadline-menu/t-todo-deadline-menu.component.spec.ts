@@ -8,9 +8,8 @@ describe('TodoDeadlineComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoDeadlineMenuComponent ]
-    })
-    .compileComponents();
+      declarations: [TodoDeadlineMenuComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

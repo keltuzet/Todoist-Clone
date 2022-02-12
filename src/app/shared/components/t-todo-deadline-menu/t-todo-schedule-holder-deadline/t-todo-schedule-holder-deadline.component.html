@@ -1,0 +1,17 @@
+<ul class="schedule-holder" [class.schedule-holder_view-col]="isColView" [class.schedule-holder_view-row]="!isColView">
+  <li *ngFor="let item of list$ | async" class="schedule-holder__item">
+    <button (click)="setSchedule(item.type)" class="schedule-holder__btn" type="button">
+      <ng-container *ngIf="item.applySvgIconTextDirective; else elseTemplate">
+        <svg-icon
+          [appSvgIconText]="currDay"
+          [tTooltip]="item.tooltipText"
+          [name]="item.iconName"
+          [svgClass]="item.iconClass"
+        ></svg-icon>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <svg-icon [tTooltip]="item.tooltipText" [name]="item.iconName" [svgClass]="item.iconClass"></svg-icon>
+      </ng-template>
+    </button>
+  </li>
+</ul>
