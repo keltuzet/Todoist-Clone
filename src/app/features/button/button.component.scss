@@ -33,6 +33,10 @@
     &.color-primary {
       background-color: #db4c3f;
       color: #fff;
+
+      &:disabled {
+        background-color: rgba(219, 76, 63, 0.75);
+      }
     }
   }
 

@@ -1,0 +1,17 @@
+<ul>
+  <li *ngFor="let item of list$ | async">
+    <div>{{ item.postedDate?.toDate() | date }}</div>
+    <div>{{ item.question }}</div>
+    <div>{{ item.content }}</div>
+  </li>
+</ul>
+
+<form [formGroup]="addForm">
+  <h4>Add FAQ</h4>
+  <input formControlName="question" type="text" placeholder="Your question" />
+  <textarea formControlName="content" cols="30" rows="2" placeholder="Content ..."></textarea>
+  <div class="actions">
+    <button type="button" (click)="add()">Post FAQ</button>
+    <button type="button" (click)="remove()">Remove FAQ</button>
+  </div>
+</form>

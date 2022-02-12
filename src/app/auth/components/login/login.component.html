@@ -1,0 +1,36 @@
+<div class="auth-container">
+  <div class="auth-frame">
+    <div class="auth-logo"><a class="auth-logo__link" href="">Todoist</a></div>
+    <div class="auth-content">
+      <h1>Вход</h1>
+      <form [formGroup]="form" class="auth-form">
+        <div class="field">
+          <label for="email">Email</label>
+          <input formControlName="email" id="email" type="email" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input formControlName="password" id="password" type="password" autocomplete="off" />
+        </div>
+        <button (click)="login()" type="button" class="submit">Регистрация через Email</button>
+        <label class="stay-login-label" for="permanent-login">
+          <input class="stay-login-checkbox" id="permanent-login" type="checkbox" />
+          <span>Оставаться в системе</span>
+        </label>
+      </form>
+      <div class="forget-password-hint">
+        <a href="" class="link">Забыли пароль?</a>
+      </div>
+      <hr />
+      <div class="help-block">
+        <div class="register-hint">
+          <span>Нет аккаунта? </span>
+          <a routerLink="../register" class="link primary">Регистрация</a>
+        </div>
+        <div class="support-hint">
+          <a class="link" target="_blank">Служба поддержки Todoist</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

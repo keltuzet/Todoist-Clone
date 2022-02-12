@@ -2,13 +2,16 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// https://todos-c99b4.firebaseio.com
+// https://todos-c99b4-default-rtdb.firebaseio.com
+
 export const environment = {
   production: false,
   baseApi: 'http://localhost:3000',
   firebase: {
     apiKey: 'AIzaSyCLR6j3zLoKJvJzaBVxhHjVgLJzcwxmTys',
     authDomain: 'todos-c99b4.firebaseapp.com',
-    databaseURL: 'https://todos-c99b4.firebaseio.com',
+    databaseURL: 'https://todos-c99b4-default-rtdb.firebaseio.com',
     projectId: 'todos-c99b4',
     storageBucket: 'todos-c99b4.appspot.com',
     messagingSenderId: '903813504855',
