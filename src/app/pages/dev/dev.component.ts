@@ -1,8 +1,7 @@
-import { ConnectedPosition, Overlay } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy, Inject, ViewChild, ElementRef } from '@angular/core';
-import { OverlayExampleComponent } from './overlay-example/overlay-example.component';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { FaqQuery } from '@stores/faq/faq.query';
+import { FaqService } from '@stores/faq/faq.service';
 
 @Component({
   selector: 't-dev',
@@ -11,31 +10,18 @@ import { OverlayExampleComponent } from './overlay-example/overlay-example.compo
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DevComponent implements OnInit {
-  @ViewChild('p', { static: true }) p: ElementRef<HTMLParagraphElement>;
-
-  constructor(private overlay: Overlay, @Inject(DOCUMENT) private doc: Document) {}
+  constructor(private db: AngularFireDatabase) {}
 
   ngOnInit(): void {
-    const portal = new ComponentPortal(OverlayExampleComponent);
-    // this.overlay.position().global().attach();
-    const position: ConnectedPosition[] = [
-      {
-        originX: 'start',
-        originY: 'center',
-        overlayX: 'center',
-        overlayY: 'center',
+    this.db
+      .list('cars')
+      .snapshotChanges()
+      .subscribe(snapshot => {
+        console.log(snapshot.map(item => ({ key: item.payload.key, ...(item.payload.val() as object) })));
+      });
+  }
 
-      },
-    ];
-    console.log(this.p);
-    const ref = this.overlay.create({
-      // scrollStrategy: this.overlay.scrollStrategies.reposition(),
-      positionStrategy: this.overlay.position().flexibleConnectedTo(this.p.nativeElement).withPositions(position),
-      // width: 200,
-      // height: 300,
-      // maxWidth: 250,
-      // disposeOnNavigation: true,
-    });
-    ref.attach(portal);
+  add() {
+    this.db.list('cars').update('0', { model: 'Lada', color: 'white' });
   }
 }

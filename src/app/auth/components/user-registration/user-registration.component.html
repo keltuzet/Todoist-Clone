@@ -1,0 +1,29 @@
+<div class="auth-container">
+  <div class="auth-frame">
+    <div class="auth-logo"><a class="auth-logo__link" href="">Todoist</a></div>
+    <div class="auth-content">
+      <h1>Регистрация</h1>
+      <form [formGroup]="form" class="auth-form">
+        <div class="field">
+          <label for="email">Email</label>
+          <input formControlName="email" id="email" type="email" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input formControlName="password" id="password" type="password" autocomplete="off" />
+        </div>
+        <button (click)="submit()" type="button" class="submit">Регистрация через Email</button>
+      </form>
+      <div class="registration-agreement">
+        Продолжая с использованием аккаунта Google, Apple или Email, вы соглашаетесь с
+        <a class="link primary" href="https://todoist.com/terms" target="_blank">Условиями использования</a> и
+        <a class="link primary" href="https://todoist.com/privacy" target="_blank">Политикой конфиденциальности</a>
+        Todoist.
+      </div>
+      <hr class="separator" />
+      <div class="help-block">
+        Уже зарегистрированы? <a class="link primary" routerLink="../login">Войти в систему</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,9 @@ import { ProjectsResolver, TagsResolver, TodosResolver, AuthorsResolver } from '
 import { DevComponent } from '@pages/dev/dev.component';
 import { IconCatalogPermissionGuard } from '@pages/icon-catalog/icon-catalog-permission.guard';
 import { PageLayoutComponent } from './layouts';
+import { FaqGuard } from '@shared/guards';
+import { AuthGuard } from '@auth/guards';
+import { UserRegistrationComponent, LoginComponent, ForgotPasswordComponent } from '@auth/components';
 
 const routes: Routes = [
   {
@@ -13,8 +16,21 @@ const routes: Routes = [
     component: DevComponent,
   },
   {
+    path: 'register',
+    component: UserRegistrationComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+  },
+  {
     path: APP_ROUTES.root,
     component: PageLayoutComponent,
+    canActivate: [AuthGuard],
     resolve: {
       tags: TagsResolver,
       projects: ProjectsResolver,
@@ -37,6 +53,12 @@ const routes: Routes = [
       {
         path: APP_ROUTES.label,
         loadChildren: () => import('./pages/label/label.module').then(m => m.LabelModule),
+      },
+      {
+        path: APP_ROUTES.faq,
+        loadChildren: () => import('./pages/faq/faq.module').then(m => m.FaqModule),
+        canActivate: [FaqGuard],
+        canDeactivate: [FaqGuard],
       },
       {
         path: APP_ROUTES.iconCatalog,

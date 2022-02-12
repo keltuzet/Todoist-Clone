@@ -1,0 +1,39 @@
+.stay-login-label {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  color: #666;
+  line-height: 1em;
+  cursor: pointer;
+
+  .stay-login-checkbox {
+    display: inline-block;
+    margin: 3px 8px 3px 0;
+    padding: 0.75em 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: 400;
+  }
+}
+
+.forget-password-hint {
+  margin-bottom: 10px;
+}
+
+.help-block {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
+
+  .register-hint {
+    margin: 20px;
+    color: #000;
+  }
+
+  .support-hint {
+    margin: 20px 20px 0 20px;
+  }
+}
