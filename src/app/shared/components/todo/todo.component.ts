@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { Dialog } from '@features/dialog';
 import { DetailedTodo, Todo } from '@shared/models';
 import { TodoActionsMenuComponent } from '../todo-actions-menu';
+import { TodoDeadlineMenuComponent } from '../t-todo-deadline-menu/t-todo-deadline-menu.component';
 import { UpdateTaskDetailsComponent } from '../update-task-details/update-task-details.component';
 
 @Component({
@@ -21,6 +22,7 @@ export class TodoComponent implements OnInit {
 
   readonly now = new Date();
   readonly todoActionsMenu = TodoActionsMenuComponent;
+  readonly todoDeadline = TodoDeadlineMenuComponent;
 
   constructor(private dialog: Dialog) {}
 
