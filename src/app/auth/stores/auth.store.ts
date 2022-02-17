@@ -5,9 +5,20 @@ import { FireAuthState } from 'akita-ng-fire';
 export interface Profile {
   displayName: string;
   photoURL: string;
+  email: string;
+  phoneNumber: string | number;
 }
 
 export interface AuthState extends FireAuthState<Profile> {}
+
+export function createProfileInitialState(): Profile {
+  return {
+    displayName: undefined,
+    photoURL: undefined,
+    email: undefined,
+    phoneNumber: undefined,
+  };
+}
 
 export function createInitialState(): AuthState {
   return {
@@ -15,7 +26,7 @@ export function createInitialState(): AuthState {
     photoURL: undefined,
     uid: undefined,
     emailVerified: undefined,
-    profile: undefined,
+    profile: createProfileInitialState(),
     loading: false,
   };
 }

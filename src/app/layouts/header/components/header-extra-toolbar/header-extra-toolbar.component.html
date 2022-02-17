@@ -20,9 +20,9 @@
       <svg-icon name="bell" svgClass="icon_size_m"></svg-icon>
     </button>
   </li>
-  <li class="header-extra-toolbar__item">
-    <button class="header-extra-toolbar__btn">
-      <svg-icon name="" svgClass=""></svg-icon>
+  <li *let="userProfile$ | async as userProfile" class="header-extra-toolbar__item">
+    <button class="settings-btn">
+      <img [src]="userProfile.photoURL" alt="Your avatar" class="user-avatar">
     </button>
   </li>
 </ul>

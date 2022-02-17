@@ -5,10 +5,11 @@ import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TagsResolver implements Resolve<boolean> {
-  constructor(private tagsService: TagsService) {}
+  constructor(tagsService: TagsService) {
+    tagsService.syncCollection().subscribe();
+  }
 
   resolve(): Observable<boolean> {
-    this.tagsService.get().subscribe();
     return of(true);
   }
 }

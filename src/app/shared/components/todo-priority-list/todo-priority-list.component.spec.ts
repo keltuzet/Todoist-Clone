@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodoPriorityListComponent } from './todo-priority-list.component';
+import { PriorityListComponent } from './todo-priority-list.component';
 
-describe('TodoPriorityListComponent', () => {
-  let component: TodoPriorityListComponent;
-  let fixture: ComponentFixture<TodoPriorityListComponent>;
+describe('PriorityListComponent', () => {
+  let component: PriorityListComponent;
+  let fixture: ComponentFixture<PriorityListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoPriorityListComponent ]
+      declarations: [ PriorityListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodoPriorityListComponent);
+    fixture = TestBed.createComponent(PriorityListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { MenuRef, MENU_DATA } from 'todoist-menu';
 
-import { TodoPriority, Todo } from '@shared/models';
-import { TodosQuery, TodosService, TodosStore } from '@stores/todos';
+import { Todo, TodosQuery, TodosService, TodosStore } from '@stores/todos';
 import { Router } from '@angular/router';
 import { switchMap, take } from 'rxjs/operators';
+import { Priority } from '@stores/priorities';
 
 @Component({
   templateUrl: './todo-actions-menu.component.html',
@@ -36,7 +36,7 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
     this.$sub.unsubscribe();
   }
 
-  updateTodoPriority(priority: TodoPriority): void {
+  updatePriority(priority: Priority): void {
     this.todo$.pipe(
       take(1),
       switchMap(todo => this.todosService.updateTodo(todo.id, { ...todo, priorityId: priority.id }))
@@ -57,7 +57,8 @@ export class TodoActionsMenuComponent implements OnInit, OnDestroy {
   removeTodo(): void {
     this.todo$.pipe(
       take(1),
-      switchMap(todo => this.todosService.delete(todo.id))
+      switchMap(todo => of())
+      // switchMap(todo => this.todosService.delete(todo.id))
     )
       .subscribe();
     this.menuRef.close();

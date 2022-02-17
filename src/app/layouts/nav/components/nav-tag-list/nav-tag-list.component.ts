@@ -2,7 +2,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectorRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
-import { TodoTag } from '@shared/models';
+import { Tag } from '@stores/tags';
 import { UnsubscribeService } from '@shared/services';
 import { TagsQuery } from '@stores/tags';
 import { takeUntil } from 'rxjs/operators';
@@ -16,8 +16,8 @@ import { NavTagMenuComponent } from '../nav-tag-menu/nav-tag-menu.component';
 })
 export class NavTagListComponent implements OnInit {
   menu = NavTagMenuComponent;
-  unsharedTags: TodoTag[];
-  sharedTags: TodoTag[];
+  unsharedTags: Tag[];
+  sharedTags: Tag[];
 
   constructor(
     private tagsQuery: TagsQuery,
@@ -36,11 +36,11 @@ export class NavTagListComponent implements OnInit {
     });
   }
 
-  trackyBy(index: number, item: TodoTag): number {
+  trackyBy(index: number, item: Tag): string {
     return item.id;
   }
 
-  drop(event: CdkDragDrop<TodoTag[]>, list: TodoTag[]): void {
+  drop(event: CdkDragDrop<Tag[]>, list: Tag[]): void {
     moveItemInArray(list, event.previousIndex, event.currentIndex);
   }
 }

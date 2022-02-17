@@ -26,7 +26,7 @@ export class SnackBarRef<T = any> {
     this.overlayRef.dispose();
   }
 
-  private scheduleSnackbarDismiss(duration = ININITY_DURATION): void {
+  private scheduleSnackbarDismiss(duration = 5000): void {
     this.durationTimeoutId = setTimeout(() => this.dismiss(), duration);
   }
 }

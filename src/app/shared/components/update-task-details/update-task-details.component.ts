@@ -2,10 +2,10 @@ import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { switchMap, take } from 'rxjs/operators';
 
 import { DIALOG_DATA, DialogRef } from '@features/dialog/';
-import { TodoPriority } from '@shared/models';
+import { Priority } from '@stores/priorities';
 import { TodosQuery, TodosService } from '@stores/todos';
-import { SelectPriorityMenuComponent } from '../select-priority-menu/select-priority-menu.component';
-import { SelectTagsMenuComponent } from '../select-tags-menu/select-tags-menu.component';
+import { SelectTagsMenuComponent } from '../select-tags-menu';
+import { SelectPriorityMenuComponent } from '../priority-actions';
 
 @Component({
   selector: 't-update-task-details',
@@ -36,10 +36,10 @@ export class UpdateTaskDetailsComponent {
         take(1),
         switchMap(todo => this.todosService.postComment(text, todo.id)),
       )
-      .subscribe();
+      .subscribe(v => console.log(v));
   }
 
-  updatePriority(priority: TodoPriority): void {
+  updatePriority(priority: Priority): void {
     if (!priority) return;
     this.todo$
       .pipe(

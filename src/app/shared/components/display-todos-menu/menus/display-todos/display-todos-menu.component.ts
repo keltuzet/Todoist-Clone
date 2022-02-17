@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { GroupTodosBy, SortTodosBy } from '@shared/models';
+import { GroupTodosBy, SortTodosBy } from '@stores/todos';
 import { TagPageUI, TagsQuery, TagsStore } from '@stores/tags';
 import { map, take } from 'rxjs/operators';
 import { GroupTodosByComponent } from '../group-todos-by/group-todos-by.component';

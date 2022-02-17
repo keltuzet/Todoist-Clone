@@ -3,35 +3,33 @@ import { combineQueries, HashMap, QueryEntity } from '@datorama/akita';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import {
-  Author,
-  Comment,
-  DetailedComment,
-  DetailedTodo,
-  Project,
-  Todo,
-  TodoPriority,
-  TodoStatus,
-  TodoTag,
-} from '@shared/models';
+import { DetailedTodo, Todo } from './todo.model';
+import { Tag } from '../tags/tag.model';
+import { Project, Status } from '../projects/project.model';
+import { Priority } from '../priorities/priority.model';
+import { Comment, DetailedComment } from '../comments';
 import { AppDateRef } from '@shared/services';
-import { entityToObj, isToday, isOverdue } from '@shared/utils';
-import { AuthorsQuery } from '@stores/authors/authors.query';
+import { isToday, isOverdue } from '@shared/utils';
 import { ProjectsQuery } from '@stores/projects/projects.query';
 import { TagsQuery } from '@stores/tags/tags.query';
 import { TodosStore, TodosState } from './todos.store';
+import { PrioritiesQuery } from '@stores/priorities';
+import { CommentsQuery } from '@stores/comments';
+import { User, UsersQuery } from '@stores/users';
 
 @Injectable({ providedIn: 'root' })
 export class TodosQuery extends QueryEntity<TodosState> {
   readonly all$: Observable<Todo[]> = this.selectAll();
-  readonly priorities$: Observable<TodoPriority[]> = this.select('priorities');
-  readonly priorityHashMap$: Observable<HashMap<TodoPriority>> = this.select('priorities').pipe(map(entityToObj));
+  readonly priorities$: Observable<Priority[]> = this.select('priorities');
+  // readonly priorityHashMap$: Observable<HashMap<Priority>> = this.select('priorities').pipe(map(entityToObj));
 
   constructor(
     protected todosStore: TodosStore,
-    private authorsQuery: AuthorsQuery,
     private projectsQuery: ProjectsQuery,
     private tagsQuery: TagsQuery,
+    private prioritiesQuery: PrioritiesQuery,
+    private commentsQuery: CommentsQuery,
+    private usersQuery: UsersQuery,
     private appDateRef: AppDateRef,
   ) {
     super(todosStore);
@@ -60,7 +58,7 @@ export class TodosQuery extends QueryEntity<TodosState> {
     return this.detailizeTodo(this.selectEntity(id));
   }
 
-  selectByTag(tag: TodoTag): Observable<Todo[]> {
+  selectByTag(tag: Tag): Observable<Todo[]> {
     return this.toTodo(
       this.selectAll({
         filterBy: ({ tagIds }) => {
@@ -73,12 +71,13 @@ export class TodosQuery extends QueryEntity<TodosState> {
   private toTodo(todos$: Observable<Todo[]>): Observable<DetailedTodo[]> {
     return combineQueries([
       todos$,
-      this.authorsQuery.hashMap$,
       this.projectsQuery.hashMap$,
-      this.priorityHashMap$,
+      this.prioritiesQuery.hashMap$,
       this.tagsQuery.hashMap$,
+      this.commentsQuery.hashMap$,
+      this.usersQuery.hashMap$,
     ]).pipe(
-      map(([todos, authorsHashMap, projectsHashMap, priorities, tagsHashMap]) => {
+      map(([todos, projectsHashMap, priorities, tagsHashMap, commentsHashMap, usersHashMap]) => {
         return todos.map(todo => {
           const project: Project = projectsHashMap[todo.projectId];
 
@@ -86,9 +85,9 @@ export class TodosQuery extends QueryEntity<TodosState> {
             ...todo,
             project,
             priority: priorities[todo.priorityId],
-            status: this.getTodoStatus(todo, project),
-            tags: this.getTodoTags(todo, tagsHashMap),
-            comments: this.toDetailedComment(todo.comments, authorsHashMap),
+            status: this.getStatus(todo, project),
+            tags: this.getTags(todo, tagsHashMap),
+            comments: this.getComments(todo, commentsHashMap, usersHashMap) as any,
           };
         });
       }),
@@ -98,37 +97,43 @@ export class TodosQuery extends QueryEntity<TodosState> {
   private detailizeTodo(todo$: Observable<Todo>): Observable<DetailedTodo> {
     return combineQueries([
       todo$,
-      this.authorsQuery.hashMap$,
       this.projectsQuery.hashMap$,
-      this.priorityHashMap$,
+      this.prioritiesQuery.hashMap$,
       this.tagsQuery.hashMap$,
+      this.commentsQuery.hashMap$,
+      this.usersQuery.hashMap$,
     ]).pipe(
-      map(([todo, authorsHashMap, projectsHashMap, priorities, tagsHashMap]) => {
+      map(([todo, projectsHashMap, priorities, tagsHashMap, commentsHashMap, usersHashMap]) => {
         const project: Project = projectsHashMap[todo.projectId];
         return {
           ...todo,
           project,
           priority: priorities[todo.priorityId],
-          status: this.getTodoStatus(todo, project),
-          tags: this.getTodoTags(todo, tagsHashMap),
-          comments: this.toDetailedComment(todo.comments, authorsHashMap),
+          status: this.getStatus(todo, project),
+          tags: this.getTags(todo, tagsHashMap),
+          comments: this.getComments(todo, commentsHashMap, usersHashMap) as any,
         };
       }),
     );
   }
 
-  private toDetailedComment(comments: Comment[], authorsHashMap: HashMap<Author>): DetailedComment[] {
+  private toDetailedComment(comments: Comment[], usersHashMap: HashMap<User>): DetailedComment[] {
     return comments.map(comment => ({
       ...comment,
-      author: authorsHashMap[comment.authorId],
+      author: usersHashMap[comment.authorId],
     }));
   }
 
-  private getTodoTags(todo: Todo, tagsHashMap: HashMap<TodoTag>): TodoTag[] {
+  private getTags(todo: Todo, tagsHashMap: HashMap<Tag>): Tag[] {
     return todo.tagIds.filter(id => tagsHashMap[id]).map(id => tagsHashMap[id]);
   }
 
-  private getTodoStatus(todo: Todo, project?: Project): TodoStatus {
-    return project?.todoStatuses.find(statuses => statuses.id === todo.statusId);
+  private getStatus(todo: Todo, project?: Project): Status {
+    return project?.statuses.find(statuses => statuses.id === todo.statusId);
+  }
+
+  private getComments(todo: Todo, commentsHashMap: HashMap<Comment>, usersHashMap: HashMap<User>): Comment[] {
+    const comments = todo.commentsIds.filter(id => commentsHashMap[id]).map(id => commentsHashMap[id]);
+    return this.toDetailedComment(comments, usersHashMap);
   }
 }

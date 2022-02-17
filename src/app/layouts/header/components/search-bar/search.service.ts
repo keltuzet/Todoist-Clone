@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TodoStatus } from '@shared/models';
+import { Status } from '@stores/projects';
 import { EntitiesQuery } from '@stores/entities/entities.query';
 import { TodosQuery } from '@stores/todos';
 import { Observable, of } from 'rxjs';

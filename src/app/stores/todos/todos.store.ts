@@ -1,20 +1,13 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { Todo, TodoPriority } from '@shared/models';
+import { Todo } from './todo.model';
 
-export interface TodosState extends EntityState<Todo, number> {
-  priorities: TodoPriority[];
-  isPrioritiesFetched: boolean;
-}
+export interface TodosState extends EntityState<Todo> {}
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'todos' })
 export class TodosStore extends EntityStore<TodosState> {
   constructor() {
-    super({
-      priorities: [],
-      isPrioritiesFetched: false,
-    });
-    this.akitaPreAddEntity = this.akitaPreAddEntity.bind(this);
+    super();
   }
 }

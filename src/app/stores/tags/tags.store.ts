@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, EntityUIStore, StoreConfig } from '@datorama/akita';
-import { GroupTodosBy, SortTodosBy, TodoTag } from '@shared/models';
+import { SortTodosBy, GroupTodosBy } from '@stores/todos/todo.model';
+import { Tag } from './tag.model';
 
 export interface TagPageUI {
   groupedBy: GroupTodosBy;
   sortedBy: SortTodosBy;
-  id: number;
+  id: string;
 }
 
-export interface TagsState extends EntityState<TodoTag> {}
+export interface TagsState extends EntityState<Tag> {}
 export interface TagsUIState extends EntityState<TagPageUI> {}
 
 @Injectable({ providedIn: 'root' })

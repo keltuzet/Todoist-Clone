@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 import { MenuRef, MENU_DATA } from 'todoist-menu';
-import { Project } from '@shared/models';
+import { Project } from '@stores/projects';
 import { ProjectsQuery, ProjectsService } from '@stores/projects';
 import { Dialog } from '@features/dialog';
 import { EditProjectDialogComponent } from './edit-project-dialog/edit-project-dialog.component';
@@ -34,12 +34,13 @@ export class ProjectActionsMenuComponent implements OnInit {
     this.project$
       .pipe(
         take(1),
-        switchMap(project =>
-          this.projectsService.update(project.id, {
-            ...project,
-            isFavorite: true,
-          }),
-        ),
+        // switchMap(project =>
+        //   this.projectsService.update(project.id, {
+        //     ...project,
+        //     isFavorite: true,
+        //   }),
+        // ),
+        switchMap(project => of()),
       )
       .subscribe();
   }
@@ -57,7 +58,8 @@ export class ProjectActionsMenuComponent implements OnInit {
     this.project$
       .pipe(
         take(1),
-        switchMap(({ id }) => this.projectsService.delete(id)),
+        switchMap(({ id }) => of()),
+        // switchMap(({ id }) => this.projectsService.delete(id)),
       )
       .subscribe();
   }
@@ -66,7 +68,8 @@ export class ProjectActionsMenuComponent implements OnInit {
     this.project$
       .pipe(
         take(1),
-        switchMap(({ id }) => this.projectsService.delete(id)),
+        // switchMap(({ id }) => this.projectsService.delete(id)),
+        switchMap(({ id }) => of()),
       )
       .subscribe();
   }

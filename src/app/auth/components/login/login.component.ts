@@ -1,8 +1,10 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
+import { catchError, from, of } from 'rxjs';
+import { FirebaseError } from 'firebase/app';
 import { AuthService } from '@auth/stores';
+import { SnackbarService } from '@features/snackbar';
 
 @Component({
   selector: 't-login',
@@ -16,13 +18,52 @@ export class LoginComponent {
     password: new FormControl(null, [Validators.required]),
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private snackbarService: SnackbarService) {}
 
   login(): void {
     if (this.form.invalid) return;
     const { email, password } = this.form.value;
-    from(this.authService.signin(email, password)).subscribe(() => {
-      this.router.navigate(['/']);
-    });
+    from(this.authService.signin(email, password)).subscribe(() => this.navToRoot());
+  }
+
+  loginFromGoogle(): void {
+    from(this.authService.signin('google'))
+      .pipe(
+        catchError((err: FirebaseError) => {
+          this.snackbarService.open({ data: { message: this.getFirebaseErrorMessage(err) } });
+          return of();
+        }),
+      )
+      .subscribe(() => this.navToRoot());
+  }
+
+  loginFromFacebook(): void {
+    from(this.authService.signin('facebook'))
+      .pipe(
+        catchError((err: FirebaseError) => {
+          this.snackbarService.open({ data: { message: this.getFirebaseErrorMessage(err) } });
+          return of();
+        }),
+      )
+      .subscribe(() => this.navToRoot());
+  }
+
+  loginFromApple(): void {
+    from(this.authService.signin('apple'))
+      .pipe(
+        catchError((err: FirebaseError) => {
+          this.snackbarService.open({ data: { message: this.getFirebaseErrorMessage(err) } });
+          return of();
+        }),
+      )
+      .subscribe(() => this.navToRoot());
+  }
+
+  private navToRoot(): void {
+    this.router.navigate(['/']);
+  }
+
+  private getFirebaseErrorMessage(err: FirebaseError): string {
+    return err.message.replace('Firebase: ', '').replace(` (${err.code}).`, '');
   }
 }

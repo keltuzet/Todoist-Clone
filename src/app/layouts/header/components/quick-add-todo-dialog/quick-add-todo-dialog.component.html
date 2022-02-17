@@ -33,7 +33,9 @@
     </div>
   </div>
   <div class="task-editor__actions">
-    <button tButton color="primary" [disabled]="formInvalid$ | async" type="submit">Add task</button>
-    <button tButton (click)="cancel()">Cancel</button>
+    <button (click)="addTask()" tButton color="primary" [disabled]="formInvalid$ | async" type="submit">
+      Add task
+    </button>
+    <button (click)="cancel()" tButton>Cancel</button>
   </div>
 </form>

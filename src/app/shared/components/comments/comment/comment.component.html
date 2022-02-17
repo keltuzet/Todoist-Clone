@@ -1,8 +1,8 @@
-<div class="author-avatar"></div>
+<img class="author-avatar" [src]="comment.author.photoURL" alt="Author avatar" />
 
 <ng-container *ngIf="!isEditMode">
   <div class="comment-meta">
-    <span class="author-name">{{ comment?.author?.name }}</span>
+    <span class="author-name">{{ comment?.author?.displayName }}</span>
     <span *let="comment?.isEdited as isEdited" class="posted-date">
       <span *ngIf="isEdited" class="last-update-label mr-1">Изменено:</span>
       <span>{{ (isEdited ? comment?.lastEditedDate : comment?.postedDate) | date: 'd MMMM y HH:mm' }}</span>

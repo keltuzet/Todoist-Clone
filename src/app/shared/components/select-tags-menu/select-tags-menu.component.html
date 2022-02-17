@@ -14,7 +14,7 @@
     />
     <ul class="tag-list" id="tags-list-box">
       <li
-        (click)="updateTodoTag(!unsharedTag.checked, unsharedTag.id)"
+        (click)="updateTag(!unsharedTag.checked, unsharedTag.id)"
         *ngFor="let unsharedTag of unsharedTags$ | async"
         class="tag"
       >
@@ -23,7 +23,7 @@
       <ng-container *ngIf="hasAnySharedTags$ | async">
         <li class="shared-tags-title">Общие</li>
         <li
-          (click)="updateTodoTag(!sharedTag.checked, sharedTag.id)"
+          (click)="updateTag(!sharedTag.checked, sharedTag.id)"
           *ngFor="let sharedTag of sharedTags$ | async"
           class="tag"
         >

@@ -1,6 +1,16 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AuthQuery } from '@auth/stores';
+import { CommentsQuery } from '@stores/comments';
+import { MeQuery } from '@stores/me';
+import { PrioritiesQuery } from '@stores/priorities/priorities.query';
+import { PrioritiesService } from '@stores/priorities/priorities.service';
+import { ProjectsQuery } from '@stores/projects';
+import { TagsQuery } from '@stores/tags';
 
 import { TodosQuery } from '@stores/todos';
+import { UsersQuery } from '@stores/users/users.query';
+import { UsersService } from '@stores/users/users.service';
+import { Timestamp } from 'firebase/firestore';
 import { SortMenuComponent } from './components/sort-menu/sort-menu.component';
 
 @Component({
@@ -17,7 +27,29 @@ export class TodaysComponent {
 
   @ViewChild('header', { read: ElementRef }) header: ElementRef<HTMLDivElement>;
 
-  constructor(private todosQuery: TodosQuery) {}
+  constructor(
+    private todosQuery: TodosQuery,
+    private user: UsersQuery,
+    private usersService: UsersService,
+    private p: PrioritiesService,
+    private pq: PrioritiesQuery,
+    private t: TagsQuery,
+    private pr: ProjectsQuery,
+    private to: TodosQuery,
+    private auth: AuthQuery,
+    private meQuery: MeQuery,
+    private commentsQuery: CommentsQuery,
+  ) {
+    // meQuery.myId$.subscribe(v => console.log(v));
+    // commentsQuery.selectAll().subscribe(v => console.log(v));
+    // to.selectAll().subscribe(v => console.log(v));
+    // auth.select().subscribe(v => console.log(v));
+    // to.selectAll().subscribe(v => console.log(v));
+    // p.syncCollection().subscribe();
+    // pq.selectAll().subscribe(v => console.log(v));
+    // usersService.syncCollection().subscribe();
+    // user.selectAll().subscribe(v => console.log(v));
+  }
 
   /**
    * Add scroll event to blacklist

@@ -4,7 +4,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { MenuModule } from 'todoist-menu';
 import { TooltipModule } from 'todoist-tooltip';
-import { TodoPriorityListModule } from '../todo-priority-list';
+import { PriorityListModule } from '../todo-priority-list';
 import { TodoActionsMenuComponent } from './todo-actions-menu.component';
 import { TodoScheduleHolderModule } from '../todo-schedule-holder';
 import { RouterModule } from '@angular/router';
@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
     AngularSvgIconModule,
     MenuModule,
     TooltipModule,
-    TodoPriorityListModule,
+    PriorityListModule,
     TodoScheduleHolderModule,
     RouterModule,
   ],

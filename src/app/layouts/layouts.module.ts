@@ -37,6 +37,7 @@ import { NavTagListComponent } from './nav/components/nav-tag-list/nav-tag-list.
 import { NavFilterListComponent } from './nav/components/nav-filter-list/nav-filter-list.component';
 import { NavTagMenuComponent } from './nav/components/nav-tag-menu/nav-tag-menu.component';
 import { NavListComponent } from './nav/components/nav-list/nav-list.component';
+import { NgxLetDirective, NgxLetDirectiveModule } from 'ngx-let-directive';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { NavListComponent } from './nav/components/nav-list/nav-list.component';
     NgxSpinnerModule,
     ButtonModule,
     ProjectActionsMenuModule,
+    NgxLetDirectiveModule,
   ],
 })
 export class PageLayoutModule {}

@@ -2,7 +2,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ProjectActionsMenuComponent } from '@shared/components';
 
-import { Project } from '@shared/models';
+import { Project } from '@stores/projects';
 import { UnsubscribeService } from '@shared/services';
 import { ProjectsQuery } from '@stores/projects/projects.query';
 import { takeUntil } from 'rxjs/operators';
@@ -31,7 +31,7 @@ export class NavProjectListComponent implements OnInit {
     });
   }
 
-  projectTrackyBy(index: number, item: Project): number {
+  projectTrackyBy(index: number, item: Project): string {
     return item.id;
   }
 

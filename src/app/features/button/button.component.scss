@@ -35,6 +35,7 @@
       color: #fff;
 
       &:disabled {
+        cursor: not-allowed;
         background-color: rgba(219, 76, 63, 0.75);
       }
     }
