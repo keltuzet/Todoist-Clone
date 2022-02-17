@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { MENU_DATA } from '@features/menu/const';
 import { MenuRef } from '@features/menu/models';
-import { SortTodosBy } from '@shared/models';
+import { SortTodosBy } from '@stores/todos';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({

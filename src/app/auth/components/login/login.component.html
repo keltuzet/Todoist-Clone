@@ -3,6 +3,20 @@
     <div class="auth-logo"><a class="auth-logo__link" href="">Todoist</a></div>
     <div class="auth-content">
       <h1>Вход</h1>
+      <div class="auth-actions">
+        <button (click)="loginFromGoogle()">
+          <img height="16" width="16" src="/assets/img/svg/google-logo.svg" />
+          Продолжить через Google
+        </button>
+        <button (click)="loginFromFacebook()">
+          <img height="16" width="16" src="/assets/img/svg/facebook-logo.svg" />
+          Продолжить через Facebook
+        </button>
+        <button (click)="loginFromApple()">
+          <img height="16" width="16" src="/assets/img/svg/apple-logo.svg" />
+          Продолжить через Apple
+        </button>
+      </div>
       <form [formGroup]="form" class="auth-form">
         <div class="field">
           <label for="email">Email</label>
@@ -12,7 +26,7 @@
           <label for="password">Password</label>
           <input formControlName="password" id="password" type="password" autocomplete="off" />
         </div>
-        <button (click)="login()" type="button" class="submit">Регистрация через Email</button>
+        <button (click)="login()" type="button" class="submit">Вход</button>
         <label class="stay-login-label" for="permanent-login">
           <input class="stay-login-checkbox" id="permanent-login" type="checkbox" />
           <span>Оставаться в системе</span>

@@ -1,7 +1,7 @@
 :host {
   position: relative;
   display: block;
-  padding: 10px 0 10px 40px;
+  padding: 10px 0 10px 52px;
 
   &:hover .comment-meta .comment-action {
     opacity: 1;
@@ -12,8 +12,8 @@
   position: absolute;
   top: 10px;
   left: 0;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background-color: #465965;
 }

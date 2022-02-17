@@ -1,28 +1,26 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { Todo } from '@shared/models';
+import { Todo } from '@stores/todos';
 import { AppDateRef } from '@shared/services';
 
 @Component({
-  selector: 'app-todays-todo-list',
+  selector: 't-todays-todo-list',
   templateUrl: './todays-todo-list.component.html',
   styleUrls: ['./todays-todo-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodaysTodoListComponent implements OnInit {
+export class TodaysTodoListComponent {
   @Input() todos: Todo[];
   now = this.appDateRef.now;
 
   constructor(private appDateRef: AppDateRef) {}
 
-  ngOnInit() {}
-
-  drop(event: CdkDragDrop<Todo[]>) {
+  drop(event: CdkDragDrop<Todo[]>): void {
     moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
   }
 
-  todoTrackBy(index: number, item: Todo): number {
+  todoTrackBy(index: number, item: Todo): string {
     return item.id;
   }
 

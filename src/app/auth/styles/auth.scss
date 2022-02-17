@@ -24,6 +24,37 @@
     }
   }
 
+  .auth-actions {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-width: 273px;
+      margin-bottom: 10px;
+      padding: 6px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      box-sizing: border-box;
+      background: #fff;
+      color: #202020;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 24px;
+      text-align: center;
+      text-decoration: none;
+      white-space: nowrap;
+
+      img {
+        margin-right: 8px;
+      }
+    }
+  }
+
   .auth-content {
     width: 400px;
 
@@ -107,5 +138,29 @@
     color: #ddd;
     background-color: #ddd;
     height: 1px;
+  }
+
+  .separator {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+    position: relative;
+
+    &.long {
+    }
+
+    .separator-text {
+      color: #777;
+      font-size: 13px;
+      top: -9px;
+      left: 41%;
+      position: absolute;
+      padding: 0 16px;
+      text-shadow: 0 1px 0 #fff;
+      text-transform: uppercase;
+      background-color: #fff;
+    }
   }
 }

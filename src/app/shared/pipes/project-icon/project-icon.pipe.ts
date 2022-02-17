@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
-import { Project } from '@shared/models';
+import { Project } from '@stores/projects/project.model';
 
 @Pipe({
   name: 'projectIcon',

@@ -3,7 +3,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { map, startWith, take } from 'rxjs/operators';
 
 import { DialogRef } from '@features/dialog/dialog-ref';
-import { Todo } from '@shared/models';
+import { Todo } from '@stores/todos';
 import { TodosService } from '@stores/todos';
 
 @Component({
@@ -35,10 +35,8 @@ export class QuickAddTodoDialogComponent {
         endDate: new Date().toJSON(),
         subTodoIds: [],
         tagIds: [],
-        comments: [],
-        hasEndTime: true,
+        commentsIds: [],
       })
-      .pipe(take(1))
       .subscribe();
     this.dialogRef.close();
   }

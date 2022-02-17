@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
-import { Todo } from '@shared/models';
+import { Todo } from '@stores/todos';
 import { Observable } from 'rxjs';
 import { MENU_DATA } from 'todoist-menu';
 

@@ -3,6 +3,23 @@
     <div class="auth-logo"><a class="auth-logo__link" href="">Todoist</a></div>
     <div class="auth-content">
       <h1>Регистрация</h1>
+      <div class="auth-actions">
+        <button>
+          <img height="16" width="16" src="/assets/img/svg/google-logo.svg" />
+          Продолжить через Google
+        </button>
+        <button>
+          <img height="16" width="16" src="/assets/img/svg/facebook-logo.svg" />
+          Продолжить через Facebook
+        </button>
+        <button>
+          <img height="16" width="16" src="/assets/img/svg/apple-logo.svg" />
+          Продолжить через Apple
+        </button>
+      </div>
+      <div class="separator long">
+        <div class="separator-text">ИЛИ</div>
+      </div>
       <form [formGroup]="form" class="auth-form">
         <div class="field">
           <label for="email">Email</label>

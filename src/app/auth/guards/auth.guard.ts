@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { AuthService, AuthStore } from '@auth/stores';
+import { AuthQuery, AuthService, AuthStore } from '@auth/stores';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router, private authStore: AuthStore) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private authStore: AuthStore,
+    private auth: AuthQuery,
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -15,14 +20,18 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this.authStore.setLoading(true);
     return this.authService.sync().pipe(
-      map(() => {
-        const user = this.authService.user;
+      map(([user, profile]) => {
         const hasUser = Boolean(user);
-        if (!hasUser) {
-          this.router.navigate(['/login']);
-          return false;
-        }
+        if (!hasUser) this.router.navigate(['/login']);
         this.authStore.setLoading(false);
+        this.authStore.update({
+          profile: {
+            displayName: profile.displayName || user.displayName,
+            photoURL: profile.photoURL || user.photoURL,
+            phoneNumber: profile.phoneNumber || user.phoneNumber,
+            email: user.email,
+          },
+        });
         return hasUser;
       }),
     );

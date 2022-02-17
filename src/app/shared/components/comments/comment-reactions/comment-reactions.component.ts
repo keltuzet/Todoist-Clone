@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { AuthorsQuery } from '@stores/authors';
 import { TodosService } from '@stores/todos';
 import { EmojiMenuComponent } from '@shared/components';
-import { CommentReactionDetails, Comment, CommentReactionAuthorDetails } from '@shared/models';
+import { CommentReactionDetails, Comment, CommentReactionAuthorDetails, CommentsService } from '@stores/comments';
+import { UsersQuery } from '@stores/users';
 
 @Component({
   selector: 't-comment-reactions',
@@ -13,25 +13,25 @@ import { CommentReactionDetails, Comment, CommentReactionAuthorDetails } from '@
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommentReactionsComponent implements OnInit {
-  @Input() relatedTodoId: number;
+  @Input() relatedTodoId: string;
   @Input('comment') set setComment(value: Comment) {
     if (!value.reacts) return;
     this.comment = value;
     const commentReactionDetails: CommentReactionDetails[] = this.commentToReactionsDetails(value);
     this.reactions$.next(commentReactionDetails);
   }
-  readonly authorsMap = new Map<number, CommentReactionAuthorDetails>();
+  readonly authorsMap = new Map<string, CommentReactionAuthorDetails>();
   readonly reactions$ = new BehaviorSubject<CommentReactionDetails[]>([]);
   readonly emojiMenu = EmojiMenuComponent;
   private comment: Comment;
 
-  constructor(private authorsQuery: AuthorsQuery, private todosService: TodosService) {}
+  constructor(private usersQuery: UsersQuery, private commentsService: CommentsService) {}
 
   ngOnInit(): void {}
 
-  react(emoji: string): void {
+  toggleReact(emoji: string): void {
     if (!emoji) return;
-    this.todosService.reactToComment(emoji, this.comment.id, this.relatedTodoId).subscribe();
+    this.commentsService.toggleReactToComment(emoji, this.comment.id).subscribe();
   }
 
   private commentToReactionsDetails(comment: Comment): CommentReactionDetails[] {
@@ -43,7 +43,7 @@ export class CommentReactionsComponent implements OnInit {
           authorDetails = this.authorsMap.get(authorId);
         } else {
           authorDetails = {
-            ...this.authorsQuery.getEntity(authorId),
+            ...this.usersQuery.getEntity(authorId),
             authorId,
             reactedDate,
           };

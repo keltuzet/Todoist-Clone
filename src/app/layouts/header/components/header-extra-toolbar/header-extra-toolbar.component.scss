@@ -28,3 +28,17 @@
     font-weight: 400;
   }
 }
+
+.settings-btn {
+  display: flex;
+  align-items: center;
+  margin-left: 6px;
+
+  .user-avatar {
+    height: 28px;
+    width: 28px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    box-sizing: content-box;
+  }
+}

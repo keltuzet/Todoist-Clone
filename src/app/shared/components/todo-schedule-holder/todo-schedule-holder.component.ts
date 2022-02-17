@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Todo } from '@shared/models';
+import { Todo } from '@stores/todos';
 import { setNextWeek, setToday, setTomorrow, setWeekend } from '@shared/utils';
 import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';

@@ -1,4 +1,7 @@
 export const SVG_ICONS: string[] = [
+  'google-logo',
+  'apple-logo',
+  'facebook-logo',
   'branch',
   'small-calendar',
   'small-calendar-solid',

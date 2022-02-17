@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { DisplayTodosMenuComponent } from '@shared/components';
-import { Todo } from '@shared/models';
+import { Todo } from '@stores/todos';
 import { trackByIdentity } from '@shared/utils';
 import { TagsQuery, TagsService } from '@stores/tags';
 import { TodosQuery } from '@stores/todos';

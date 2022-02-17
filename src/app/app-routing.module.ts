@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { APP_ROUTES } from '@shared/const';
-import { ProjectsResolver, TagsResolver, TodosResolver, AuthorsResolver } from '@shared/resolvers';
+import { ProjectsResolver, TagsResolver, TodosResolver, UsersResolver, PrioritiesResolver, CommentsResolver } from '@shared/resolvers';
 import { DevComponent } from '@pages/dev/dev.component';
 import { IconCatalogPermissionGuard } from '@pages/icon-catalog/icon-catalog-permission.guard';
 import { PageLayoutComponent } from './layouts';
@@ -35,7 +35,9 @@ const routes: Routes = [
       tags: TagsResolver,
       projects: ProjectsResolver,
       todos: TodosResolver,
-      authors: AuthorsResolver,
+      users: UsersResolver,
+      priorities: PrioritiesResolver,
+      comments: CommentsResolver,
     },
     children: [
       {

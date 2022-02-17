@@ -1,4 +1,6 @@
-import { Todo, Project, TodoDetailedStatus, TodoTag } from '@shared/models';
+import { Project, DetailedStatus } from '@stores/projects';
+import { Tag } from '@stores/tags';
+import { Todo } from '@stores/todos';
 
 export enum SearchResultType {
   Todo = 'todo',
@@ -15,6 +17,6 @@ interface SearchResultWrap<T> {
   match?: RegExpMatchArray;
 }
 
-export type SearchResultTypeList = Todo | Project | TodoTag | TodoDetailedStatus;
+export type SearchResultTypeList = Todo | Project | Tag | DetailedStatus;
 
 export type SearchResult = SearchResultWrap<SearchResultTypeList>;

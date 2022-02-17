@@ -5,10 +5,11 @@ import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TodosResolver implements Resolve<boolean> {
-  constructor(private todosService: TodosService) {}
+  constructor(todosService: TodosService) {
+    todosService.syncCollection().subscribe();
+  }
 
   resolve(): Observable<boolean> {
-    this.todosService.getTodos().subscribe();
     return of(true);
   }
 }

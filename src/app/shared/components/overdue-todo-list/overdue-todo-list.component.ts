@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 
-import { Todo } from '@shared/models';
+import { Todo } from '@stores/todos';
 import { AppDateRef } from '@shared/services';
 import { TodosQuery } from '@stores/todos';
 import { Subscription } from 'rxjs';
@@ -35,7 +35,7 @@ export class OverdueTodoListComponent implements OnInit, OnDestroy {
     moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
   }
 
-  todoTrackBy(index: number, item: Todo): number {
+  todoTrackBy(index: number, item: Todo): string {
     return item.id;
   }
 

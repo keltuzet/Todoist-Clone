@@ -5,7 +5,8 @@ import { switchMap, take } from 'rxjs/operators';
 import { Dialog } from '@features/dialog';
 import { TodosQuery, TodosService } from '@stores/todos';
 import { EmojiMenuComponent, ConfirmRemoveDialogComponent } from '@shared/components';
-import { DetailedComment, Todo } from '@shared/models';
+import { Todo } from '@stores/todos';
+import { CommentsService, DetailedComment } from '@stores/comments';
 import { isNil } from '@shared/utils';
 import { CommentEditorComponent } from '../comment-editor/comment-editor.component';
 
@@ -27,7 +28,12 @@ export class CommentComponent {
     this.todo$ = this.todosQuery.selectEntity(id);
   }
 
-  constructor(private todosQuery: TodosQuery, private todosService: TodosService, private dialog: Dialog) {}
+  constructor(
+    private todosQuery: TodosQuery,
+    private todosService: TodosService,
+    private commentsService: CommentsService,
+    private dialog: Dialog,
+  ) {}
 
   remove(): void {
     this.dialog
@@ -69,7 +75,7 @@ export class CommentComponent {
     this.todo$
       .pipe(
         take(1),
-        switchMap(todo => this.todosService.reactToComment(emoji, this.comment.id, todo.id)),
+        switchMap(todo => this.commentsService.reactToComment(emoji, this.comment.id)),
       )
       .subscribe();
   }

@@ -17,7 +17,7 @@
       <span class="todo-title">{{ todo.title }}</span>
     </div>
     <div class="todo-info">
-      <a *ngIf="todo.subTodoIds.length" class="todo-info__item linked-branches" href="">
+      <a *ngIf="todo.subTodoIds?.length" class="todo-info__item linked-branches" href="">
         <svg-icon name="branch" svgClass="icon_size_s"></svg-icon>
         <span class="todo-info__text">{{ todo.subTodoIds.length }}</span>
       </a>
@@ -53,10 +53,10 @@
     <button tTooltip [tlpTemplate]="editTooltip" class="todo-toolbar__item">
       <svg-icon name="pen" svgClass="icon_size_m"></svg-icon>
     </button>
-    <button 
-      [tMenuTrigger]="todoDeadline" 
+    <button
+      [tMenuTrigger]="todoDeadline"
       [menuData]="todo"
-      tTooltip="Назначить срок" 
+      tTooltip="Назначить срок"
       class="todo-toolbar__item"
     >
       <svg-icon name="small-calendar" svgClass="icon_size_m"></svg-icon>

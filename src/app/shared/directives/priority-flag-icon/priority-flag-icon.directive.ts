@@ -1,13 +1,12 @@
 import { ChangeDetectorRef, Directive, ElementRef, Input } from '@angular/core';
+import { Priority } from '@stores/priorities';
 import { SvgIconComponent } from 'angular-svg-icon';
-
-import { TodoPriority } from '@shared/models';
 
 @Directive({
   selector: '[tPriorityFlagIcon]',
 })
 export class PriorityFlagIconDirective {
-  @Input('tPriorityFlagIcon') set priority(val: TodoPriority) {
+  @Input('tPriorityFlagIcon') set priority(val: Priority) {
     if (!val) return;
     this.svgIcon.name = val.default ? 'transparent-flag' : 'flag';
     this.elementRef.nativeElement.style.color = val.colors.primary;

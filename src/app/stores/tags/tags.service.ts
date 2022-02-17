@@ -1,21 +1,19 @@
 import { Injectable } from '@angular/core';
-import { NgEntityService, NgEntityServiceConfig } from '@datorama/akita-ng-entity-service';
 import { take } from 'rxjs/operators';
 
-import { GroupTodosBy, SortTodosBy } from '@shared/models';
 import { TagsQuery } from './tags.query';
 import { TagsStore, TagsState, TagPageUI } from './tags.store';
+import { CollectionConfig, CollectionService } from 'akita-ng-fire';
+import { GroupTodosBy, SortTodosBy } from '@stores/todos/todo.model';
 
 export const initialUIState: Omit<TagPageUI, 'id'> = {
   groupedBy: GroupTodosBy.Default,
   sortedBy: SortTodosBy.Default,
 };
 
-@NgEntityServiceConfig({
-  resourceName: 'tags',
-})
 @Injectable({ providedIn: 'root' })
-export class TagsService extends NgEntityService<TagsState> {
+@CollectionConfig({ path: 'tags' })
+export class TagsService extends CollectionService<TagsState> {
   constructor(protected tagsStore: TagsStore, private tagsQuery: TagsQuery) {
     super(tagsStore);
   }
@@ -30,7 +28,7 @@ export class TagsService extends NgEntityService<TagsState> {
       });
   }
 
-  private setDefaultUIState(id: number): void {
+  private setDefaultUIState(id: string): void {
     this.tagsStore.ui.add({ ...initialUIState, id });
   }
 }

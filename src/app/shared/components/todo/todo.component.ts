@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-
 import { Dialog } from '@features/dialog';
-import { DetailedTodo, Todo } from '@shared/models';
+import { DetailedTodo } from '@stores/todos';
 import { TodoActionsMenuComponent } from '../todo-actions-menu';
 import { TodoDeadlineMenuComponent } from '../t-todo-deadline-menu/t-todo-deadline-menu.component';
 import { UpdateTaskDetailsComponent } from '../update-task-details/update-task-details.component';
@@ -30,7 +29,7 @@ export class TodoComponent implements OnInit {
     this.termFormat = this.termFormatFn(this.todo);
   }
 
-  comment(id: number): void {
+  comment(id: string): void {
     this.dialog.open(UpdateTaskDetailsComponent, {
       data: id,
       width: '100%',

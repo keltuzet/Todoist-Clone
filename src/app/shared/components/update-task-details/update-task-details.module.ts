@@ -11,9 +11,9 @@ import { ButtonModule } from '@features/button/button.module';
 import { HexTransparencyModule } from '@shared/pipes';
 import { PriorityFlagIconModule } from '@shared/directives';
 import { CommentsModule } from '../comments/comments.module';
-import { SelectPriorityMenuModule } from '../select-priority-menu/select-priority-menu.module';
 import { SelectTagsMenuModule } from '../select-tags-menu/select-tags-menu.module';
 import { UpdateTaskDetailsComponent } from './update-task-details.component';
+import { PriorityActionsModule } from '../priority-actions';
 
 @NgModule({
   declarations: [UpdateTaskDetailsComponent],
@@ -28,7 +28,7 @@ import { UpdateTaskDetailsComponent } from './update-task-details.component';
     HexTransparencyModule,
     PriorityFlagIconModule,
     MenuModule,
-    SelectPriorityMenuModule,
+    PriorityActionsModule,
     SelectTagsMenuModule,
     TooltipModule,
   ],
