@@ -1,17 +1,13 @@
-<ul *ngIf="data$ | async as todo" class="menu-list">
+<ul *ngIf="todo$ | async as todo" class="menu-list">
   <li></li>
   <li class="section-menu-item">
-    <div class="section-menu-item__label">Срок</div>
-    <t-todo-schedule-holder
-      (scheduleChange)="updateTodoSchedule($event)"
-      [date]="todo.endDate"
-    ></t-todo-schedule-holder>
+    <div>section</div>
   </li>
   <li class="section-menu-item">
     <div class="section-menu-item__label">Срок</div>
-    <t-t-todo-schedule-holder-deadline
+    <t-todo-schedule-holder-deadline
       (scheduleChange)="updateTodoSchedule($event)"
       [date]="todo.endDate"
-    ></t-t-todo-schedule-holder-deadline>
+    ></t-todo-schedule-holder-deadline>
   </li>
 </ul>

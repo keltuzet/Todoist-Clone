@@ -1,14 +1,14 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { ScheduleHolderItem, ScheduleHolderItemType } from '@shared/components/todo-schedule-holder/schedule-holder-item.model';
 import { getScheduleHolderList } from '@shared/components/todo-schedule-holder/schedule-holder-list.const';
-import { Todo } from '@shared/models';
+import { Todo } from '@stores/todos';
 import { setNextWeek, setToday, setTomorrow, setWeekend } from '@shared/utils';
 import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 't-t-todo-schedule-holder-deadline',
+  selector: 't-todo-schedule-holder-deadline',
   templateUrl: './t-todo-schedule-holder-deadline.component.html',
   styleUrls: ['./t-todo-schedule-holder-deadline.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,16 +23,20 @@ export class TTodoScheduleHolderDeadlineComponent implements OnInit {
   @Output() scheduleChange = new EventEmitter<Date | null>();
 
   @Input() isColView = true;
+  // ? Спросить что здесь выполнятеся
   @Input('date') set date(val: string) {
     this.date$.next(moment(val));
   }
+
   @Input() todo: Todo;
 
   ngOnInit(): void {
     this.list$ = this.date$.pipe(map(date => getScheduleHolderList(date.toDate(), this.now)));
   }
 
-  handleClick(type: ScheduleHolderItemType): void {}
+  ngAfterViewInit() {
+    this.list$.subscribe(list => console.log("list:", list));
+  }
 
   setSchedule(type: ScheduleHolderItemType): void {
     if (!this.date$.value) return;

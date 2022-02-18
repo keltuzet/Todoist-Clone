@@ -10,7 +10,13 @@ import { MENU_DATA } from 'todoist-menu';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoDeadlineMenuComponent implements OnInit {
-  constructor(@Inject(MENU_DATA) public data$: Observable<Todo>) {}
+  constructor(
+    @Inject(MENU_DATA) public todo$: Observable<Todo>
+    ) {}
 
   ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.todo$.subscribe(endDate => console.log("endDate:", endDate));
+  }
 }
