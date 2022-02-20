@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UpdatePriorityComponent } from './update-priority.component';
+import { AddTagsButtonComponent } from './add-tags-button.component';
 
-describe('UpdatePriorityComponent', () => {
-  let component: UpdatePriorityComponent;
-  let fixture: ComponentFixture<UpdatePriorityComponent>;
+describe('AddTagsButtonComponent', () => {
+  let component: AddTagsButtonComponent;
+  let fixture: ComponentFixture<AddTagsButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpdatePriorityComponent ]
+      declarations: [ AddTagsButtonComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UpdatePriorityComponent);
+    fixture = TestBed.createComponent(AddTagsButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

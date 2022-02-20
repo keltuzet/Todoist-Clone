@@ -1,9 +1,0 @@
-<button
-  tButton
-  theme="icon-button"
-  [tMenuTrigger]="selectPriorityMenu"
-  [menuData]="todo.priorityId"
-  (afterClose)="updatePriority($event)"
->
-  <svg-icon [tPriorityFlagIcon]="todo?.priority" svgClass="icon_size_m"></svg-icon>
-</button>

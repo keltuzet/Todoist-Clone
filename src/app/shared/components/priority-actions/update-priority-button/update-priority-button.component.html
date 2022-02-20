@@ -1,0 +1,24 @@
+<button
+  tButton
+  theme="icon-button"
+  tTooltip
+  [tlpTemplate]="tooltip"
+  [tMenuTrigger]="selectPriorityMenu"
+  [menuData]="(priority$ | async)?.id"
+  (afterClose)="updatePriority($event)"
+>
+  <ng-container #container></ng-container>
+</button>
+
+<ng-template let-priority="priority" #icon>
+  <svg-icon [tPriorityFlagIcon]="priority" svgClass="icon_size_m"></svg-icon>
+</ng-template>
+
+<ng-template #tooltip>
+  <div class="tooltip sm-space">
+    <span>Задать приоритет</span>
+    <span *ngFor="let priority of priorities$ | async; index as i" class="key-wrap">
+      <span class="key ml-2">p{{i + 1}}</span>
+    </span>
+  </div>
+</ng-template>

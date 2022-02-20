@@ -1,7 +1,5 @@
 import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
-import { Observable } from 'rxjs';
 import { MenuRef, MENU_DATA } from 'todoist-menu';
-
 import { PrioritiesQuery, Priority } from '@stores/priorities';
 
 @Component({
@@ -16,7 +14,7 @@ export class SelectPriorityMenuComponent {
   constructor(
     private prioritiesQuery: PrioritiesQuery,
     private menuRef: MenuRef,
-    @Inject(MENU_DATA) public selectedPriorityId$: Observable<number>,
+    @Inject(MENU_DATA) public selectedPriorityId: number,
   ) {}
 
   select(priority: Priority): void {

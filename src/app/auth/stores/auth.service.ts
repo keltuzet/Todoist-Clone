@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { CollectionConfig, FireAuthService } from 'akita-ng-fire';
 import { User, UserCredential } from 'firebase/auth';
 import { from } from 'rxjs';
@@ -10,7 +11,7 @@ export class AuthService extends FireAuthService<AuthState> {
   private readonly accessTokenKey = 'accessToken';
   private readonly refreshTokenKey = 'refreshToken';
 
-  constructor(protected store: AuthStore) {
+  constructor(protected store: AuthStore, private router: Router) {
     super(store);
   }
 
@@ -35,6 +36,10 @@ export class AuthService extends FireAuthService<AuthState> {
   // onUpdate() {
   //   console.log('log');
   // }
+
+  onSignout(): void {
+    this.router.navigateByUrl('/login');
+  }
 
   createProfile(user: User): Partial<Profile> {
     console.log(user);

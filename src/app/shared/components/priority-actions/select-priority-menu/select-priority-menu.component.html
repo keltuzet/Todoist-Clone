@@ -1,4 +1,4 @@
-<ul *let="selectedPriorityId$ | async as selectedPriorityId" class="menu-list small select-menu">
+<ul class="menu-list small select-menu">
   <li *ngFor="let priority of priorities$ | async" (click)="select(priority)" class="menu-item">
     <div class="priority-content">
       <svg-icon [tPriorityFlagIcon]="priority" svgClass="icon_size_m"></svg-icon>

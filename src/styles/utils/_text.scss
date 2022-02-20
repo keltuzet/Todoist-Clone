@@ -4,8 +4,12 @@
   -webkit-box-orient: vertical;
 }
 
-.text-truncate {
+@mixin text-truncate {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.text-truncate {
+  @include text-truncate;
 }

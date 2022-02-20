@@ -10,6 +10,16 @@
   &.small {
     padding: 0;
   }
+
+  &.rounded {
+    padding: 6px 6px;
+    border-radius: 10px;
+
+    .menu-item {
+      padding: 4px 6px;
+      border-radius: 5px;
+    }
+  }
 }
 
 .menu-list {
@@ -60,7 +70,9 @@
   }
 
   .menu-item {
+    width: 100%;
     padding: 4px 10px;
+    text-align: start;
 
     &:hover {
       background-color: #f3f3f3;
@@ -73,8 +85,10 @@
   }
 
   .menu-divider {
+    height: 1px;
     margin: 4px 0;
-    border-bottom: 1px solid #ddd;
+    background-color: #e6e6e6;
+    border: none;
   }
 }
 

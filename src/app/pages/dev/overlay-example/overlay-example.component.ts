@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { MENU_DATA } from '@features/menu/const';
 
 @Component({
   selector: 't-overlay-example',
@@ -7,7 +8,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverlayExampleComponent implements OnInit {
-  constructor() {}
+  constructor(@Inject(MENU_DATA) data: any) {
+    console.log(data);
+  }
 
   ngOnInit(): void {}
 }

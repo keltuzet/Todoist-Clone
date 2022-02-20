@@ -81,19 +81,8 @@
   &__right-tools {
     display: flex;
 
-    .icon-btn:nth-child(n + 2) {
+    > *:nth-child(n + 2) {
       margin-left: 12px;
-    }
-
-    .icon-btn {
-      line-height: 0;
-      border-radius: 3px;
-      color: grey;
-
-      &:hover {
-        color: #202020;
-        background-color: #eee;
-      }
     }
   }
 

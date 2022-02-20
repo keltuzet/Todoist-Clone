@@ -7,9 +7,8 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class PriorityFlagIconDirective {
   @Input('tPriorityFlagIcon') set priority(val: Priority) {
-    if (!val) return;
-    this.svgIcon.name = val.default ? 'transparent-flag' : 'flag';
-    this.elementRef.nativeElement.style.color = val.colors.primary;
+    this.svgIcon.name = this.getIconName(val);
+    this.elementRef.nativeElement.style.color = this.getIconColor(val);
     this.changeDetectorRef.detectChanges();
   }
 
@@ -18,4 +17,13 @@ export class PriorityFlagIconDirective {
     private elementRef: ElementRef<HTMLElement>,
     private changeDetectorRef: ChangeDetectorRef,
   ) {}
+
+  private getIconName(priority?: Priority): string {
+    if (!priority || priority?.default) return 'transparent-flag';
+    return 'flag';
+  }
+
+  private getIconColor(priority?: Priority): string {
+    return priority?.colors?.primary || '';
+  }
 }

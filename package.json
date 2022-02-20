@@ -27,6 +27,7 @@
     "@datorama/akita": "^7.1.1",
     "@datorama/akita-ng-entity-service": "^7.0.0",
     "@datorama/akita-ng-router-store": "^7.0.0",
+    "@types/dom-mediacapture-record": "^1.0.11",
     "akita-ng-fire": "^7.0.0",
     "angular-svg-icon": "^11.2.0",
     "concurrently": "^6.2.0",
@@ -43,7 +44,7 @@
     "node-emoji": "^1.11.0",
     "rxfire": "^6.0.0",
     "rxjs": "^7.5.2",
-    "todoist-menu": "0.0.2",
+    "todoist-menu": "^0.1.0",
     "todoist-tooltip": "0.0.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"

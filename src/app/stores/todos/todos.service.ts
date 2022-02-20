@@ -10,6 +10,8 @@ import { Comment, CommentsService } from '../comments';
 import { MeQuery } from '@stores/me';
 import { Timestamp } from 'firebase/firestore';
 import { CreateTodo, Todo, TodoFromFirestore } from './todo.model';
+import { PrioritiesQuery } from '@stores/priorities';
+import { isNil } from '@shared/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +23,7 @@ export class TodosService extends CollectionService<TodosState> {
     private todosQuery: TodosQuery,
     private commentsService: CommentsService,
     private me: MeQuery,
+    private prioritiesQuery: PrioritiesQuery,
   ) {
     super(store);
   }
@@ -35,7 +38,15 @@ export class TodosService extends CollectionService<TodosState> {
   }
 
   create(todo: CreateTodo): Observable<string> {
-    return from(this.add(todo));
+    return this.prioritiesQuery.selectDefault().pipe(
+      switchMap(priority => {
+        if (!todo.priorityId) todo.priorityId = priority.id;
+        if (isNil(todo.tagIds)) todo.tagIds = [];
+        if (isNil(todo.subTodoIds)) todo.subTodoIds = [];
+        if (isNil(todo.commentsIds)) todo.commentsIds = [];
+        return from(this.add(todo));
+      }),
+    );
   }
 
   updatePriority(todoId: string, priorityId: string): Observable<any> {
@@ -91,10 +102,17 @@ export class TodosService extends CollectionService<TodosState> {
 
   formatToFirestore(todo: Todo): TodoFromFirestore {
     return {
-      ...todo,
+      ...this.cleanTodo(todo),
       createdDate: Timestamp.fromDate(new Date(todo.createdDate)),
       endDate: Timestamp.fromDate(new Date(todo.endDate)),
     };
+  }
+
+  private cleanTodo(todo: Todo): Todo {
+    Object.keys(todo).forEach(key => {
+      if (isNil(todo[key])) delete todo[key];
+    });
+    return todo;
   }
 
   private generateNotFoundError(): Error {

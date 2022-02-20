@@ -1,0 +1,55 @@
+@import 'styles/utils/text';
+
+.menu-list {
+  min-width: 276px;
+
+  .user-settings-menu-item {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.user-details {
+  display: flex;
+  margin-bottom: 5px;
+  margin-left: 3px;
+  max-width: 100%;
+
+  .user-avatar {
+    height: 48px;
+    width: 48px;
+    margin-right: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+
+  .user-details-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .user-name,
+  .user-email {
+    @include text-truncate;
+  }
+
+  .user-email {
+    margin: 3px 0 0;
+    color: rgba(0, 0, 0, 0.56);
+  }
+}
+
+.user-settings {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+
+  svg-icon {
+    margin-right: 10px;
+  }
+}

@@ -20,10 +20,11 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this.authStore.setLoading(true);
     return this.authService.sync().pipe(
-      map(([user, profile]) => {
-        const hasUser = Boolean(user);
-        if (!hasUser) this.router.navigate(['/login']);
+      map(data => {
         this.authStore.setLoading(false);
+        if (!data) this.navToLogin();
+        const [user, profile] = data;
+        if (!user) this.navToLogin();
         this.authStore.update({
           profile: {
             displayName: profile.displayName || user.displayName,
@@ -32,8 +33,12 @@ export class AuthGuard implements CanActivate {
             email: user.email,
           },
         });
-        return hasUser;
+        return true;
       }),
     );
+  }
+
+  private navToLogin(): void {
+    this.router.navigate(['/login']);
   }
 }

@@ -1,4 +1,4 @@
-<form [formGroup]="form" (submit)="addTask()" class="task-editor">
+<form [formGroup]="form" class="task-editor">
   <div class="task-editor__editing-area">
     <div class="task-editor__input-fields">
       <input
@@ -26,9 +26,11 @@
         <button *ngIf="false"><svg-icon></svg-icon></button>
       </div>
       <div class="task-editor__right-tools">
-        <button class="icon-btn"><svg-icon name="tag-outline" svgClass="icon_size_m"></svg-icon></button>
-        <button class="icon-btn"><svg-icon name="transparent-flag" svgClass="icon_size_m"></svg-icon></button>
-        <button class="icon-btn"><svg-icon name="alarm-clock" svgClass="icon_size_m"></svg-icon></button>
+        <t-add-tags-button [(tagIds)]="tagIds"></t-add-tags-button>
+        <t-update-priority-button [(priority)]="priority"></t-update-priority-button>
+        <button tButton theme="icon-button" (click)="addReminder()">
+          <svg-icon name="alarm-clock" svgClass="icon_size_m"></svg-icon>
+        </button>
       </div>
     </div>
   </div>

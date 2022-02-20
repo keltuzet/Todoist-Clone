@@ -1,0 +1,17 @@
+<button
+  tButton
+  theme="icon-button"
+  tTooltip
+  [tlpTemplate]="tooltip"
+  [tMenuTrigger]="selectTagsMenu"
+  [menuData]="tagIds"
+  (afterClose)="updateTags($event)"
+>
+  <svg-icon name="tag-outline" svgClass="icon_size_m"></svg-icon>
+</button>
+
+<ng-template #tooltip>
+  <div class="tooltip sm-space">
+    <span>Добавить метку</span><span class="key ml-2">@</span>
+  </div>
+</ng-template>

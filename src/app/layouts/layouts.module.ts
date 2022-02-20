@@ -13,7 +13,7 @@ import { SidebarModule } from '@features/sidebar';
 import { ExpansionPanelModule } from '@features/expansion-panel';
 import { RadioButtonModule } from '@features/radio-button';
 import { ButtonModule } from '@features/button';
-import { ProjectActionsMenuModule } from '@shared/components';
+import { ProjectActionsMenuModule, TagActionsModule } from '@shared/components';
 import { SvgIconTextModule } from '@shared/directives';
 import { ProjectIconModule, TakeModule } from '@shared/pipes';
 import { PageLayoutComponent } from './page-layout/page-layout.component';
@@ -21,7 +21,7 @@ import { HeaderComponent } from './header/header.component';
 import { SearchBarComponent } from './header/components/search-bar/search-bar.component';
 import { HeaderExtraToolbarComponent } from './header/components/header-extra-toolbar/header-extra-toolbar.component';
 import { HeaderMainToolbarComponent } from './header/components/header-main-toolbar/header-main-toolbar.component';
-import { QuickAddTodoDialogComponent } from './header/components/quick-add-todo-dialog/quick-add-todo-dialog.component';
+import { QuickCreateTodoDialogComponent } from './header/components/quick-create-todo-dialog/quick-create-todo-dialog.component';
 import { ProductivityMenuComponent } from './header/components/productivity-menu/productivity-menu.component';
 import { HelpMenuComponent } from './header/components/help-menu/help-menu.component';
 import { SearchResultComponent } from './header/components/search-result/search-result.component';
@@ -37,7 +37,8 @@ import { NavTagListComponent } from './nav/components/nav-tag-list/nav-tag-list.
 import { NavFilterListComponent } from './nav/components/nav-filter-list/nav-filter-list.component';
 import { NavTagMenuComponent } from './nav/components/nav-tag-menu/nav-tag-menu.component';
 import { NavListComponent } from './nav/components/nav-list/nav-list.component';
-import { NgxLetDirective, NgxLetDirectiveModule } from 'ngx-let-directive';
+import { NgxLetDirectiveModule } from 'ngx-let-directive';
+import { PriorityActionsModule, SettingsMenuModule } from '@shared/components';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,7 @@ import { NgxLetDirective, NgxLetDirectiveModule } from 'ngx-let-directive';
     RecentSearchListComponent,
     RecentSearchResultListComponent,
     NavListComponent,
-    QuickAddTodoDialogComponent,
+    QuickCreateTodoDialogComponent,
     ProductivityMenuComponent,
     HelpMenuComponent,
   ],
@@ -84,6 +85,9 @@ import { NgxLetDirective, NgxLetDirectiveModule } from 'ngx-let-directive';
     ButtonModule,
     ProjectActionsMenuModule,
     NgxLetDirectiveModule,
+    PriorityActionsModule,
+    SettingsMenuModule,
+    TagActionsModule,
   ],
 })
 export class PageLayoutModule {}

@@ -6,13 +6,13 @@
       <button tTooltip="Прикрепить файл" class="comment-editor-tool">
         <svg-icon name="attachment" svgClass="icon_size_m"></svg-icon>
       </button>
-      <butto tTooltip="Записать аудио" n class="comment-editor-tool">
+      <butto (click)="recordAudio()" tTooltip="Записать аудио" class="comment-editor-tool">
         <svg-icon name="microphone" svgClass="icon_size_m"></svg-icon>
       </butto>
       <button tTooltip="Вставить эмодзи" class="comment-editor-tool">
         <svg-icon name="emoji" svgClass="icon_size_m"></svg-icon>
       </button>
     </div>
-    <button tButton color="primary" class="comment-editor-submit" (click)="comment()">Комментировать</button>
+    <button (click)="comment()" tButton color="primary" class="comment-editor-submit">Комментировать</button>
   </div>
 </form>

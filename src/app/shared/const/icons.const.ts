@@ -90,4 +90,11 @@ export const SVG_ICONS: string[] = [
   'archive',
   'leave',
   'small-heart-solid',
+  'gear',
+  'palette',
+  'activity-log',
+  'print',
+  'star',
+  'people',
+  'mobile',
 ];

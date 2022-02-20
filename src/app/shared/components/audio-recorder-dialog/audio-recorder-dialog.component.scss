@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 16%);
+  background-color: #fff;
+  color: #202020;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  width: 560px;
+  padding: 20px 16px;
+  border: 1px dashed grey;
+  border-radius: 3px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #fff;
+  color: grey;
+  font-size: 20px;
+}
+
+.record-actions {
+  display: flex;
+  align-items: center;
+  height: 20px;
+
+  .record-action {
+    min-width: 80px;
+    margin: 0 15px;
+  }
+}
+
+.recorded-time {
+  margin: 5px;
+}
+
+.audio {
+  display: none;
+}
+
+.cancel {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}

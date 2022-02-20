@@ -4,8 +4,8 @@ import { switchMap, take } from 'rxjs/operators';
 import { DIALOG_DATA, DialogRef } from '@features/dialog/';
 import { Priority } from '@stores/priorities';
 import { TodosQuery, TodosService } from '@stores/todos';
-import { SelectTagsMenuComponent } from '../select-tags-menu';
 import { SelectPriorityMenuComponent } from '../priority-actions';
+import { SelectTagsMenuComponent } from '../tag-actions';
 
 @Component({
   selector: 't-update-task-details',

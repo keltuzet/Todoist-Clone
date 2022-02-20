@@ -6,10 +6,11 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { DatabaseModule } from '@angular/fire/database';
 import { environment } from 'environments/environment';
+import { MenuModule } from '@features/menu';
 
 @NgModule({
   declarations: [DevComponent, OverlayExampleComponent],
-  imports: [CommonModule, AngularFirestoreModule, AngularFireModule, DatabaseModule],
+  imports: [CommonModule, MenuModule, AngularFirestoreModule, AngularFireModule, DatabaseModule],
   exports: [DevComponent, OverlayExampleComponent],
 })
 export class DevModule {}

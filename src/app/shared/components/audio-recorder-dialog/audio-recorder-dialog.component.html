@@ -1,0 +1,29 @@
+<div class="container">
+  <h4 class="recorded-time">{{ time | date: 'mm:ss' }}</h4>
+  <ng-container [ngSwitch]="state">
+    <ng-container *ngSwitchCase="recordingStatesMap.Initial">
+      <div class="record-actions">
+        <button (click)="startRecord()" class="record-action">Записать</button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="recordingStatesMap.Recording">
+      <div class="record-actions">
+        <button (click)="stopRecord()" class="record-action">Остановить</button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="recordingStatesMap.Completed">
+      <div class="record-actions">
+        <button class="record-action" type="button">Перезаписать</button>
+        <button (click)="playRecord()" class="record-action" type="button">Воспроизвести</button>
+        <button class="record-action" type="button">Прикрепить</button>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <audio #audio volume="1" class="audio"></audio>
+  <button (click)="cancel()" tButton theme="icon-button" class="cancel">
+    <svg-icon name="cross" svgClass="icon_size_m"></svg-icon>
+  </button>
+</div>

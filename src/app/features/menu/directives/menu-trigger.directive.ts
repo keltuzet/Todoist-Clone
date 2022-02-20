@@ -1,4 +1,4 @@
-import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
 import {
   ComponentRef,
@@ -8,29 +8,29 @@ import {
   HostListener,
   Injector,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { UnsubscribeService } from '@shared/services';
 import { MenuComponent } from '../components';
-import { getOpposite, getOppositeSides, getPositions, MENU_DATA, MENU_POSITIONS } from '../const';
+import { getPositions, MENU_DATA } from '../const';
 import { MenuPosition, MenuRef } from '../models';
 
 @Directive({
   selector: '[tMenuTrigger]',
-  providers: [UnsubscribeService],
 })
-export class MenuTriggerDirective implements OnInit {
-  private overlayRef: OverlayRef;
-  private portal: TemplatePortal<any> | ComponentPortal<any>;
-  private menuInjector: Injector;
+export class MenuTriggerDirective implements OnInit, OnDestroy {
+  private overlayRef!: OverlayRef;
+  private portal!: TemplatePortal<any> | ComponentPortal<any>;
+  private menuInjector!: Injector;
   private menuRef = new MenuRef();
   private data$ = new BehaviorSubject<any>(null);
+  private unsubscribe = new Subject<void>();
 
   @Input('tMenuTrigger') set target(val: TemplateRef<any> | ComponentType<any>) {
     this.portal =
@@ -38,9 +38,7 @@ export class MenuTriggerDirective implements OnInit {
         ? new TemplatePortal(val, this.viewContainerRef)
         : new ComponentPortal(val, null, this.menuInjector);
   }
-  @Input('menuData') set tooltipData(data: any) {
-    this.data$.next(data);
-  }
+  @Input('menuData') menuData: any;
   @Input('menuPosition') position: MenuPosition = 'below';
 
   @Output() afterClose = new EventEmitter<any>();
@@ -50,16 +48,20 @@ export class MenuTriggerDirective implements OnInit {
     private injector: Injector,
     private overlay: Overlay,
     private viewContainerRef: ViewContainerRef,
-    private unsubscribe: UnsubscribeService,
   ) {
     this.earlyInit();
   }
 
   ngOnInit(): void {
-    this.menuRef.close$.pipe(takeUntil(this.unsubscribe)).subscribe((value) => {
+    this.menuRef.onClose.pipe(takeUntil(this.unsubscribe)).subscribe((value) => {
       this.afterClose.emit(value);
       this.closeMenu();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   earlyInit(): void {
@@ -91,7 +93,7 @@ export class MenuTriggerDirective implements OnInit {
       .backdropClick()
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => {
-        this.afterClose.emit();
+        this.afterClose.emit(this.menuRef.backdropCloseValue);
         this.closeMenu();
       });
     return overlayRef;

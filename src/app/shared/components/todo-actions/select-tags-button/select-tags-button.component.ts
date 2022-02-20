@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { SelectTagsMenuComponent } from '@shared/components/select-tags-menu/select-tags-menu.component';
 
 @Component({
   selector: 't-select-tags-button',
@@ -7,6 +6,4 @@ import { SelectTagsMenuComponent } from '@shared/components/select-tags-menu/sel
   styleUrls: ['./select-tags-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectTagsButtonComponent {
-  readonly menu = SelectTagsMenuComponent;ы
-}
+export class SelectTagsButtonComponent {}

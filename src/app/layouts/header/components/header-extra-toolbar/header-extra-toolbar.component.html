@@ -21,7 +21,7 @@
     </button>
   </li>
   <li *let="userProfile$ | async as userProfile" class="header-extra-toolbar__item">
-    <button class="settings-btn">
+    <button [tMenuTrigger]="settingsMenu" class="settings-btn">
       <img [src]="userProfile.photoURL" alt="Your avatar" class="user-avatar">
     </button>
   </li>

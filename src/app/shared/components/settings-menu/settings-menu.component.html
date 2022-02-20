@@ -1,0 +1,54 @@
+<div class="menu-list rounded">
+  <a *let="me$ | async as me" class="menu-item user-settings-menu-item" routerLink="" appMenuClose>
+    <div class="user-details">
+      <img [src]="me.photoURL" alt="User avatar" class="user-avatar" />
+      <div class="user-details-text">
+        <strong class="user-name">{{ me.displayName }}</strong>
+        <p class="user-email">{{ me.email }}</p>
+      </div>
+    </div>
+    <button class="user-settings" type="button">
+      <svg-icon svgClass="icon_size_m" name="gear"></svg-icon>
+      <span>Настройки</span>
+    </button>
+  </a>
+  <hr class="menu-divider" />
+  <a class="menu-item icon-menu-item" routerLink="" appMenuClose>
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="palette"></svg-icon>
+    <span class="icon-menu-item__content">Тема</span>
+  </a>
+  <a class="menu-item icon-menu-item" routerLink="" appMenuClose>
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="activity-log"></svg-icon>
+    <span class="icon-menu-item__content">Журнал действий</span>
+  </a>
+  <a class="menu-item icon-menu-item" routerLink="" appMenuClose>
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="print"></svg-icon>
+    <span class="icon-menu-item__content">Распечатать</span>
+  </a>
+  <a class="menu-item icon-menu-item" routerLink="" appMenuClose>
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="rect-plus"></svg-icon>
+    <span class="icon-menu-item__content">Интеграции</span>
+  </a>
+  <hr class="menu-divider" />
+  <a class="menu-item icon-menu-item" routerLink="" appMenuClose>
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="star"></svg-icon>
+    <span class="icon-menu-item__content">Перейти на тариф Pro</span>
+  </a>
+  <a class="menu-item icon-menu-item" routerLink="" appMenuClose>
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="people"></svg-icon>
+    <span class="icon-menu-item__content">Подключить тариф Бизнес</span>
+  </a>
+  <a class="menu-item icon-menu-item" routerLink="" appMenuClose>
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="mobile"></svg-icon>
+    <span class="icon-menu-item__content">Установить приложения</span>
+  </a>
+  <hr class="menu-divider" />
+  <button (click)="signOut()" class="menu-item icon-menu-item">
+    <svg-icon class="icon-menu-item__icon" svgClass="icon_size_m" name="leave"></svg-icon>
+    <span class="icon-menu-item__content">Выйти</span>
+  </button>
+  <hr class="menu-divider" />
+  <a class="menu-item icon-menu-item" routerLink="" appMenuClose>
+    <span class="icon-menu-item__content">v1877 Что нового</span>
+  </a>
+</div>

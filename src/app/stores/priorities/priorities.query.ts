@@ -11,4 +11,8 @@ export class PrioritiesQuery extends QueryEntity<PrioritiesState> {
   constructor(protected store: PrioritiesStore) {
     super(store);
   }
+
+  selectDefault(): Observable<Priority> {
+    return this.selectEntity((priority: Priority) => priority.default);
+  }
 }
