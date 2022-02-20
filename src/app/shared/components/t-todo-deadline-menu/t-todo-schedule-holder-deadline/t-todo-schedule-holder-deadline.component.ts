@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { ScheduleHolderItem, ScheduleHolderItemType } from '@shared/components/todo-schedule-holder/schedule-holder-item.model';
 import { getScheduleHolderList } from '@shared/components/todo-schedule-holder/schedule-holder-list.const';
 import { Todo } from '@stores/todos';
@@ -6,6 +6,7 @@ import { setNextWeek, setToday, setTomorrow, setWeekend } from '@shared/utils';
 import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 't-todo-schedule-holder-deadline',
@@ -13,7 +14,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./t-todo-schedule-holder-deadline.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TTodoScheduleHolderDeadlineComponent implements OnInit {
+export class TTodoScheduleHolderDeadlineComponent implements OnInit, AfterViewInit{
   date$ = new BehaviorSubject<moment.Moment>(null);
   list$: Observable<ScheduleHolderItem[]>;
   now = new Date();
@@ -30,13 +31,16 @@ export class TTodoScheduleHolderDeadlineComponent implements OnInit {
 
   @Input() todo: Todo;
 
-  ngOnInit(): void {
-    this.list$ = this.date$.pipe(map(date => getScheduleHolderList(date.toDate(), this.now)));
+  constructor() {
   }
 
-  ngAfterViewInit() {
-    this.list$.subscribe(list => console.log("list:", list));
+  ngOnInit(): void {
+    this.list$ = this.date$.pipe(
+      map(date => getScheduleHolderList(date.toDate(), this.now)),
+      );
   }
+
+  ngAfterViewInit(): void { }
 
   setSchedule(type: ScheduleHolderItemType): void {
     if (!this.date$.value) return;
@@ -52,8 +56,6 @@ export class TTodoScheduleHolderDeadlineComponent implements OnInit {
         return this.scheduleChange.emit(setNextWeek(date, this.nowMoment).toDate());
       case 'noTimeLimit':
         return this.scheduleChange.emit(date.toDate());
-      case 'more':
-        return;
     }
   }
 }

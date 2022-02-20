@@ -2,7 +2,7 @@
   <li *ngFor="let item of list$ | async" class="schedule-holder__item">
     <button (click)="setSchedule(item.type)" class="schedule-holder__btn" type="button">
       <ng-container *ngIf="item.applySvgIconTextDirective; else elseTemplate">
-        <div class="d-flex">
+        <div class="todo-schedule-holder-deadline">
           <svg-icon
             [appSvgIconText]="currDay"
             [tTooltip]="item.tooltipText"
@@ -10,10 +10,13 @@
             [svgClass]="item.iconClass"
           ></svg-icon>
           <p>{{ item.tooltipText }}</p>
+          <p>{{ item.date }}</p>
         </div>
       </ng-container>
       <ng-template #elseTemplate>
         <svg-icon [tTooltip]="item.tooltipText" [name]="item.iconName" [svgClass]="item.iconClass"></svg-icon>
+        <p>{{ item.tooltipText }}</p>
+          <p>{{ item.date }}</p>
       </ng-template>
     </button>
   </li>

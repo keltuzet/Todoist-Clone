@@ -49,8 +49,6 @@ export class TodoScheduleHolderComponent implements OnInit {
         return this.scheduleChange.emit(setNextWeek(date, this.nowMoment).toDate());
       case 'noTimeLimit':
         return this.scheduleChange.emit(date.toDate());
-      case 'more':
-        return;
     }
   }
 }

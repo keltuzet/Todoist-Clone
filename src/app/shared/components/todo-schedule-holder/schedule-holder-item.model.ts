@@ -1,4 +1,4 @@
-export type ScheduleHolderItemType = 'today' | 'tomorrow' | 'weekends' | 'nextWeek' | 'noTimeLimit' | 'more';
+export type ScheduleHolderItemType = 'today' | 'tomorrow' | 'weekends' | 'nextWeek' | 'noTimeLimit';
 
 export interface ScheduleHolderItem {
   tooltipText: string;
@@ -6,4 +6,6 @@ export interface ScheduleHolderItem {
   iconClass: string;
   applySvgIconTextDirective?: true;
   type: ScheduleHolderItemType;
+  dateFormat?: string;
+  date?: string;
 }

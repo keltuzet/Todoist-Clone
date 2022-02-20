@@ -4,6 +4,8 @@ type dateFn = (date: moment.Moment, now?: moment.Moment) => moment.Moment;
 type comparisonFn = (date: moment.Moment, now?: moment.Moment) => boolean;
 type setWeekendFn = (date: moment.Moment, now?: moment.Moment, weekends?: number[]) => moment.Moment;
 
+type getDateFn = () => moment.Moment;
+
 export const setCurrentMonth: dateFn = (date, now = moment()) => {
   return date.year(now.year()).month(now.month());
 };
@@ -54,3 +56,23 @@ export const isSameDate = (dateA: moment.Moment, dateB: moment.Moment): boolean 
 export const isBeforeToday: comparisonFn = (date, now = moment()) => {
   return date.startOf('day').isBefore(now.startOf('day'));
 };
+
+export const getToday: getDateFn = () => {
+  return moment();
+};
+
+export const getTomorrow: getDateFn = () => {
+  const now = moment();
+  return now.date(now.date() + 1);
+};
+
+export const getNextWeekends: getDateFn = () => {
+  const now = moment();
+  return now.date(now.date() + 1);
+};
+
+export const getNextWeek: getDateFn = () => {
+  const now = moment();
+  return now.date(now.date() + 1);
+};
+
