@@ -9,6 +9,39 @@ enum RecordingState {
   Completed = 'completed',
 }
 
+// class Stopwatch {
+//   // hours: number;
+//   // minutes: number;
+//   private secondsValue = 0;
+//   set seconds(value: number) {
+//     if (value > 60) {
+//       this.secondsValue = value % 60;
+//       this.minutes = Math.fixed(value)
+//     } else {
+//       this.secondsValue = value;
+//     }
+//   }
+//   get seconds(): number {
+//     return this.secondsValue;
+//   }
+
+//   private minutesValue = 0;
+//   set minutes(value: number) {
+
+//   }
+//   get minutes(): number {
+//     return this.secondsValue;
+//   }
+
+//   private hoursValue = 0;
+//   set hours(value: number) {
+
+//   }
+//   get hours(): number {
+//     return this.hoursValue;
+//   }
+// }
+
 @Component({
   selector: 't-audio-recorder-dialog',
   templateUrl: './audio-recorder-dialog.component.html',
@@ -54,7 +87,9 @@ export class AudioRecorderDialogComponent implements OnInit {
 
   playRecord(): void {
     const blob = new Blob(this.chunks, { type: 'audio/ogg; codecs=opus' });
+    console.log(this.chunks, blob);
     const audioURL = window.URL.createObjectURL(blob);
+    console.log(audioURL);
     this.audio.nativeElement.src = audioURL;
     this.audio.nativeElement.play();
   }

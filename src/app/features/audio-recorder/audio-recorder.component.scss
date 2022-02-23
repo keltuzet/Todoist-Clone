@@ -1,0 +1,42 @@
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  width: 560px;
+  padding: 20px 16px;
+  border: 1px dashed grey;
+  border-radius: 3px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #fff;
+  color: grey;
+  font-size: 20px;
+}
+
+.recorder-actions {
+  display: flex;
+  align-items: center;
+  height: 20px;
+
+  .recorder-action {
+    min-width: 80px;
+    margin: 0 15px;
+  }
+}
+
+.recorder-time {
+  margin: 5px;
+}
+
+.recorder-audio {
+  display: none;
+}
+
+.recorder-cancel {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}

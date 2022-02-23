@@ -20,6 +20,8 @@ export function createProfileInitialState(): Profile {
   };
 }
 
+export const profileKeys = Object.keys(createProfileInitialState());
+
 export function createInitialState(): AuthState {
   return {
     displayName: undefined,

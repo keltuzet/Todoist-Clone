@@ -13,9 +13,16 @@ import { NgxLetDirectiveModule } from 'ngx-let-directive';
 import { MenuModule } from 'todoist-menu';
 import { EmojiMenuModule } from '../emoji-menu/emoji-menu.module';
 import { CommentReactionsComponent } from './comment-reactions/comment-reactions.component';
+import { AudioRecorderModule } from '@features/audio-recorder';
 
 @NgModule({
-  declarations: [CommentEditorComponent, CommentComponent, CommentListComponent, PostCommentComponent, CommentReactionsComponent],
+  declarations: [
+    CommentEditorComponent,
+    CommentComponent,
+    CommentListComponent,
+    PostCommentComponent,
+    CommentReactionsComponent,
+  ],
   imports: [
     CommonModule,
     AngularSvgIconModule,
@@ -25,7 +32,14 @@ import { CommentReactionsComponent } from './comment-reactions/comment-reactions
     NgxLetDirectiveModule,
     MenuModule,
     EmojiMenuModule,
+    AudioRecorderModule,
   ],
-  exports: [CommentEditorComponent, CommentComponent, CommentListComponent, PostCommentComponent, CommentReactionsComponent],
+  exports: [
+    CommentEditorComponent,
+    CommentComponent,
+    CommentListComponent,
+    PostCommentComponent,
+    CommentReactionsComponent,
+  ],
 })
 export class CommentsModule {}

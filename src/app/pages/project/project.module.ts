@@ -10,6 +10,8 @@ import { ButtonModule } from '@features/button/button.module';
 import { ShowOnBreakpointModule } from '@shared/directives';
 import { TooltipModule } from 'todoist-tooltip';
 import { TabsModule } from '@features/tabs/tabs.module';
+import { SwitchModule } from '@features/switch';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ProjectComponent, ProjectNotFoundComponent],
@@ -22,6 +24,9 @@ import { TabsModule } from '@features/tabs/tabs.module';
     ShowOnBreakpointModule,
     TooltipModule,
     TabsModule,
+    SwitchModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
 })
 export class ProjectModule {}

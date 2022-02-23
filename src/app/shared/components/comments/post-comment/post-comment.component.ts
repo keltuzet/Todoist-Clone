@@ -1,7 +1,12 @@
 import { Component, ChangeDetectionStrategy, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Dialog } from '@features/dialog';
-import { AudioRecorderDialogComponent } from '@shared/components/audio-recorder-dialog';
 import { CommentEditorComponent } from '../comment-editor/comment-editor.component';
+
+enum Display {
+  Editor = 'editor',
+  AudioRecorder = 'audioRecorder',
+  AttachBox = 'attachBox',
+}
 
 @Component({
   selector: 't-post-comment',
@@ -13,6 +18,8 @@ export class PostCommentComponent {
   @ViewChild(CommentEditorComponent, { static: true }) editor: CommentEditorComponent;
   @Output('comment') commentEvent = new EventEmitter<string>();
   readonly placeholder = 'Написать комментарий';
+  state: Display = Display.Editor;
+  readonly statesMap = Display;
 
   constructor(private dialog: Dialog) {}
 
@@ -24,6 +31,14 @@ export class PostCommentComponent {
   }
 
   recordAudio(): void {
-    this.dialog.open(AudioRecorderDialogComponent);
+    this.state = Display.AudioRecorder;
+  }
+
+  handleAudioRecorderClose(event?: Blob): void {
+    this.state = Display.Editor;
+  }
+
+  attach(): void {
+    console.log('Not implemented!');
   }
 }

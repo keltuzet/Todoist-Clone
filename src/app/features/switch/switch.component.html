@@ -1,0 +1,5 @@
+<div (click)="toggle()" class="switch-bar">
+  <span class="switch-thumb"></span>
+  <input [attr.aria-checked]="checked" [id]="hostId" type="checkbox" class="switch-input" role="switch" tabindex="0" />
+</div>
+<label [for]="hostId" class="switch-label"><ng-content></ng-content></label>

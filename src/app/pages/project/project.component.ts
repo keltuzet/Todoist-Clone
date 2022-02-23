@@ -1,6 +1,7 @@
 import { Overlay, OverlayContainer, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SnackbarService } from '@features/snackbar/services/snackbar.service';
 import { GreetingSnackbarComponent } from '@shared/components/greeting-snackbar/greeting-snackbar.component';
@@ -35,12 +36,17 @@ export class ProjectComponent implements OnInit {
   testOverlay() {
     console.log(document.body);
     this.ref = this.overlay.create({
-      positionStrategy: this.overlay.position().flexibleConnectedTo(document.body).withPositions([{
-        originX: 'center',
-        originY: 'center',
-        overlayY: 'center',
-        overlayX: 'center',
-      }]),
+      positionStrategy: this.overlay
+        .position()
+        .flexibleConnectedTo(document.body)
+        .withPositions([
+          {
+            originX: 'center',
+            originY: 'center',
+            overlayY: 'center',
+            overlayX: 'center',
+          },
+        ]),
     });
     this.ref.attach(new ComponentPortal(ProjectNotFoundComponent));
   }
@@ -69,4 +75,6 @@ export class ProjectComponent implements OnInit {
   getProject() {
     // this.activatedRoute.params.subscribe(console.log);
   }
+
+  log() {}
 }

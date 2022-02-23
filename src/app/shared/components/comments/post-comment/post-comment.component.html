@@ -1,9 +1,15 @@
 <form class="comment-editor-form">
-  <t-comment-editor></t-comment-editor>
+  <t-comment-editor [ngStyle]="{ 'display': state === statesMap.Editor ? 'block' : 'none' }"></t-comment-editor>
+  <ng-container [ngSwitch]="state">
+    <t-audio-recorder
+      *ngSwitchCase="statesMap.AudioRecorder"
+      (closeRecorder)="handleAudioRecorderClose($event)"
+    ></t-audio-recorder>
+  </ng-container>
 
   <div class="comment-editor-toolbar">
     <div class="comment-editor-tools">
-      <button tTooltip="Прикрепить файл" class="comment-editor-tool">
+      <button (click)="attach()" tTooltip="Прикрепить файл" class="comment-editor-tool">
         <svg-icon name="attachment" svgClass="icon_size_m"></svg-icon>
       </button>
       <butto (click)="recordAudio()" tTooltip="Записать аудио" class="comment-editor-tool">

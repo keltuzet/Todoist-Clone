@@ -9,3 +9,4 @@ export * from './date-to-non-tmz-json';
 export * from './track-by';
 export * from './color';
 export * from './is-overdue';
+export * from './get-host-id';

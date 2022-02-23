@@ -1,0 +1,35 @@
+<h4 class="recorded-time">{{ stopwatchTime$ | async | date: 'mm:ss' }}</h4>
+<ng-container [ngSwitch]="state">
+  <ng-container *ngSwitchCase="recordingStatesMap.Initial">
+    <div class="recorder-actions">
+      <button (click)="startRecord()" class="recorder-action">Записать</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="recordingStatesMap.Recording">
+    <div class="recorder-actions">
+      <button (click)="stopRecord()" class="recorder-action">Остановить</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="recordingStatesMap.Completed">
+    <div class="recorder-actions">
+      <button (click)="startRecord()" class="recorder-action" type="button">Перезаписать</button>
+      <button (click)="playRecord()" class="recorder-action" type="button">Воспроизвести</button>
+      <button (click)="attachRecord()" class="recorder-action" type="button">Прикрепить</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="recordingStatesMap.Playing">
+    <div class="recorder-actions">
+      <button (click)="startRecord()" class="recorder-action" type="button">Перезаписать</button>
+      <button (click)="resumeRecord()" class="recorder-action" type="button">Остановить</button>
+      <button (click)="attachRecord()" class="recorder-action" type="button">Прикрепить</button>
+    </div>
+  </ng-container>
+</ng-container>
+
+<audio #audio volume="1" (ended)="playingEnded()" class="recorder-audio"></audio>
+<button (click)="cancel()" tButton theme="icon-button" class="recorder-cancel">
+  <svg-icon name="cross" svgClass="icon_size_m"></svg-icon>
+</button>
