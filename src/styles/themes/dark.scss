@@ -1,0 +1,38 @@
+:root {
+  --app-background-color: #1f1f1f;
+  --app-text-color: hsla(0, 0%, 100%, 0.87);
+
+  --app-topbar-background-color: #282828;
+  --app-topbar-border-color: transparent;
+  --app-topbar-text-color: hsla(0, 0%, 100%, 0.87);
+
+  --app-search-bar-background-color: #363636;
+  --app-search-bar-search-icon-color: hsla(0, 0%, 100%, 0.87);
+  --app-search-bar-focus-background-color: #363636;
+  --app-search-bar-focus-text-color: hsla(0, 0%, 100%, 0.87);
+  --app-search-bar-focus-placeholder-text-color: hsla(0, 0%, 100%, 0.87);
+
+  --app-nav-background-color: #282828;
+
+  --nav-list-item-background-color: #363636;
+  --nav-list-item-hover-background-color: #363636;
+  --nav-list-item-counter-color: #777;
+  --nav-list-item-overdue-counter-color: #ff7f74;
+  --nav-list-item-menu-btn-color: hsla(0,0%,100%,.56);
+  --nav-list-item-menu-btn-hover-color: hsla(0,0%,100%,.87);
+
+  --expansion-panel-header-color: hsla(0, 0%, 100%, 0.87);
+  --expansion-panel-header-icon-color: #777777;
+
+
+  --todo-title-color: hsla(0,0%,100%,.87);
+
+  --icon-green-color: #25b84c;
+  --icon-tenne-color: #ff9a14;
+  --icon-royal-blue-color: #5297ff;
+  --icon-purple-heart-color: #a970ff;
+}
+
+.header {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 15%);
+}

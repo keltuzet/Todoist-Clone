@@ -4,10 +4,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SnackbarService } from '@features/snackbar/services/snackbar.service';
-import { GreetingSnackbarComponent } from '@shared/components/greeting-snackbar/greeting-snackbar.component';
-import { ProjectsQuery } from '@stores/projects';
-import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { trackByIdentity } from '@shared/utils';
+import { ProjectsQuery, ProjectWithTodos, Status, StatusWithTodos } from '@stores/projects';
+import { StatusesQuery } from '@stores/statuses';
+import { TodosQuery } from '@stores/todos';
+import { combineLatest, Observable, of } from 'rxjs';
+import { delay, map, switchMap, tap } from 'rxjs/operators';
 import { ProjectNotFoundComponent } from './components';
 
 @Component({
@@ -16,65 +18,42 @@ import { ProjectNotFoundComponent } from './components';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  project$ = this.projectsQuery.selectRouteProject();
-  ref: OverlayRef;
-  delay$ = of(true).pipe(delay(10));
+  readonly project$ = this.getProject().pipe(tap(console.log));
+  readonly trackByID = trackByIdentity<Status>('id');
 
   constructor(
     private snackbarService: SnackbarService,
     private projectsQuery: ProjectsQuery,
+    private statusesQuery: StatusesQuery,
     private activatedRoute: ActivatedRoute,
     private o: OverlayContainer,
     private overlay: Overlay,
+    private todosQuery: TodosQuery,
   ) {}
 
-  ngOnInit(): void {
-    // this.projectsQuery.selectRouteProject()
-    // .subscribe(v => console.log(v));
-  }
+  ngOnInit(): void {}
 
-  testOverlay() {
-    console.log(document.body);
-    this.ref = this.overlay.create({
-      positionStrategy: this.overlay
-        .position()
-        .flexibleConnectedTo(document.body)
-        .withPositions([
-          {
-            originX: 'center',
-            originY: 'center',
-            overlayY: 'center',
-            overlayX: 'center',
-          },
-        ]),
-    });
-    this.ref.attach(new ComponentPortal(ProjectNotFoundComponent));
-  }
+  getProject(): Observable<ProjectWithTodos> {
+    return this.projectsQuery.selectRouteProject().pipe(
+      switchMap(project => {
+        const statuses$: Observable<StatusWithTodos[]> = combineLatest(
+          project.statuses.map(status =>
+            this.todosQuery.selectByStatusID(status.id).pipe(map(todos => ({ ...status, todos }))),
+          ),
+        );
 
-  clear() {
-    this.ref.dispose();
-  }
+        return statuses$.pipe(map(statuses => ({ ...project, statuses })));
 
-  open(): void {
-    // this.snackbarService.open({
-    //   data: {
-    //     message: 'Hello',
-    //     action: 'close',
-    //   },
-    //   duration: 3500,
-    // });
-    this.snackbarService.openFromComponent(GreetingSnackbarComponent, {
-      disuseContainerTheme: true,
-      disuseContainerAnimation: true,
-      data: {
-        message: `So far, we've learned simple animations of single HTML elements. Angular also lets you animate coordinated sequences, such as an entire grid or list of elements as they enter and leave a page. You can choose to run multiple animations in parallel, or run discrete animations sequentially, one following another.`,
-      },
-    });
-  }
+        // const statuses: StatusWithTodos[] = project.statuses.map(status => ({
+        //   ...status,
+        //   todos: this.todosQuery.getByStatusID(status.id),
+        // }));
 
-  getProject() {
-    // this.activatedRoute.params.subscribe(console.log);
+        // return {
+        //   ...project,
+        //   statuses,
+        // };
+      }),
+    );
   }
-
-  log() {}
 }

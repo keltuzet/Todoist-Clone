@@ -1,8 +1,13 @@
 import { HashMap } from '@datorama/akita';
+import { DetailedTodo, Todo } from '@stores/todos';
 
 export interface Status {
   id: string;
   title: string;
+}
+
+export interface StatusWithTodos extends Status {
+  todos: DetailedTodo[];
 }
 
 export interface DetailedStatus extends Status {
@@ -16,6 +21,10 @@ export interface Project {
   statuses: Status[];
   isFavorite?: true;
   isShared?: true;
+}
+
+export interface ProjectWithTodos extends Project {
+  statuses: StatusWithTodos[];
 }
 
 export interface ProjectQueryModel extends Omit<Project, 'statuses'> {

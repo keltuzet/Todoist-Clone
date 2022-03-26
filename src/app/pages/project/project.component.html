@@ -25,6 +25,26 @@
       </button>
     </div>
   </header>
+
+  <div class="board-container">
+    <div class="board" role="listbox">
+      <section *ngFor="let status of project.statuses; trackBy: trackByID">
+        <header class="board-section__header">
+          <div class="board-section__section-info">
+            {{ status.title }}
+            <span>{{ status.todos?.length }}</span>
+          </div>
+          <button tButton theme="icon-button">
+            <svg-icon name="ellipsis-h-alt-large" svgClass="icon_size_m"></svg-icon>
+          </button>
+        </header>
+        <div *ngFor="let todo of status.todos" class="board-section__todos">
+          <t-todo-board-card [todo]="todo"></t-todo-board-card>
+        </div>
+        <footer class="board-section__footer"></footer>
+      </section>
+    </div>
+  </div>
 </ng-container>
 
 <ng-template #generalAccessTooltip>
@@ -43,4 +63,3 @@
 <ng-template #projectNotFound>
   <t-project-not-found></t-project-not-found>
 </ng-template>
-

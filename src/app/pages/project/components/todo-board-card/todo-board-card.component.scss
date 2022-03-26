@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  position: relative;
+  width: 260px;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 4%);
+  cursor: pointer;
+  transition-property: border-color, box-shadow, background-color;
+  transition-duration: 0.3s;
+
+  .mark-tool {
+    width: 28px;
+  }
+}

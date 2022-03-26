@@ -16,6 +16,7 @@ import { TodosStore, TodosState } from './todos.store';
 import { PrioritiesQuery } from '@stores/priorities';
 import { CommentsQuery } from '@stores/comments';
 import { User, UsersQuery } from '@stores/users';
+import * as moment from 'moment';
 
 @Injectable({ providedIn: 'root' })
 export class TodosQuery extends QueryEntity<TodosState> {
@@ -43,12 +44,22 @@ export class TodosQuery extends QueryEntity<TodosState> {
     );
   }
 
-  selectTodays(currentDate = new Date()): Observable<Todo[]> {
+  selectTodays(): Observable<Todo[]> {
     return this.toTodo(
       this.selectAll({
         filterBy: ({ endDate }) => {
-          const res = isToday(new Date(endDate), currentDate);
-          return res;
+          return moment().isSame(endDate, 'day');
+        },
+      }),
+    );
+  }
+
+  selectByDate(date: moment.Moment | Date): Observable<DetailedTodo[]> {
+    return this.toTodo(
+      this.selectAll({
+        filterBy: ({ endDate }) => {
+          const momentDate: moment.Moment = moment.isMoment(date) ? date : moment(date);
+          return momentDate.isSame(endDate, 'day');
         },
       }),
     );
@@ -66,6 +77,14 @@ export class TodosQuery extends QueryEntity<TodosState> {
         },
       }),
     );
+  }
+
+  selectByStatusID(statusId: string): Observable<DetailedTodo[]> {
+    return this.toTodo(this.selectAll({ filterBy: todo => todo.statusId === statusId }));
+  }
+
+  getByStatusID(statusId: string): Todo[] {
+    return this.getAll({ filterBy: todo => todo.statusId === statusId });
   }
 
   private toTodo(todos$: Observable<Todo[]>): Observable<DetailedTodo[]> {

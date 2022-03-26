@@ -1,16 +1,18 @@
+:host {
+  z-index: 2;
+}
+
 .header {
   height: 44px;
   padding: 0 42px;
-  background-color: #db4c3f;
+  background-color: var(--app-topbar-background-color);
+  border-bottom: 1px solid var(--app-topbar-border-color);
+  color: var(--app-topbar-text-color);
 
   &-inner {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  &-toolbar {
-    // height: 100%;
   }
 }

@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   margin-left: 5px;
-  color: #fff;
 
   &_active {
     z-index: 10001;
@@ -14,11 +13,11 @@
     color: #202020;
 
     .search-bar__inp {
-      background-color: #fff;
-      color: #202020;
+      background-color: var(--app-search-bar-focus-background-color);
+      color: var(--app-search-bar-focus-text-color);
 
       &::placeholder {
-        color: #929292;
+        color: var(--app-search-bar-focus-placeholder-text-color);
       }
     }
   }
@@ -50,6 +49,7 @@
     left: 5px;
     top: 2px;
     position: absolute;
+    color: var(--app-search-bar-search-icon-color);
   }
 
   &__inp {
@@ -61,7 +61,7 @@
     font-weight: 300;
 
     border: 1px solid transparent;
-    background: hsla(0,0%,100%,.2);
+    background: var(--app-search-bar-background-color);
     color: inherit;
     transition: background .15s cubic-bezier(.4,0,.2,1);
     transition: width .2s ease-in;

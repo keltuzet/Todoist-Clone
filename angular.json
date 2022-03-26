@@ -31,7 +31,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles/styles.scss"
+              "src/styles/styles.scss",
+              {
+                "input": "src/styles/themes/dark.scss",
+                "bundleName": "dark-theme",
+                "inject": false
+              },
+              {
+                "input": "src/styles/themes/primary.scss",
+                "bundleName": "primary-theme",
+                "inject": false
+              }
             ],
             "scripts": [],
             "vendorChunk": true,

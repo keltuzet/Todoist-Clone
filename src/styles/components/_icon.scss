@@ -23,10 +23,10 @@ $icon-sizes: (
 }
 
 $icon-colors: (
-  'green': #058527,
-  'tenne': #ad6200,
-  'royal-blue': #246fe0,
-  'purple-heart': #692fc2,
+  'green': var(--icon-green-color),
+  'tenne': var(--icon-tenne-color),
+  'royal-blue': var(--icon-royal-blue-color),
+  'purple-heart': var(--icon-purple-heart-color),
 );
 
 @each $key, $color in $icon-colors {

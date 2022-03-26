@@ -1,0 +1,66 @@
+:host {
+  display: block;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 8px 8px 8px 16px;
+  height: 48px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sync-theme, .auto-switch-theme {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.auto-switch-theme-info {
+  margin-top: 8px;
+  color: rgba(0, 0, 0, 0.56);
+  font-size: 13px;
+}
+
+.base-themes {
+  margin-top: 16px;
+}
+
+.pro-themes {
+  margin-top: 24px;
+}
+
+.themes-container {
+  .themes-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 8px;
+    max-width: 660px;
+  }
+
+  t-theme-view-card {
+    margin: 16px 0 0 16px;
+  }
+}

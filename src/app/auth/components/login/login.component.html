@@ -17,13 +17,20 @@
           Продолжить через Apple
         </button>
       </div>
-      <form [formGroup]="form" class="auth-form">
-        <div class="field">
+      <form [formGroup]="form" *let="showError$ | async as showError" class="auth-form" autocomplete="off">
+        <div class="field" [class.invalid]="email.invalid && showError">
           <label for="email">Email</label>
+          <span *ngIf="showError" class="error-message">
+            <ng-container *ngIf="email.errors?.['email']">Неверный Email-адрес</ng-container>
+            <ng-container *ngIf="email.errors?.['required']">Email-адрес обязателень</ng-container>
+          </span>
           <input formControlName="email" id="email" type="email" autocomplete="off" />
         </div>
-        <div class="field">
+        <div class="field" [class.invalid]="password.invalid && showError">
           <label for="password">Password</label>
+          <span *ngIf="showError" class="error-message">
+            <ng-container *ngIf="password.errors?.['required']">Пароль обязателень</ng-container>
+          </span>
           <input formControlName="password" id="password" type="password" autocomplete="off" />
         </div>
         <button (click)="login()" type="button" class="submit">Вход</button>

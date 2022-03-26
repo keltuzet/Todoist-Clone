@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, from, of } from 'rxjs';
+import { catchError, from, of, Subject } from 'rxjs';
 import { FirebaseError } from 'firebase/app';
 import { AuthService } from '@auth/stores';
 import { SnackbarService } from '@features/snackbar';
@@ -17,10 +17,19 @@ export class LoginComponent {
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required]),
   });
+  readonly showError$ = new Subject<boolean>();
+
+  get email(): FormControl {
+    return this.form.controls.email as FormControl;
+  }
+  get password(): FormControl {
+    return this.form.controls.email as FormControl;
+  }
 
   constructor(private authService: AuthService, private router: Router, private snackbarService: SnackbarService) {}
 
   login(): void {
+    this.showError$.next(true);
     if (this.form.invalid) return;
     const { email, password } = this.form.value;
     from(this.authService.signin(email, password)).subscribe(() => this.navToRoot());

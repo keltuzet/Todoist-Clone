@@ -6,7 +6,7 @@ import { TooltipModule } from 'todoist-tooltip';
 import { ButtonModule } from '@features/button';
 import { AddTagsButtonComponent } from './add-tags-button/add-tags-button.component';
 import { SelectTagsMenuComponent } from './select-tags-menu/select-tags-menu.component';
-import { CheckboxModule } from '../checkbox/checkbox.module';
+import { CheckboxModule } from '@features/checkbox';
 
 @NgModule({
   declarations: [AddTagsButtonComponent, SelectTagsMenuComponent],

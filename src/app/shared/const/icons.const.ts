@@ -97,4 +97,7 @@ export const SVG_ICONS: string[] = [
   'star',
   'people',
   'mobile',
+  'small-outline-tag',
+  'warning-circle',
+  'warning',
 ];

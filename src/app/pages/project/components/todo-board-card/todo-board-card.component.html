@@ -1,0 +1,31 @@
+<app-radio-button
+  class="mark-tool"
+  [checked]="false"
+  [primary]="todo.priority?.colors.primary"
+  [secondary]="todo.priority?.colors.secondary"
+></app-radio-button>
+<div class="details">
+  <div class="content">
+    <div class="title">{{ todo.title }}</div>
+    <div class="description">{{ todo.description }}</div>
+  </div>
+  <div class="meta">
+    <button tTooltip [tlpTemplate]="endDateTooltip" *ngIf="showTerm" class="term" [ngClass]="{ overdue: isOverdue }">
+      <svg-icon name="small-calendar-solid" svgClass="icon_size_xs"></svg-icon>
+      <span class="term__date">{{ todo.endDate | date: 'dd MMM' }}</span>
+    </button>
+  </div>
+</div>
+
+<ng-template #endDateTooltip>
+  <div class="tooltip end-date-tooltip">
+    <div>
+      <div>
+        <time class="end-date">{{ todo.endDate | date: 'EEEEEE d MMM HH:mm' | capitalize }}</time>
+      </div>
+      <p *ngIf="todo.endDate | timePassed as timePassedText">{{ timePassedText }}</p>
+    </div>
+    <div class="divider"></div>
+    <div>{{ todoCount }} задач к выполнению</div>
+  </div>
+</ng-template>

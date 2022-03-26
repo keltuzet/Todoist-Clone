@@ -1,0 +1,30 @@
+<header><h2>Theme</h2></header>
+<div class="content">
+  <p class="description">Настройте вид Todoist, выбрав цвета, которые подойдут вашему стилю, настроению и характеру.</p>
+  <t-switch class="sync-theme">Синхронизация темы</t-switch>
+  <t-switch class="auto-switch-theme">Автоматический темный режим</t-switch>
+  <p class="auto-switch-theme-info">
+    Автоматическое переключение между темной и светлой темой в соответствии с темой устройства.
+  </p>
+
+  <div class="base-themes themes-container">
+    <h3>Ваши темы</h3>
+    <div class="themes-list" *let="activeTheme$ | async as activeTheme">
+      <t-theme-view-card
+        *ngFor="let theme of themes"
+        [topBarColor]="theme.viewCard.topBarColor"
+        [topBarTextColor]="theme.viewCard.topBarTextColor"
+        [contentColor]="theme.viewCard.contentColor"
+        [contentTextColor]="theme.viewCard.contentTextColor"
+        [checkboxColor]="theme.themeName === activeTheme ? theme.viewCard.checkboxColor : transparent"
+        [buttonColor]="theme.viewCard.buttonColor"
+        (click)="selectTheme(theme.themeName)"
+      ></t-theme-view-card>
+    </div>
+  </div>
+
+  <div class="pro-themes themes-container">
+    <h3>Темы pro</h3>
+    <div class="themes-list"></div>
+  </div>
+</div>

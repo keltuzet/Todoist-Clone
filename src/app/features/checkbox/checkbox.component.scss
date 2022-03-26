@@ -1,0 +1,44 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+
+  &.checked {
+    &.primary .checkbox-svg {
+      color: #d1453b;
+    }
+
+    &.default .checkbox-svg {
+      color: #808080;
+    }
+  }
+}
+
+.checkbox-input {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 4px;
+  height: 16px;
+  width: 16px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox-svg {
+  width: 24px;
+  height: 24px;
+  color: #0000008f;
+}
+
+.checkbox-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #000000e0;
+
+  &:empty {
+    display: none;
+  }
+}

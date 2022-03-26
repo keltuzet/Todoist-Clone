@@ -1,0 +1,21 @@
+<form (submit)="submit($event)" class="scheduler-timepicker">
+  <div class="controls">
+    <div class="time-input-field">
+      <div class="time-input-field__label">
+        <label for="time-input">Время</label>
+        <svg-icon *ngIf="displayWarning" name="warning" svgClass="icon_size_m"></svg-icon>
+      </div>
+      <input [formControl]="time" id="time-input" type="text" placeholder="напр., 14:00" />
+    </div>
+    <div class="timezone">
+      <button type="button" class="timezone-select">
+        Часовой пояс
+        <svg-icon name="arrow-right" svgClass="icon_size_m"></svg-icon>
+      </button>
+    </div>
+  </div>
+  <div class="actions">
+    <button [disabled]="time.invalid" class="set-time" type="submit">{{ label }}</button>
+    <button tMenuClose type="button">Отмена</button>
+  </div>
+</form>

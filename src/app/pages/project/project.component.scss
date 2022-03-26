@@ -12,15 +12,15 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-}
 
-.header-actions {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
+  .header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
 
-  .header-action {
-    margin-left: 16px;
+    .header-action {
+      margin-left: 16px;
+    }
   }
 }
 

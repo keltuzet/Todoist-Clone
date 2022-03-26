@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { GreetingSnackbarComponent } from './greeting-snackbar.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { GreetingSnackbarComponent } from './greeting-snackbar.component';
 
 @NgModule({
   declarations: [GreetingSnackbarComponent],

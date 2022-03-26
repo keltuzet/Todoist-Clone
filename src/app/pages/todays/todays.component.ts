@@ -11,6 +11,7 @@ import { TodosQuery } from '@stores/todos';
 import { UsersQuery } from '@stores/users/users.query';
 import { UsersService } from '@stores/users/users.service';
 import { Timestamp } from 'firebase/firestore';
+import { tap } from 'rxjs';
 import { SortMenuComponent } from './components/sort-menu/sort-menu.component';
 
 @Component({
@@ -22,7 +23,7 @@ import { SortMenuComponent } from './components/sort-menu/sort-menu.component';
 export class TodaysComponent {
   today = new Date();
   sortMenu = SortMenuComponent;
-  todays$ = this.todosQuery.selectTodays(this.today);
+  todays$ = this.todosQuery.selectTodays().pipe();
   overdue$ = this.todosQuery.selectOverdue().pipe().subscribe();
 
   @ViewChild('header', { read: ElementRef }) header: ElementRef<HTMLDivElement>;

@@ -21,30 +21,27 @@
         <svg-icon name="branch" svgClass="icon_size_s"></svg-icon>
         <span class="todo-info__text">{{ todo.subTodoIds.length }}</span>
       </a>
-      <button
-        tTooltip
-        [tlpTemplate]="endDateTooltip"
-        *ngIf="showTerm"
-        class="todo-info__item term"
-        [ngClass]="{ overdue: isOverdue }"
-      >
+      <button tTooltip [tlpTemplate]="endDateTooltip" *ngIf="showTerm" class="term" [ngClass]="{ overdue: isOverdue }">
         <svg-icon name="small-calendar-solid" svgClass="icon_size_xs"></svg-icon>
-        <span class="todo-info__text">{{ todo.endDate | date: termFormat }}</span>
+        <span class="term__date">{{ todo.endDate | date: termFormat }}</span>
       </button>
-      <button *ngIf="todo.comments.length" class="todo-info__item comments">
+      <button *ngIf="todo.comments.length" (click)="openComments()" class="todo-info__item comments">
         <svg-icon name="comment-solid" svgClass="icon_size_xs"></svg-icon>
-        <span class="todo-info__text">{{ todo.comments.length }}</span>
+        <span class="comments__count">{{ todo.comments.length }}</span>
       </button>
-      <a *ngFor="let tag of todo.tags" [ngStyle]="{ color: tag.color }" class="todo-info__item">{{ tag.title }}</a>
-      <div *ngIf="todo.project" class="todo-info__item projects-info">
+      <a *ngFor="let tag of todo.tags" [routerLink]="['/label', tag.id]" [ngStyle]="{ color: tag.color }" class="tag">
+        <svg-icon name="small-outline-tag" svgClass="icon_size_xs"></svg-icon>
+        <span class="tag__title">{{ tag.title }}</span>
+      </a>
+      <div *ngIf="todo.project as project" [routerLink]="['/project', project.id]" class="todo-info__item projects-info">
         <span class="projects-info__title">
-          {{ todo.project.title }}<ng-container *ngIf="todo.status"> / {{ todo.status.title }}</ng-container>
+          {{ project.title }}<ng-container *ngIf="todo.status"> / {{ todo.status.title }}</ng-container>
         </span>
         <svg-icon
           name="circle"
           svgClass="icon_size_xs"
           class="projects-info__icon"
-          [svgStyle]="{ color: todo.project.color }"
+          [svgStyle]="{ color: project.color }"
         ></svg-icon>
       </div>
     </div>
@@ -53,15 +50,10 @@
     <button tTooltip [tlpTemplate]="editTooltip" class="todo-toolbar__item">
       <svg-icon name="pen" svgClass="icon_size_m"></svg-icon>
     </button>
-    <button
-      [tMenuTrigger]="todoDeadline"
-      [menuData]="todo"
-      tTooltip="Назначить срок"
-      class="todo-toolbar__item"
-    >
+    <button [tMenuTrigger]="schedulerMenu" [menuData]="todo" (afterClose)="schedule($event)" tTooltip="Назначить срок" class="todo-toolbar__item">
       <svg-icon name="small-calendar" svgClass="icon_size_m"></svg-icon>
     </button>
-    <button (click)="comment(todo.id)" tTooltip="Комментировать" class="todo-toolbar__item">
+    <button (click)="openComments()" tTooltip="Комментировать" class="todo-toolbar__item">
       <svg-icon name="comment" svgClass="icon_size_m"></svg-icon>
     </button>
     <button

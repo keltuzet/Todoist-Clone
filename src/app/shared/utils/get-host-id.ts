@@ -1,12 +1,14 @@
 import { ElementRef } from '@angular/core';
 
-export function getHostID(host: ElementRef<HTMLElement>): string {
-  if (!host) generateHostID();
-  const hostId = Array.from(host.nativeElement.attributes).find(item => item.name.includes('nghost'))?.name;
+// export function getHostID(host: ElementRef<HTMLElement>): string {
+//   if (!host) generateHostID();
+//   const hostId = Array.from(host.nativeElement.attributes).find(item => item.name.includes('nghost'))?.name;
 
-  return hostId || generateHostID();
-}
+//   return hostId || generateHostID();
+// }
 
-function generateHostID(): string {
-  return (Math.random() * 1e10).toFixed().toString();
+export function generateHostID(host: ElementRef<HTMLElement>): string {
+  const hostNameAttribute = Array.from(host.nativeElement.attributes).find(item => item.name.includes('nghost'))?.name;
+  const hostName = hostNameAttribute || host.nativeElement.tagName;
+  return `${hostName}_${(Math.random() * 1e10).toFixed().toString()}`;
 }

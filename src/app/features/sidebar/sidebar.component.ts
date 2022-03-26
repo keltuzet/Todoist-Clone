@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 import { SidebarState } from './models';
@@ -14,6 +14,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   stateChange: Observable<SidebarState>;
   expandWidth: number;
   subscription: Subscription;
+
+  @HostBinding('class.collapsed') isCollapsed: boolean;
 
   constructor(private sidebarService: SidebarService, public host: ElementRef<HTMLElement>) {}
 
@@ -40,10 +42,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   private expandSidebar() {
+    this.isCollapsed = false;
     this.host.nativeElement.style.width = `${this.expandWidth}px`;
   }
 
   private collapseSidebar() {
+    this.isCollapsed = true;
     this.host.nativeElement.style.width = '0';
   }
 

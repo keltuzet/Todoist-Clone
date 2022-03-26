@@ -1,0 +1,34 @@
+<form (submit)="handleSubmit($event)" class="scheduler-date-field">
+  <input [formControl]="dateInput" placeholder="Введите срок выполнения" spellcheck="false" type="text" />
+</form>
+<hr class="menu-divider" />
+<ng-container *ngIf="showDatePreview$ | async">
+  <div class="scheduler-preview">
+    <button class="scheduler-preview-content">
+      <svg-icon name="calendar-solid" svgClass="icon_size_m"></svg-icon>
+      <div class="scheduler-preview-date">
+        <span>{{ schedulerDatePreview$ | async }}</span>
+        <div class="scheduler-preview-date-tasks">{{ schedulerDateTodosTitle$ | async }}</div>
+      </div>
+    </button>
+    <div class="scheduler-preview-help">
+      <p>
+        Вы также можете вводить повторяющиеся сроки вроде <b>каждый день</b>, <b>каждые 2 недели</b> и
+        <b>каждая последняя пятница месяца</b>.
+      </p>
+      <p>
+        <a
+          href="https://support.todoist.com/hc/articles/360000636289"
+          rel="noopener noreferrer"
+          class="scheduler-preview-help-link"
+          target="_blank"
+          >Подробнее о повторяющихся сроках
+        </a>
+      </p>
+    </div>
+  </div>
+  <hr class="menu-divider" />
+</ng-container>
+<div class="scheduler-actions">
+  <button [tMenuTrigger]="setTimeMenu" (afterClose)="setTime($event)" class="add-time">+ Добавить время</button>
+</div>

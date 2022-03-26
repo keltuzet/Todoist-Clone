@@ -1,0 +1,11 @@
+<input
+  [id]="hostID"
+  class="checkbox-input"
+  type="checkbox"
+  [attr.aria-checked]="checked"
+  [attr.aria-label]="ariaLabel"
+/>
+<svg [ngClass]="svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="checkbox-svg">
+  <path fill="currentColor" fill-rule="nonzero" [attr.d]="checked ? checkedPath : emptyPath"></path>
+</svg>
+<label [for]="hostID" class="checkbox-label"><ng-content></ng-content></label>

@@ -9,7 +9,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-const storage = persistState({ include: ['tags', 'search', 'UI/tags', 'tags-ui'] });
+const storage = persistState({ include: ['tags', 'search', 'UI/tags', 'tags-ui', 'theme'] });
 
 const providers = [{ provide: 'persistStorage', useValue: storage }];
 

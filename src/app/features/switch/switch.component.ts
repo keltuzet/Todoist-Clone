@@ -6,8 +6,10 @@ import {
   EventEmitter,
   HostBinding,
   forwardRef,
+  ElementRef,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { generateHostID } from '@shared/utils';
 
 @Component({
   selector: 't-switch',
@@ -25,14 +27,16 @@ export class SwitchComponent implements ControlValueAccessor {
   get checked(): boolean {
     return this.value;
   }
-  value: boolean;
+  private value: boolean;
 
   @Output() checkedChange = new EventEmitter<boolean>();
-  readonly hostId = this.generateID();
+  readonly hostId = generateHostID(this.host);
 
   @HostBinding('class.checked') get checkedCSSClass(): boolean {
     return this.checked;
   }
+
+  constructor(private host: ElementRef<HTMLElement>) {}
 
   onChange: any = () => {};
   onTouch: any = () => {};

@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Dialog } from '@features/dialog';
-import { DetailedTodo } from '@stores/todos';
+import { DetailedTodo, TodosService } from '@stores/todos';
 import { TodoActionsMenuComponent } from '../todo-actions-menu';
 import { TodoDeadlineMenuComponent } from '../t-todo-deadline-menu/t-todo-deadline-menu.component';
 import { UpdateTaskDetailsComponent } from '../update-task-details/update-task-details.component';
+import { SchedulerMenuComponent } from '../scheduler-menu/scheduler-menu.component';
 
 @Component({
   selector: 't-todo',
@@ -22,21 +23,28 @@ export class TodoComponent implements OnInit {
   readonly now = new Date();
   readonly todoActionsMenu = TodoActionsMenuComponent;
   readonly todoDeadline = TodoDeadlineMenuComponent;
+  readonly schedulerMenu = SchedulerMenuComponent;
 
-  constructor(private dialog: Dialog) {}
+  constructor(private dialog: Dialog, private todosService: TodosService) {}
 
   ngOnInit(): void {
     this.termFormat = this.termFormatFn(this.todo);
   }
 
-  comment(id: string): void {
+  openComments(): void {
     this.dialog.open(UpdateTaskDetailsComponent, {
-      data: id,
+      data: this.todo.id,
       width: '100%',
       maxWidth: '650px',
       maxHeight: '960px',
       minHeight: '400px',
       hasBackdrop: false,
+    });
+  }
+
+  schedule(date: Date): void {
+    this.todosService.updateTodo(this.todo.id, {
+      endDate: date.toJSON(),
     });
   }
 }

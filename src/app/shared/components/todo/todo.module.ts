@@ -10,6 +10,7 @@ import { TodoComponent } from './todo.component';
 import { TodoActionsMenuModule } from '../todo-actions-menu';
 import { UpdateTaskDetailsModule } from '../update-task-details/update-task-details.module';
 import { TodoDeadlineMenuModule } from '../t-todo-deadline-menu/t-todo-deadline-menu.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [TodoComponent],
@@ -24,6 +25,7 @@ import { TodoDeadlineMenuModule } from '../t-todo-deadline-menu/t-todo-deadline-
     MenuModule,
     UpdateTaskDetailsModule,
     TodoDeadlineMenuModule,
+    RouterModule,
   ],
   exports: [TodoComponent],
 })

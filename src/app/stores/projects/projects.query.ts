@@ -4,7 +4,7 @@ import { RouterQuery } from '@datorama/akita-ng-router-store';
 import { Observable } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 
-import { Project, Status, DetailedStatus } from './project.model';
+import { Project, Status, DetailedStatus, ProjectWithTodos } from './project.model';
 import { entityToObj, selectArrProps } from '@shared/utils';
 import { ProjectsStore, ProjectsState } from './projects.store';
 

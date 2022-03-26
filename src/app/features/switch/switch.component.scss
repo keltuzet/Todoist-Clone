@@ -19,7 +19,6 @@
   border-radius: 9px;
   cursor: pointer;
   position: relative;
-  margin-right: 8px;
 }
 
 .switch-thumb {
@@ -38,7 +37,12 @@
 }
 
 .switch-label {
+  margin-left: 8px;
   color: #000000e0;
   font-size: 14px;
   font-weight: 400;
+
+  &:empty {
+    display: none;
+  }
 }

@@ -2,7 +2,7 @@
   display: flex;
   position: relative;
   border-bottom: 1px solid #f0f0f0;
-  color: #808080;
+  color: var(--todo-title-color);
   cursor: pointer;
 
   &:hover {
@@ -59,7 +59,7 @@
       overflow: hidden;
       font-size: 14px;
       line-height: 21px;
-      color: #202020;
+      color: var(--todo-title-color);
     }
   }
 
@@ -68,19 +68,8 @@
     align-items: center;
     flex-wrap: wrap;
     min-height: 16px;
-
-    &__item {
-      margin-right: 8px;
-      font-size: 12px;
-      line-height: 12px;
-      color: grey;
-      display: inline-flex;
-      align-items: center;
-
-      &:hover {
-        color: #202020;
-      }
-    }
+    font-size: 12px;
+    line-height: 12px;
 
     .linked-branches {
       .todo-info__text {
@@ -88,11 +77,45 @@
       }
     }
 
+    .tag {
+      margin-right: 8px;
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      line-height: 12px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      .tag__title {
+        margin-left: 2px;
+      }
+    }
+
+    .comments {
+      margin-right: 8px;
+      display: inline-flex;
+      align-items: center;
+      color: #808080;
+
+      .comments__count {
+        margin-left: 2px;
+      }
+
+      &:hover {
+        color: #202020;
+      }
+    }
+
     .term {
+      margin-right: 8px;
+      display: inline-flex;
+      align-items: center;
       color: #058527;
 
-      svg-icon {
-        margin-right: 1px;
+      .term__date {
+        margin-left: 2px;
       }
 
       &.overdue {
