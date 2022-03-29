@@ -6,6 +6,7 @@ import { Priority } from '@stores/priorities';
 import { TodosQuery, TodosService } from '@stores/todos';
 import { SelectPriorityMenuComponent } from '../priority-actions';
 import { SelectTagsMenuComponent } from '../tag-actions';
+import { PostComment } from '../comments/post-comment.model';
 
 @Component({
   selector: 't-update-task-details',
@@ -30,13 +31,13 @@ export class UpdateTaskDetailsComponent {
     this.dialogRef.close();
   }
 
-  postComment(text: string): void {
+  postComment(post: PostComment): void {
     this.todo$
       .pipe(
         take(1),
-        switchMap(todo => this.todosService.postComment(text, todo.id)),
+        switchMap(todo => this.todosService.postComment(post, todo.id)),
       )
-      .subscribe(v => console.log(v));
+      .subscribe();
   }
 
   updatePriority(priority: Priority): void {

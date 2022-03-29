@@ -53,11 +53,11 @@ export class TodosService extends CollectionService<TodosState> {
     return this.updateTodo(todoId, { priorityId });
   }
 
-  postComment(text: string, todoId: string): Observable<any> {
+  postComment(post: Partial<Comment>, todoId: string): Observable<any> {
     return this.me.myId$.pipe(
       switchMap(authorId => {
         const val = {
-          text,
+          ...post,
           todoId,
           authorId,
           postedDate: new Date().toJSON(),

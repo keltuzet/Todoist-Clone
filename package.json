@@ -3,13 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"json-server db.json --middlewares ./middleware.js --routes routes.json\" \"ng s -o --port=4500\"",
-    "dev": "ng s -o --port=4500",
+    "start": "ng s -o --port=4500",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "json-server": "json-server db.json -w --middlewares ./middleware.js --routes routes.json --static ./public",
     "create-icon-catalog": "create-html --title='icon-catalog'"
   },
   "private": true,

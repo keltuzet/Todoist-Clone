@@ -103,6 +103,7 @@ export class AudioRecorderComponent implements OnInit {
     this.blob = data;
     const blobForAudio = new Blob([data], { type: 'audio/ogg; codecs=opus' });
     const audioURL = window.URL.createObjectURL(blobForAudio);
+    console.log(audioURL);
     this.audio.nativeElement.src = audioURL;
     this.changeDetectorRef.detectChanges();
   }

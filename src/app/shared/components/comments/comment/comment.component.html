@@ -20,6 +20,9 @@
     </div>
   </div>
   <pre class="comment-text" [innerHTML]="comment?.text"></pre>
+  <audio *ngIf="comment?.audioURL as audioURL" controls="controls" autobuffer="autobuffer" autoplay="autoplay">
+    <source [src]="audioURL" />
+  </audio>
   <t-comment-reactions [comment]="comment" [relatedTodoId]="relatedTodoId"></t-comment-reactions>
 </ng-container>
 

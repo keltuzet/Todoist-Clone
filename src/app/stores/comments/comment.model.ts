@@ -20,6 +20,7 @@ export interface Comment {
   isEdited?: true;
   lastEditedDate?: string;
   reacts?: CommentReaction;
+  audioURL?: string;
 }
 
 export interface DetailedComment extends Comment {
