@@ -8,14 +8,16 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { TooltipModule } from 'todoist-tooltip';
 import { MenuModule } from 'todoist-menu';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxLetDirectiveModule } from 'ngx-let-directive';
 
 import { SidebarModule } from '@features/sidebar';
 import { ExpansionPanelModule } from '@features/expansion-panel';
 import { RadioButtonModule } from '@features/radio-button';
 import { ButtonModule } from '@features/button';
-import { ProjectActionsMenuModule, TagActionsModule } from '@shared/components';
+import { ProjectActionsMenuModule, TagActionsModule, PriorityActionsModule, SettingsMenuModule } from '@shared/components';
 import { SvgIconTextModule } from '@shared/directives';
 import { ProjectIconModule, TakeModule } from '@shared/pipes';
+
 import { PageLayoutComponent } from './page-layout/page-layout.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchBarComponent } from './header/components/search-bar/search-bar.component';
@@ -37,8 +39,6 @@ import { NavTagListComponent } from './nav/components/nav-tag-list/nav-tag-list.
 import { NavFilterListComponent } from './nav/components/nav-filter-list/nav-filter-list.component';
 import { NavTagMenuComponent } from './nav/components/nav-tag-menu/nav-tag-menu.component';
 import { NavListComponent } from './nav/components/nav-list/nav-list.component';
-import { NgxLetDirectiveModule } from 'ngx-let-directive';
-import { PriorityActionsModule, SettingsMenuModule } from '@shared/components';
 
 @NgModule({
   declarations: [
@@ -66,7 +66,6 @@ import { PriorityActionsModule, SettingsMenuModule } from '@shared/components';
   ],
   imports: [
     CommonModule,
-    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     AngularSvgIconModule,

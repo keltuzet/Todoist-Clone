@@ -22,7 +22,7 @@ import * as moment from 'moment';
 import { SnackbarModule } from '@features/snackbar';
 import { AuthModule } from '@auth/auth.module';
 import { environment } from '../environments/environment';
-import { PageLayoutModule } from './layouts';
+import { PageLayoutModule } from './layouts/layouts.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
