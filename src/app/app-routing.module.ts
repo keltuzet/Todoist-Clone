@@ -12,7 +12,7 @@ import {
 } from '@shared/resolvers';
 import { DevComponent } from '@pages/dev/dev.component';
 import { IconCatalogPermissionGuard } from '@pages/icon-catalog/icon-catalog-permission.guard';
-import { PageLayoutComponent } from './layouts';
+import { PageLayoutComponent } from './layouts/page-layout/page-layout.component';
 import { FaqGuard } from '@shared/guards';
 import { AuthGuard } from '@auth/guards';
 import { UserRegistrationComponent, LoginComponent, ForgotPasswordComponent } from '@auth/components';
@@ -41,7 +41,7 @@ const routes: Routes = [
   {
     path: APP_ROUTES.root,
     component: PageLayoutComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     resolve: {
       tags: TagsResolver,
       projects: ProjectsResolver,

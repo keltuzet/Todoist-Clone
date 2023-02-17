@@ -17,6 +17,7 @@ export class TagsQuery extends QueryEntity<TagsState> {
   constructor(protected store: TagsStore, private routerQuery: RouterQuery) {
     super(store);
     this.createUIQuery();
+    this.ui.select().subscribe(v => console.log(v))
   }
 
   selectRouteTag(): Observable<Tag> {
